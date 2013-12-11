@@ -85,7 +85,7 @@ public class MasterPilot {
                 }
                 context.render(graphics -> {
 //                    BACKGROUND
-                    graphics.setColor(Color.red);
+                    graphics.setColor(Color.black);
                     graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
 
                     int j = 0;
@@ -101,8 +101,8 @@ public class MasterPilot {
                         int xStar = (int) itx.next();
                         int yStar = (int) ity.next();
                         Color color = new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255), random.nextInt(255));
-                        RadialGradientPaint paint = new RadialGradientPaint(xStar, yStar, SIZESTAR, new float[]{0f, 1f}, new Color[]{color, Color.GREEN});
-                        graphics.setPaint(paint);
+                        
+                        graphics.setPaint(Color.yellow);
                         graphics.fill(new Ellipse2D.Float(xStar, yStar, SIZESTAR, SIZESTAR));
 
                     }
@@ -122,7 +122,7 @@ public class MasterPilot {
                     for (int index = 1; index < x1Points.length; index++) {
                         polygon.lineTo(x1Points[index], y1Points[index]);
                     };
-                    graphics.setColor(Color.WHITE);
+                    graphics.setColor(Color.darkGray);
                     polygon.closePath();
 //graphics.draw(polygon);
 //ROTATE
@@ -132,9 +132,11 @@ public class MasterPilot {
                     System.out.println("angle " + Math.toDegrees(body.getAngle()));
                     graphics.fill(transformed);
 //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
-                    graphics.setPaint(Color.WHITE);
+                    
 
 //PLANET
+                    RadialGradientPaint paint = new RadialGradientPaint(bodyPlanet.getPosition().x, bodyPlanet.getPosition().y, 500, new float[]{0f, 1f}, new Color[]{new Color(37,197,246), new Color(17, 21, 134)});
+                    graphics.setPaint(paint);
                     graphics.fill(new Ellipse2D.Float(bodyPlanet.getPosition().x, bodyPlanet.getPosition().y, 500, 500));
 //DISPOSE AND STEP TIME
                     graphics.dispose();
