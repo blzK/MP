@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
@@ -78,6 +79,10 @@ public class ShuttleFactory {
                         transform.rotate(body.getAngle(), body.getPosition().x + 800 / 2,body.getPosition().y + 600 / 2 + 5 );
                         Shape transformed = transform.createTransformedShape(polygon);
                         graphics.fill(transformed);
+                        if(body.m_contactList!=null){
+                            graphics.setColor(new Color(1f,0f,0f,.5f ));
+                            graphics.fill(new Ellipse2D.Float(  body.getPosition().x +372,  body.getPosition().y + 272  , 60, 60));
+                        }
 
                     }
 
@@ -96,7 +101,7 @@ public class ShuttleFactory {
 //                s.m_type=
 //                
                         CircleShape s = new CircleShape();
-                s.m_radius = 350f;
+                s.m_radius = 100f;
                 fd2.shape = s;
                 fd2.density = 1f;
                 fd2.restitution = 1f;
@@ -113,7 +118,8 @@ public class ShuttleFactory {
                     public void display(Graphics2D graphics) {
                         graphics.setPaint(Color.RED);
                         graphics.setColor(Color.RED);
-                        graphics.fill(new Rectangle2D.Float(body2.getPosition().x, body2.getPosition().y, 100, 20));
+                        
+                        graphics.fill(new Rectangle2D.Float(body.getPosition().x+335,body.getPosition().y+260, 100, 20));
                     }
                 };
 

@@ -38,7 +38,7 @@ public class MasterPilot {
         Planet planet2 = new Planet(world,-100,-100);
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0, 0, ShuttleType.SPACESHUTTLE, world);
-//        SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 500, ShuttleType.ENNEMY1, world);
+        SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 500, ShuttleType.ENNEMY1, world);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -71,7 +71,7 @@ public class MasterPilot {
                     }
 //ENNEMY SHUTTLE
 
-//                    e1.display(graphics);
+                    e1.display(graphics);
 //                    e1.applyForce(null, null);
 
 //                    //STARS GENERATION
