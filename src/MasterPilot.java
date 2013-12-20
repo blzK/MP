@@ -44,7 +44,7 @@ public class MasterPilot {
 
             for (;;) {
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(4);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -84,7 +84,7 @@ public class MasterPilot {
                     spaceShuttle.display(graphics);
 
 //DEBUG                    
-                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
+//                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
 //                    System.out.println(body.getContactList());
                     System.out.println("angle " + Math.toDegrees(spaceShuttle.getAngle()) % 360);
 ////////////                    graphics.fill(transformed);

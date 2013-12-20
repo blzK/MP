@@ -57,8 +57,8 @@ public class ShuttleFactory {
                 
                 Body body = world.createBody(bodydef);
                 body.createFixture(fd);
-                body.setAngularDamping(3);
-                body.setLinearDamping((float) 0.3);
+                body.setAngularDamping(1);
+//                body.setLinearDamping((float) 0.3);
                 return new SpaceShuttle(x, y, polygon, body) {
 
                     @Override
