@@ -1,12 +1,8 @@
 
+import java.awt.Graphics2D;
 import java.awt.Shape;
-import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
-import org.jbox2d.dynamics.World;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +15,7 @@ import org.jbox2d.dynamics.World;
  */
 public abstract class SpaceShuttle extends FlyingObject {
 
-    public SpaceShuttle(int x, int y, Shape shape, Body body) {
+    public SpaceShuttle(float x, float y, Shape shape, Body body) {
         this.shape = shape;
         this.x = x;
         this.y = y;
@@ -32,7 +28,7 @@ public abstract class SpaceShuttle extends FlyingObject {
         return false;
     }
 
-    public void fire() {
+    public void fire(Graphics2D graphics) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

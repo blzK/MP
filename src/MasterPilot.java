@@ -18,25 +18,25 @@ public class MasterPilot {
 
     final static int WIDTH = 800;
     final static int HEIGHT = 600;
-    
-    public static float toXCoordinates(float x){
+
+    public static float toXCoordinates(float x) {
         return x;
     }
 
-        public static float toYCoordinates(float y){
+    public static float toYCoordinates(float y) {
         return y;
     }
 
     public static void main(String[] args) {
 
         int SIZE = 30;
-        int STRIDE = 100;
         int SIZESTAR = 4;
-        HashMap<Integer, Integer> starPositions = new HashMap<>();
-        Random random = new Random(0);
-        for (int i = 0; i < 100; i++) {
-            starPositions.put(random.nextInt(WIDTH * 3), random.nextInt(HEIGHT * 3));
-        }
+//        HashMap<Integer, Integer> starPositions = new HashMap<>();
+//        Random random = new Random(0);
+//        for (int i = 0; i < 200; i++) {
+//            starPositions.put(random.nextInt(WIDTH * 4), random.nextInt(HEIGHT * 4));
+//        }
+        Stars stars= new Stars(0, 0);
 //WORLD
         World world = new World(new Vec2(0, 0));
         float timeStep = 1.0f / 60.f;
@@ -47,7 +47,7 @@ public class MasterPilot {
         Planet planet1 = new Planet(world, 100, 100);
         Planet planet2 = new Planet(world, -100, -100);
         ShuttleFactory shuttleFactory = new ShuttleFactory();
-        SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0, 0, ShuttleType.SPACESHUTTLE, world);
+        SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 500, ShuttleType.ENNEMY1, world);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
@@ -70,15 +70,23 @@ public class MasterPilot {
                     graphics.translate(-x, -y);
 
 //                    STARS
-                    Iterator itx = starPositions.keySet().iterator();
-                    Iterator ity = starPositions.values().iterator();
-                    for (int i = 0; i < 95; i++) {
-                        int xStar = (int) itx.next();
-                        int yStar = (int) ity.next();
-
-                        Star star = new Star(xStar, yStar);
-                        star.display(graphics);
+//                    Iterator itx = starPositions.keySet().iterator();
+//                    Iterator ity = starPositions.values().iterator();
+//                    for (int i = 0; i < 95; i++) {
+//                        int xStar = (int) itx.next();
+//                        int yStar = (int) ity.next();
+//
+//                        Star star = new Star(xStar, yStar);
+//                        star.display(graphics);
+//                    }
+                    
+                    
+                    if(!stars.isInside(spaceShuttle)){
+                        stars.generateStars(x, y);
+                    
                     }
+                    stars.display(graphics);
+                    
 //ENNEMY SHUTTLE
 
                     e1.display(graphics);
@@ -95,7 +103,7 @@ public class MasterPilot {
 //DEBUG                    
 //                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
 //                    System.out.println(body.getContactList());
-                    System.out.println("angle " + Math.toDegrees(spaceShuttle.getAngle()) % 360);
+//                    System.out.println("angle " + Math.abs(Math.toDegrees(spaceShuttle.getAngle())) % 360);
 ////////////                    graphics.fill(transformed);
 //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
 //PLANETS
@@ -105,7 +113,7 @@ public class MasterPilot {
 
                     graphics.dispose();
 //KEYBOARD CONTROL
-                    ShuttleControl.move(spaceShuttle, context.pollKeyboard());
+                    ShuttleControl2.move(spaceShuttle, context.pollKeyboard(), graphics);
 
                     world.step(timeStep, velocityIterations, positionIterations);
                 });

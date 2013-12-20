@@ -25,7 +25,7 @@ import org.jbox2d.dynamics.World;
  */
 public class ShuttleFactory {
 
-    public SpaceShuttle createShuttle(int x, int y, ShuttleType type, World world) {
+    public SpaceShuttle createShuttle(float x, float y, ShuttleType type, World world) {
 
         switch (type) {
             case SPACESHUTTLE:
@@ -51,10 +51,10 @@ public class ShuttleFactory {
 
                 fd.friction = 0.5f;
 
-                bodydef.position.set(x,y);
-                
+                bodydef.position.set(x, y);
+
                 bodydef.type = BodyType.DYNAMIC;
-                
+
                 Body body = world.createBody(bodydef);
                 body.createFixture(fd);
                 body.setAngularDamping(1);
@@ -63,8 +63,10 @@ public class ShuttleFactory {
 
                     @Override
                     public void display(Graphics2D graphics) {
-                        int x1Points[] = {(int) body.getPosition().x + 800 / 2 - 15, (int) body.getPosition().x + 800 / 2, (int) body.getPosition().x + 800 / 2 + 15};
-                        int y1Points[] = {(int) body.getPosition().y + 600 / 2 - 15, (int) body.getPosition().y + 600 / 2 + 25, (int) body.getPosition().y + 600 / 2 - 15};
+//                        float x1Points[] = {body.getPosition().x + 800 / 2 - 15, body.getPosition().x + 800 / 2, body.getPosition().x + 800 / 2 + 15};
+//                        float y1Points[] = {body.getPosition().y + 600 / 2 - 15, body.getPosition().y + 600 / 2 + 25, body.getPosition().y + 600 / 2 - 15};
+                        float x1Points[] = {body.getPosition().x + 800 / 2 - 25, body.getPosition().x + 800 / 2 + 25, body.getPosition().x + 800 / 2 - 25};
+                        float y1Points[] = {body.getPosition().y + 600 / 2 + 10, body.getPosition().y + 600 / 2, body.getPosition().y + 600 / 2 - 10};
                         GeneralPath polygon = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x1Points.length);
                         polygon.moveTo(x1Points[0], y1Points[0]);
 
@@ -76,15 +78,21 @@ public class ShuttleFactory {
                         graphics.setColor(Color.darkGray);
 //                        graphics.fill(polygon);
                         AffineTransform transform = new AffineTransform();
-                        transform.rotate(body.getAngle(), body.getPosition().x + 800 / 2,body.getPosition().y + 600 / 2 + 5 );
+                        transform.rotate(body.getAngle(), body.getPosition().x + 800 / 2, body.getPosition().y + 600 / 2 + 5);
                         Shape transformed = transform.createTransformedShape(polygon);
                         graphics.fill(transformed);
-                        if(body.m_contactList!=null){
-                            graphics.setColor(new Color(1f,0f,0f,.5f ));
-                            graphics.fill(new Ellipse2D.Float(  body.getPosition().x +372,  body.getPosition().y + 272  , 60, 60));
+                        if (body.m_contactList != null) {
+                            graphics.setColor(new Color(1f, 0f, 0f, .5f));
+                            graphics.fill(new Ellipse2D.Float(body.getPosition().x + 372, body.getPosition().y + 272, 60, 60));
                         }
 
                     }
+
+            @Override
+            public void fire(Graphics2D graphics) {
+                Rocket rocket= new Rocket(body.getPosition().x, body.getPosition().y);
+                rocket.display(graphics);
+            }
 
                 };
 
@@ -100,13 +108,13 @@ public class ShuttleFactory {
 //                s.m_radius=100f;
 //                s.m_type=
 //                
-                        CircleShape s = new CircleShape();
+                CircleShape s = new CircleShape();
                 s.m_radius = 70f;
                 fd2.shape = s;
                 fd2.density = 1f;
                 fd2.restitution = 1f;
                 fd2.friction = 1f;
-                bodydef2.position.set(x-200, y);
+                bodydef2.position.set(x - 200, y);
                 bodydef2.type = BodyType.DYNAMIC;
                 Body body2 = world.createBody(bodydef2);
                 body2.createFixture(fd2);
@@ -118,8 +126,8 @@ public class ShuttleFactory {
                     public void display(Graphics2D graphics) {
                         graphics.setPaint(Color.RED);
                         graphics.setColor(Color.RED);
-                        
-                        graphics.fill(new Rectangle2D.Float(body.getPosition().x+335,body.getPosition().y+260, 100, 20));
+
+                        graphics.fill(new Rectangle2D.Float(body.getPosition().x + 335, body.getPosition().y + 260, 100, 20));
                     }
                 };
 

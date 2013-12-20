@@ -16,8 +16,8 @@ import org.jbox2d.dynamics.Body;
 public abstract class  FlyingObject implements Sprite{
     protected Body body;
     protected Shape shape;
-    int x;
-    int y;
+     float x;
+    float y;
 
 public void applyLinearImpulse(Vec2 impulse, Vec2 point){
     body.applyLinearImpulse(impulse, point);

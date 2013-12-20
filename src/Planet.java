@@ -50,7 +50,7 @@ static int HEIGHT=600;
 //  int y=  (int) (600 - (1.0f*600) * body.getPosition().y / 100.0f);
 //        float  x = (800*body.getPosition().x / 100.0f);
 //        float  y =  (600 - (1.0f*600) * body.getPosition().y / 100.0f);
-        Ellipse2D s=new Ellipse2D.Float(body.getPosition().x+335,body.getPosition().y+260, 100f,100f);
+        shape=new Ellipse2D.Float(body.getPosition().x+335,body.getPosition().y+260, 100f,100f);
 //        Ellipse2D s;
 //    s = new Ellipse2D.Float(toPosX(body.getPosition().x), toPosY(body.getPosition().y),100f,100f);
 //        s = new Ellipse2D.Float(toPixelPosX(body.getPosition().x), toPixelPosY(body.getPosition().y),100f,100f);
@@ -61,7 +61,7 @@ static int HEIGHT=600;
 //        System.out.println(s.getMinX());
 //        System.out.println(s.getMinY());
         
-        graphics.fill(s);
+        graphics.fill(shape);
         
 
     }

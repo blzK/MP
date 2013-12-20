@@ -1,5 +1,6 @@
 
 import fr.umlv.zen3.KeyboardEvent;
+import java.awt.Graphics2D;
 import org.jbox2d.common.Vec2;
 
 /*
@@ -13,7 +14,7 @@ import org.jbox2d.common.Vec2;
  */
 public class ShuttleControl {
 
-    public static void move(SpaceShuttle spaceShuttle, KeyboardEvent event) {
+    public static void move(SpaceShuttle spaceShuttle, KeyboardEvent event, Graphics2D graphics) {
         if (event != null) {
             System.out.println(event.toString());
             System.out.println(" x = " + spaceShuttle.getPosition().x + " y = " + spaceShuttle.getPosition().y);
@@ -43,7 +44,7 @@ public class ShuttleControl {
                     spaceShuttle.applyLinearImpulse(new Vec2(0, 50), spaceShuttle.getPosition());
                     break;
                 case LEFT:
-                    if (angle > 90 && angle < 180) {
+                    if (angle > 90 && angle < 270) {
                         spaceShuttle.applyAngularImpulse(-0.2f);
                     } else {
                         spaceShuttle.applyAngularImpulse(0.2f);
@@ -53,7 +54,7 @@ public class ShuttleControl {
                     spaceShuttle.applyLinearImpulse(new Vec2(-50, 0), spaceShuttle.getPosition());
                     break;
                 case RIGHT:
-                    if (angle > 270) {
+                    if (angle > 270||angle<90) {
                         spaceShuttle.applyAngularImpulse(-0.2f);
                     } else {
                         spaceShuttle.applyAngularImpulse(0.2f);
@@ -62,7 +63,7 @@ public class ShuttleControl {
                     spaceShuttle.applyLinearImpulse(new Vec2(50, 0), spaceShuttle.getPosition());
                     break;
                 case SPACE:
-                    spaceShuttle.fire();
+                    spaceShuttle.fire(graphics);
                     break;
             }
         }
