@@ -31,11 +31,6 @@ public class MasterPilot {
 
         int SIZE = 30;
         int SIZESTAR = 4;
-//        HashMap<Integer, Integer> starPositions = new HashMap<>();
-//        Random random = new Random(0);
-//        for (int i = 0; i < 200; i++) {
-//            starPositions.put(random.nextInt(WIDTH * 4), random.nextInt(HEIGHT * 4));
-//        }
         Stars stars= new Stars(0, 0);
 //WORLD
         World world = new World(new Vec2(0, 0));
@@ -70,17 +65,6 @@ public class MasterPilot {
                     graphics.translate(-x, -y);
 
 //                    STARS
-//                    Iterator itx = starPositions.keySet().iterator();
-//                    Iterator ity = starPositions.values().iterator();
-//                    for (int i = 0; i < 95; i++) {
-//                        int xStar = (int) itx.next();
-//                        int yStar = (int) ity.next();
-//
-//                        Star star = new Star(xStar, yStar);
-//                        star.display(graphics);
-//                    }
-                    
-                    
                     if(!stars.isInside(spaceShuttle)){
                         stars.generateStars(x, y);
                     
@@ -91,12 +75,6 @@ public class MasterPilot {
 
                     e1.display(graphics);
 
-//                    //STARS GENERATION
-//                    if (spaceShuttle.getPosition().x % WIDTH * 3 == 0) {
-//                        for (int i = 0; i < 100; i++) {
-//                            starPositions.put(random.nextInt((int) (spaceShuttle.getPosition().x + WIDTH * 3)), random.nextInt((int) spaceShuttle.getPosition().x + HEIGHT * 3));
-//                        }
-//                    }
 //MAIN SPACESHUTTLE
                     spaceShuttle.display(graphics);
 
