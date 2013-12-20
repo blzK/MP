@@ -34,8 +34,8 @@ public class MasterPilot {
         int positionIterations = 2;
 //        MAIN SHUTLE
 
-        Planet planet1 = new Planet(world,100,100);
-        Planet planet2 = new Planet(world,-100,-100);
+        Planet planet1 = new Planet(world, 100, 100);
+        Planet planet2 = new Planet(world, -100, -100);
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0, 0, ShuttleType.SPACESHUTTLE, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 500, ShuttleType.ENNEMY1, world);
@@ -80,14 +80,13 @@ public class MasterPilot {
 //                            starPositions.put(random.nextInt((int) (spaceShuttle.getPosition().x + WIDTH * 3)), random.nextInt((int) spaceShuttle.getPosition().x + HEIGHT * 3));
 //                        }
 //                    }
-
 //MAIN SPACESHUTTLE
                     spaceShuttle.display(graphics);
 
 //DEBUG                    
-                    System.out.println("SpaceShuttleX "+(int)spaceShuttle.getPosition().x+" SpaceShuttleY "+(int)spaceShuttle.getPosition().y);
+                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
 //                    System.out.println(body.getContactList());
-//                    System.out.println("angle " + Math.toDegrees(body.getAngle())%360);
+                    System.out.println("angle " + Math.toDegrees(spaceShuttle.getAngle()) % 360);
 ////////////                    graphics.fill(transformed);
 //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
 //PLANETS
@@ -96,50 +95,9 @@ public class MasterPilot {
 //DISPOSE AND STEP TIME
 
                     graphics.dispose();
+//KEYBOARD CONTROL
+                    ShuttleControl.move(spaceShuttle, context.pollKeyboard());
 
-                    KeyboardEvent event = context.pollKeyboard();
-
-                    if (event != null) {
-                        System.out.println(event.toString());
-                        System.out.println(" x = " + spaceShuttle.getPosition().x + " y = " + spaceShuttle.getPosition().y);
-                        switch (event.getKey()) {
-                            case UP:
-//                                if (Math.toDegrees(spaceShuttle.getAngle()) < 180) {
-                                    spaceShuttle.applyAngularImpulse((float) 0.2);
-//                                }
-                                spaceShuttle.applyForce(new Vec2(0, -50), spaceShuttle.getPosition());
-                                spaceShuttle.applyLinearImpulse(new Vec2(0, -50), spaceShuttle.getPosition());
-                                break;
-
-                            case DOWN:
-//                                if (Math.toDegrees(spaceShuttle.getAngle()) < 0) {
-                                    spaceShuttle.applyAngularImpulse((float) 0.2);
-//                                }
-                                spaceShuttle.applyForce(new Vec2(0, 50), spaceShuttle.getPosition());
-                                spaceShuttle.applyLinearImpulse(new Vec2(0, 50), spaceShuttle.getPosition());
-                                break;
-                            case LEFT:
-//                                if (Math.toDegrees(spaceShuttle.getAngle()) < 85 && Math.toDegrees(spaceShuttle.getAngle()) % 360 > 95) {
-                                    spaceShuttle.applyAngularImpulse((float) 0.2);
-//                                }
-
-                                spaceShuttle.applyForce(new Vec2(-50, 0), spaceShuttle.getPosition());
-                                spaceShuttle.applyLinearImpulse(new Vec2(-50, 0), spaceShuttle.getPosition());
-                                break;
-                            case RIGHT:
-//                                if (Math.toDegrees(spaceShuttle.getAngle()) < -95 && Math.toDegrees(spaceShuttle.getAngle()) % 360 > -85) {
-                                    spaceShuttle.applyAngularImpulse((float) -0.2);
-//                                }
-                                spaceShuttle.applyForce(new Vec2(50, 0), spaceShuttle.getPosition());
-                                spaceShuttle.applyLinearImpulse(new Vec2(50, 0), spaceShuttle.getPosition());
-                                break;
-                            case R:
-
-//                                body.
-                                break;
-                        }
-                    }
-                    event = null;
                     world.step(timeStep, velocityIterations, positionIterations);
                 });
             }

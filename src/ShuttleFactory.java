@@ -101,7 +101,7 @@ public class ShuttleFactory {
 //                s.m_type=
 //                
                         CircleShape s = new CircleShape();
-                s.m_radius = 100f;
+                s.m_radius = 70f;
                 fd2.shape = s;
                 fd2.density = 1f;
                 fd2.restitution = 1f;
