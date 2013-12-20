@@ -25,22 +25,22 @@ public class Stars implements Sprite {
 
     public Stars(float x, float y) {
         this.xMin = x;
-        this.yMin = y-2*MasterPilot.HEIGHT;
-        this.xMax = x + MasterPilot.WIDTH * 4;
-        this.yMax = y + MasterPilot.HEIGHT * 4;
+        this.yMin = y-MasterPilot.HEIGHT;
+        this.xMax = x + MasterPilot.WIDTH * 2;
+        this.yMax = y + MasterPilot.HEIGHT * 2;
         generateStars(x, y);
     }
 
     public void generateStars(float x, float y) {
         System.out.println("WE GENERATE STARS");
         this.xMin = x;
-          this.yMin = y-2*MasterPilot.HEIGHT;
-        this.xMax = x + MasterPilot.WIDTH * 4;
-        this.yMax = y + MasterPilot.HEIGHT * 4;
+          this.yMin = y-MasterPilot.HEIGHT;
+        this.xMax = x + MasterPilot.WIDTH * 2;
+        this.yMax = y + MasterPilot.HEIGHT * 2;
         starPositions = new HashMap<>();
         Random random = new Random(0);
         for (int i = 0; i < 200; i++) {
-            starPositions.put(random.nextInt((int) (x + MasterPilot.WIDTH * 4)), random.nextInt((int) (y + MasterPilot.HEIGHT * 4)));
+            starPositions.put(random.nextInt((int) (x + MasterPilot.WIDTH * 2)), random.nextInt((int) (y + MasterPilot.HEIGHT * 2)));
         }
 
         starPositions.keySet().iterator();
