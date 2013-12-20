@@ -16,9 +16,19 @@ import org.jbox2d.dynamics.World;
 
 public class MasterPilot {
 
+    final static int WIDTH = 800;
+    final static int HEIGHT = 600;
+    
+    public static float toXCoordinates(float x){
+        return x;
+    }
+
+        public static float toYCoordinates(float y){
+        return y;
+    }
+
     public static void main(String[] args) {
-        int WIDTH = 800;
-        int HEIGHT = 600;
+
         int SIZE = 30;
         int STRIDE = 100;
         int SIZESTAR = 4;
@@ -72,7 +82,6 @@ public class MasterPilot {
 //ENNEMY SHUTTLE
 
                     e1.display(graphics);
-//                    e1.applyForce(null, null);
 
 //                    //STARS GENERATION
 //                    if (spaceShuttle.getPosition().x % WIDTH * 3 == 0) {

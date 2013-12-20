@@ -58,8 +58,8 @@ static int HEIGHT=600;
 ////////////        System.out.println(        s.getCenterX());
 ////////////        System.out.println(        s.getCenterY());
 ////////////        
-        System.out.println(s.getMinX());
-        System.out.println(s.getMinY());
+//        System.out.println(s.getMinX());
+//        System.out.println(s.getMinY());
         
         graphics.fill(s);
         
