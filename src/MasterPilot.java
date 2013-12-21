@@ -31,7 +31,7 @@ public class MasterPilot {
 
         int SIZE = 30;
         int SIZESTAR = 4;
-        Stars stars= new Stars(0, 0);
+
 //WORLD
         World world = new World(new Vec2(0, 0));
         float timeStep = 1.0f / 60.f;
@@ -44,6 +44,8 @@ public class MasterPilot {
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 500, ShuttleType.ENNEMY1, world);
+        //STARS
+        Stars stars= new Stars(spaceShuttle);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -66,7 +68,7 @@ public class MasterPilot {
 
 //                    STARS
                     if(!stars.isInside(spaceShuttle)){
-                        stars.generateStars(x, y);
+                        stars.generateStars(spaceShuttle);
                     
                     }
                     stars.display(graphics);
