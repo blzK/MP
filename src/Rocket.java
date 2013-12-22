@@ -2,29 +2,50 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author azathoth
  */
 public class Rocket extends FlyingObject {
 
-    public Rocket(float x, float y) {
-        this.x=x;
-        this.y=y;        
-        shape= new Ellipse2D.Float(x,y,100,100);
+    public Rocket(World world, float x, float y, Vec2 vec) {
+        this.x = x;
+        this.y = y;
+        BodyDef bodydefPlanet = new BodyDef();
+        bodydefPlanet.position.set(x, y);
+        bodydefPlanet.type = BodyType.DYNAMIC;
+
+        body = world.createBody(bodydefPlanet);
+        FixtureDef fdRocket = new FixtureDef();
+        CircleShape cs = new CircleShape();
+        cs.m_radius = 0.7f;
+        fdRocket.shape = cs;
+        fdRocket.density = 1f;
+        fdRocket.restitution = 1f;
+        fdRocket.friction = 1.0f;
+
+        body.createFixture(fdRocket);
+        body.setUserData("Rocket");
+        body.setLinearVelocity(vec);
     }
+    
 
     @Override
     public void display(Graphics2D graphics) {
-        graphics.setPaint(Color.GREEN);
-        graphics.setColor(Color.GREEN);
+        shape = new Ellipse2D.Float(body.getPosition().x, body.getPosition().y, 5, 2);
+        graphics.setPaint(Color.lightGray);
         graphics.fill(shape);
     }
 
@@ -32,6 +53,5 @@ public class Rocket extends FlyingObject {
     public boolean isDead() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-}
 
+}

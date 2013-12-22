@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -42,7 +43,14 @@ static int HEIGHT=600;
 
     @Override
     public void display(Graphics2D graphics) {
-        RadialGradientPaint paint = new RadialGradientPaint(body.getPosition().x, body.getPosition().y, 100f, new float[]{0f, 1f}, new Color[]{new Color(37, 197, 246), new Color(17, 21, 134)});
+        Point2D center= new Point2D.Float(x, y);
+        RadialGradientPaint paint = new RadialGradientPaint(center, 1000, 
+                new float[]{0f, 0.5f,1f}, 
+                new Color[]{
+                    new Color(37, 197, 246), 
+                Color.black,
+                    new Color(17, 21, 134)
+                });
         graphics.setPaint(paint);
        
 //        System.out.println("planetX "+body.getPosition().x+"planetY"+body.getPosition().y);

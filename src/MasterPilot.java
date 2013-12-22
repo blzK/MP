@@ -69,8 +69,8 @@ public class MasterPilot {
 //                    STARS
                     if(!stars.isInside(spaceShuttle)){
                         stars.generateStars(spaceShuttle);
-                    
                     }
+                    
                     stars.display(graphics);
                     
 //ENNEMY SHUTTLE

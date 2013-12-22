@@ -5,13 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ *Generates Star objects around the SpaceShuttle 
  * @author azathoth
  */
 public class Stars implements Sprite {
@@ -24,14 +19,21 @@ public class Stars implements Sprite {
     float yMax;
 
     public Stars(SpaceShuttle spaceShuttle) {
-        this.xMin = (float) (spaceShuttle.getPosition().x - MasterPilot.WIDTH * 1.5);
-        this.yMin = (float) (spaceShuttle.getPosition().y - MasterPilot.HEIGHT * 1.5);
-        this.xMax = (float) (spaceShuttle.getPosition().x + MasterPilot.WIDTH * 1.5);
-        this.yMax = (float) (spaceShuttle.getPosition().y + MasterPilot.HEIGHT * 1.5);
+//        this.xMin = (float) (spaceShuttle.getPosition().x - MasterPilot.WIDTH * 1.5);
+//        this.yMin = (float) (spaceShuttle.getPosition().y - MasterPilot.HEIGHT * 1.5);
+//        this.xMax = (float) (spaceShuttle.getPosition().x + MasterPilot.WIDTH * 1.5);
+//        this.yMax = (float) (spaceShuttle.getPosition().y + MasterPilot.HEIGHT * 1.5);
         generateStarsFirstTime(spaceShuttle);
     }
 
-
+    /**
+     *Tests if the 
+     * @param spaceShuttle
+     * @return true if the shuttle is within the defined parameter,
+     * stars have been generated for the area.
+     * false if the shuttle is out of the area, 
+     * we then need to generate stars.
+     */
     public boolean isInside(SpaceShuttle spaceShuttle) {
         if (spaceShuttle.getPosition().x >= xMin && spaceShuttle.getPosition().x <= xMax && spaceShuttle.getPosition().y >= yMin && spaceShuttle.getPosition().y <= yMax) {
             return true;
@@ -62,7 +64,7 @@ public class Stars implements Sprite {
         this.yMax = (float) (y + MasterPilot.HEIGHT * 1.5);
         starPositions = new HashMap<>();
         Random random = new Random(0);
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 100; i++) {
 
             starPositions.put((int) (random.nextInt((MasterPilot.WIDTH * 5)) + x - 2.5 * MasterPilot.WIDTH), (int) (random.nextInt((MasterPilot.HEIGHT * 5)) + y - 2.5 * MasterPilot.HEIGHT));
         }
@@ -70,13 +72,11 @@ public class Stars implements Sprite {
         starPositions.keySet().iterator();
         Iterator itx = starPositions.keySet().iterator();
         Iterator ity = starPositions.values().iterator();
-        for (int i = 0; i < 95; i++) {
+           while (itx.hasNext()) {
             int xStar = (int) itx.next();
             int yStar = (int) ity.next();
-
             Star star = new Star(xStar, yStar);
             list.add(star);
-
         }
     }
 
@@ -92,21 +92,21 @@ public class Stars implements Sprite {
         Random random = new Random(0);
 
         // EN HAUT
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             starPositions.put((int) (random.nextInt((int) (MasterPilot.WIDTH * 5)) + x), (int) (random.nextInt((int) (MasterPilot.HEIGHT * 5)) + y - 6 * MasterPilot.HEIGHT));
         }
         // BAS
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             starPositions.put((int) (random.nextInt((int) (MasterPilot.WIDTH * 5)) + x), (int) (random.nextInt((int) (MasterPilot.HEIGHT * 5)) + y + 2 * MasterPilot.HEIGHT));
         }
 
         //A DROITE
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             starPositions.put((int) (random.nextInt((int) (MasterPilot.WIDTH * 5)) + x + 2 * MasterPilot.WIDTH), (int) (random.nextInt((int) (MasterPilot.HEIGHT * 5)) + y));
         }
 
         //A GAUCHE
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             starPositions.put((int) (random.nextInt((int) (MasterPilot.WIDTH * 5)) + x - 6 * MasterPilot.WIDTH), (int) (random.nextInt((int) (MasterPilot.HEIGHT * 5)) + y));
         }
 

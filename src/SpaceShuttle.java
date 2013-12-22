@@ -15,8 +15,8 @@ import org.jbox2d.dynamics.Body;
  */
 public abstract class SpaceShuttle extends FlyingObject {
 
-    public SpaceShuttle(float x, float y, Shape shape, Body body) {
-        this.shape = shape;
+    public SpaceShuttle(float x, float y, Body body) {
+        
         this.x = x;
         this.y = y;
         this.body=body;
@@ -48,4 +48,7 @@ public abstract class SpaceShuttle extends FlyingObject {
        body.applyForce(vec2, position);
     }
 
+    void applyLinearImpulse(Vec2 vec2, Vec2 position) {
+        
+    }
 }

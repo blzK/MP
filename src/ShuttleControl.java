@@ -31,7 +31,7 @@ public class ShuttleControl {
                         spaceShuttle.applyAngularImpulse(-0.2f);
                     }
                     spaceShuttle.applyForce(new Vec2(0, -50), spaceShuttle.getPosition());
-                    spaceShuttle.applyLinearImpulse(new Vec2(0, -50), spaceShuttle.getPosition());
+                    spaceShuttle.applyLinearImpulse(new Vec2(0, -50), spaceShuttle.getPosition(), graphics);
                     break;
 
                 case DOWN:
@@ -41,7 +41,7 @@ public class ShuttleControl {
                         spaceShuttle.applyAngularImpulse(0.2f);
                     }
                     spaceShuttle.applyForce(new Vec2(0, 50), spaceShuttle.getPosition());
-                    spaceShuttle.applyLinearImpulse(new Vec2(0, 50), spaceShuttle.getPosition());
+                    spaceShuttle.applyLinearImpulse(new Vec2(0, 50), spaceShuttle.getPosition(),graphics);
                     break;
                 case LEFT:
                     if (angle > 90 && angle < 270) {
@@ -51,7 +51,7 @@ public class ShuttleControl {
                     }
 
                     spaceShuttle.applyForce(new Vec2(-50, 0), spaceShuttle.getPosition());
-                    spaceShuttle.applyLinearImpulse(new Vec2(-50, 0), spaceShuttle.getPosition());
+                    spaceShuttle.applyLinearImpulse(new Vec2(-50, 0), spaceShuttle.getPosition(),graphics);
                     break;
                 case RIGHT:
                     if (angle > 270||angle<90) {
@@ -60,7 +60,7 @@ public class ShuttleControl {
                         spaceShuttle.applyAngularImpulse(0.2f);
                     }
                     spaceShuttle.applyForce(new Vec2(50, 0), spaceShuttle.getPosition());
-                    spaceShuttle.applyLinearImpulse(new Vec2(50, 0), spaceShuttle.getPosition());
+                    spaceShuttle.applyLinearImpulse(new Vec2(50, 0), spaceShuttle.getPosition(),graphics);
                     break;
                 case SPACE:
                     spaceShuttle.fire(graphics);

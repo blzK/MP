@@ -1,4 +1,5 @@
 
+import java.awt.Graphics2D;
 import java.awt.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -19,7 +20,8 @@ public abstract class  FlyingObject implements Sprite{
      float x;
     float y;
 
-public void applyLinearImpulse(Vec2 impulse, Vec2 point){
+public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics){
+    
     body.applyLinearImpulse(impulse, point);
 }
 
