@@ -24,27 +24,29 @@ public class Rocket extends FlyingObject {
         this.x = x;
         this.y = y;
         BodyDef bodydefPlanet = new BodyDef();
-        bodydefPlanet.position.set(x, y);
+        bodydefPlanet.position.set(x-372-55, y-270-30);
         bodydefPlanet.type = BodyType.DYNAMIC;
 
         body = world.createBody(bodydefPlanet);
         FixtureDef fdRocket = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 0.7f;
+
         fdRocket.shape = cs;
         fdRocket.density = 1f;
-        fdRocket.restitution = 1f;
+        fdRocket.restitution = 0.5f;
         fdRocket.friction = 1.0f;
-
+        body.setBullet(true);
         body.createFixture(fdRocket);
         body.setUserData("Rocket");
         body.setLinearVelocity(vec);
+
     }
     
 
     @Override
     public void display(Graphics2D graphics) {
-        shape = new Ellipse2D.Float(body.getPosition().x, body.getPosition().y, 5, 2);
+        shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(body.getPosition().x)+55, MasterPilot.toYCoordinates(body.getPosition().y)+30, 5, 2);
         graphics.setPaint(Color.lightGray);
         graphics.fill(shape);
     }

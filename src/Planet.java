@@ -21,44 +21,51 @@ import org.jbox2d.dynamics.World;
  * @author bpertev
  */
 public class Planet extends FlyingObject {
-static int WIDTH=800;
-static int HEIGHT=600;
+
+    static int WIDTH = 800;
+    static int HEIGHT = 600;
 
     public Planet(World world, int x, int y) {
+        this.x = x;
+        this.y = y;
         BodyDef bodydefPlanet = new BodyDef();
-        bodydefPlanet.position.set(x,y);
+        bodydefPlanet.position.set(x, y);
         bodydefPlanet.type = BodyType.STATIC;
         body = world.createBody(bodydefPlanet);
         FixtureDef fdPlanet = new FixtureDef();
         CircleShape cs = new CircleShape();
-        cs.m_radius = 70f;
+        cs.m_radius = 65f;
         fdPlanet.shape = cs;
         fdPlanet.density = 1f;
         fdPlanet.restitution = 1f;
         fdPlanet.friction = 1.0f;
         body.createFixture(fdPlanet);
         body.setUserData("Planet");
-        
+
     }
 
     @Override
     public void display(Graphics2D graphics) {
-        Point2D center= new Point2D.Float(x, y);
-        RadialGradientPaint paint = new RadialGradientPaint(center, 1000, 
-                new float[]{0f, 0.5f,1f}, 
+        Point2D center = new Point2D.Float(x, y);
+        RadialGradientPaint paint = new RadialGradientPaint(center, 1000,
+                new float[]{
+                    0.4f,
+                    1f},
                 new Color[]{
-                    new Color(37, 197, 246), 
-                Color.black,
-                    new Color(17, 21, 134)
+                    Color.black,
+                    new Color(37, 197, 246)
                 });
         graphics.setPaint(paint);
-       
+
 //        System.out.println("planetX "+body.getPosition().x+"planetY"+body.getPosition().y);
 //  int x =(int) (body.getPosition().x*100.0f*1.0f)/800;
 //  int y=  (int) (600 - (1.0f*600) * body.getPosition().y / 100.0f);
 //        float  x = (800*body.getPosition().x / 100.0f);
 //        float  y =  (600 - (1.0f*600) * body.getPosition().y / 100.0f);
-        shape=new Ellipse2D.Float(body.getPosition().x+335,body.getPosition().y+260, 100f,100f);
+//        shape=new Ellipse2D.Float(body.getPosition().x+335,body.getPosition().y+260, 100f,100f);
+        shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(body.getPosition().x), MasterPilot.toYCoordinates(body.getPosition().y), 70f, 70f);
+//        Shape bodyShape=new Ellipse2D.Float(body.getPosition().x,body.getPosition().y, 100f,100f);
+
 //        Ellipse2D s;
 //    s = new Ellipse2D.Float(toPosX(body.getPosition().x), toPosY(body.getPosition().y),100f,100f);
 //        s = new Ellipse2D.Float(toPixelPosX(body.getPosition().x), toPixelPosY(body.getPosition().y),100f,100f);
@@ -68,9 +75,9 @@ static int HEIGHT=600;
 ////////////        
 //        System.out.println(s.getMinX());
 //        System.out.println(s.getMinY());
-        
         graphics.fill(shape);
-        
+//        graphics.setColor(new Color(1f, 1f, 0f,0.5f));
+//        graphics.fill(bodyShape);
 
     }
 

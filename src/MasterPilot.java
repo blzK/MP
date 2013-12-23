@@ -1,17 +1,9 @@
 
 import java.awt.Color;
-import java.util.Random;
 import fr.umlv.zen3.Application;
-import fr.umlv.zen3.KeyboardEvent;
 import java.awt.geom.Rectangle2D;
-import java.util.HashMap;
-import java.util.Iterator;
-import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 public class MasterPilot {
@@ -20,11 +12,13 @@ public class MasterPilot {
     final static int HEIGHT = 600;
 
     public static float toXCoordinates(float x) {
-        return x;
+        return x + 372;
+//        return x+WIDTH/2;
     }
 
     public static float toYCoordinates(float y) {
-        return y;
+        return y + 270;
+//        return y+HEIGHT/2;
     }
 
     public static void main(String[] args) {
@@ -39,13 +33,13 @@ public class MasterPilot {
         int positionIterations = 2;
 //        MAIN SHUTLE
 
-        Planet planet1 = new Planet(world, 100, 100);
-        Planet planet2 = new Planet(world, -100, -100);
+        Planet planet1 = new Planet(world, 100, 0);
+        Planet planet2 = new Planet(world, 1000, 0);
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 500, ShuttleType.ENNEMY1, world);
         //STARS
-        Stars stars= new Stars(spaceShuttle);
+        Landscape landscape = new Landscape(spaceShuttle,world);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -59,25 +53,23 @@ public class MasterPilot {
 //                    BACKGROUND
                     graphics.setColor(Color.black);
                     graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
-
                     int j = 0;
                     float x = spaceShuttle.getPosition().x;
                     float y = spaceShuttle.getPosition().y;
 //                    CENTERVIEW
                     graphics.translate(-x, -y);
-
+                    graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
 //                    STARS
-                    if(!stars.isInside(spaceShuttle)){
-                        stars.generateStars(spaceShuttle);
+                    if (!landscape.isInside(spaceShuttle)) {
+                        landscape.generateLandscape(spaceShuttle,world);
                     }
-                    
-                    stars.display(graphics);
-                    
-//ENNEMY SHUTTLE
+                    landscape.display(graphics);
 
+//ENNEMY SHUTTLE
                     e1.display(graphics);
 
 //MAIN SPACESHUTTLE
+                    
                     spaceShuttle.display(graphics);
 
 //DEBUG                    
@@ -92,9 +84,21 @@ public class MasterPilot {
 //DISPOSE AND STEP TIME
 
                     graphics.dispose();
+
 //KEYBOARD CONTROL
                     ShuttleControl2.move(spaceShuttle, context.pollKeyboard(), graphics);
 
+//DISPOSE BODIES
+                     Body bodyTemp = world.getBodyList().getNext();
+                     Body bodyTemp2 = world.getBodyList().getNext();
+                        for (int i = 0; i < world.getBodyCount()-1; i++) {
+                            
+                            if(bodyTemp!=null&&Math.abs(bodyTemp.getPosition().x-spaceShuttle.getPosition().x)>WIDTH*7&&Math.abs(bodyTemp.getPosition().y-spaceShuttle.getPosition().y)>HEIGHT*7){
+                                world.destroyBody(bodyTemp2);
+                            }
+                            bodyTemp = bodyTemp.getNext();
+                            bodyTemp2=bodyTemp;
+                        }
                     world.step(timeStep, velocityIterations, positionIterations);
                 });
             }

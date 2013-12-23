@@ -46,6 +46,10 @@ public class ShuttleControl2 {
                     break;
                 case SPACE:
                     spaceShuttle.fire(graphics);
+
+                    break;
+                case B:
+                    spaceShuttle.fireBomb(graphics);
                     break;
             }
         }

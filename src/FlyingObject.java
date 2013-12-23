@@ -17,12 +17,23 @@ import org.jbox2d.dynamics.Body;
 public abstract class  FlyingObject implements Sprite{
     protected Body body;
     protected Shape shape;
+    protected boolean dead=false;
      float x;
     float y;
 
 public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics){
     
     body.applyLinearImpulse(impulse, point);
+}
+
+public boolean die(){
+    if(isDead()){
+        System.out.println("I'm Already Dead");
+        return false;
+    }
+    System.out.println("I'm Already Dead");
+    this.dead=true;
+    return true;
 }
 
     

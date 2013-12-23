@@ -1,6 +1,5 @@
 
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
@@ -25,7 +24,7 @@ public abstract class SpaceShuttle extends FlyingObject {
     
     @Override
     public boolean isDead() {
-        return false;
+        return dead;
     }
 
     public void fire(Graphics2D graphics) {
@@ -50,5 +49,9 @@ public abstract class SpaceShuttle extends FlyingObject {
 
     void applyLinearImpulse(Vec2 vec2, Vec2 position) {
         
+    }
+
+    public void fireBomb(Graphics2D graphics) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
