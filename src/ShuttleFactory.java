@@ -131,13 +131,13 @@ public class ShuttleFactory {
                                 //                                        new Vec2(0,-10_000)
 
                                 ));
-                        
+
 //                        EXPLOSION TEST
                         System.out.println(world.getBodyCount());
                         Body bodyTemp = world.getBodyList().getNext();
-                        for (int i = 0; i < world.getBodyCount()-1; i++) {
-                            
-                            if(bodyTemp!=null){
+                        for (int i = 0; i < world.getBodyCount() - 1; i++) {
+
+                            if (bodyTemp != null) {
 //                            bodyTemp.applyForceToCenter(new Vec2(0f, 50000f));
                                 bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(body.getPosition().negate())), bodyTemp.getPosition());
 //                            System.out.println(bodyTemp.getUserData());
@@ -150,10 +150,9 @@ public class ShuttleFactory {
 //                        System.out.println("angle radian "+ angle);
                         System.out.println("Rocket X " + Math.cos(getAngle()));
                         System.out.println("Rocket Y " + Math.sin(getAngle()));
-
                     }
-                    
- @Override
+
+                    @Override
                     public void fireBomb(Graphics2D graphics) {
                         double angle = body.getAngle();
 //                        double angle= ;
@@ -161,7 +160,7 @@ public class ShuttleFactory {
 //                        Vec2 vecAdd= new Vec2( (float) (Math.cos(angle) * 100_000_000f), (float) Math.sin(angle) * (100_000_000f)).add(body.getLinearVelocity());
 //
                         rockets.add(
-                                new Bomb(
+                                new BombExp(
                                         world,
                                         (float) (body.getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(body.getAngle()) * 30),
                                         (float) (body.getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(body.getAngle()) * 30),
@@ -178,25 +177,80 @@ public class ShuttleFactory {
                                 //                                        new Vec2(0,-10_000)
 
                                 ));
-                        
+
 //                  
 //                              EXPLOSION TEST
                         System.out.println(world.getBodyCount());
                         Body bodyTemp = world.getBodyList().getNext();
-                        for (int i = 0; i < world.getBodyCount()-1; i++) {
-                            
-                            if(bodyTemp!=null){
-//                            bodyTemp.applyForceToCenter(new Vec2(0f, 50000f));
-                                world.raycast(new RayCastCallback() {
+                        for (int i = 0; i < world.getBodyCount() - 1; i++) {
 
-                                    @Override
-                                    public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
-                                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                    }
-                                }, null, null);
-                                bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(body.getPosition().negate())), bodyTemp.getPosition());
+//                            if (bodyTemp != null) {
+//                            bodyTemp.applyForceToCenter(new Vec2(0f, 50000f));
+//                                world.raycast(new RayCastCallback() {
+//
+//                                    @Override
+//                                    public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
+//                                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                                    }
+//                                }, null, null);
+                            bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(body.getPosition().negate())), bodyTemp.getPosition());
                             System.out.println(bodyTemp.getUserData());
-                            }
+//                            }
+                            bodyTemp = bodyTemp.getNext();
+
+                        }
+//                      ANGLE DEBUG
+                        System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
+//                        System.out.println("angle radian "+ angle);
+                        System.out.println("Rocket X " + Math.cos(getAngle()));
+                        System.out.println("Rocket Y " + Math.sin(getAngle()));
+
+                    }
+                    
+                      @Override
+                    public void fireBomb2(Graphics2D graphics) {
+                        double angle = body.getAngle();
+//                        double angle= ;
+//                        double angle = Math.toRadians(Math.abs(Math.toDegrees(getAngle()))% 360);
+//                        Vec2 vecAdd= new Vec2( (float) (Math.cos(angle) * 100_000_000f), (float) Math.sin(angle) * (100_000_000f)).add(body.getLinearVelocity());
+//
+                        rockets.add(
+                                new BombExp(
+                                        world,
+                                        (float) (body.getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(body.getAngle()) * 30),
+                                        (float) (body.getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(body.getAngle()) * 30),
+                                        //                                        (float) (MasterPilot.toXCoordinates(body.getPosition().x)+ MasterPilot.WIDTH / 2 + Math.cos(body.getAngle())*30),
+                                        //                                        (float)(MasterPilot.toYCoordinates(body.getPosition().y)+ MasterPilot.HEIGHT / 2 +Math.sin(body.getAngle())*30),
+                                        //                                        //va dans le sens horaire 
+                                        //                                                                                vecAdd
+                                        new Vec2((float) (Math.cos(angle) * 100_000_000_000f), (float) Math.sin(angle) * (100_000_000_000f))
+                                //                                        new Vec2((float) Math.cos( angle) * 1000, (float) Math.sin(angle) * 1000)
+                                //                                        new Vec2((float)Math.cos(Math.PI/4)*1000, (float)Math.sin(Math.PI/4)*1000) // va vers bas droite
+                                //                                        new Vec2((float)Math.cos(Math.PI/2)*1000, (float)Math.sin(Math.PI/2)*1000) //va vers le bas
+                                //                                        new Vec2((float)Math.cos(0)*1000, (float)Math.sin(0)*1000)//va vers la droite
+                                //                                        new Vec2((float) Math.cos(Math.PI) * 1000, (float) Math.sin(Math.PI) * 1000) // va vers la gauche
+                                //                                        new Vec2(0,-10_000)
+
+                                ));
+
+//                  
+//                              EXPLOSION TEST
+                        System.out.println(world.getBodyCount());
+                        Body bodyTemp = world.getBodyList().getNext();
+                        for (int i = 0; i < world.getBodyCount() - 1; i++) {
+
+//                            if (bodyTemp != null) {
+//                            bodyTemp.applyForceToCenter(new Vec2(0f, 50000f));
+//                                world.raycast(new RayCastCallback() {
+//
+//                                    @Override
+//                                    public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
+//                                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                                    }
+//                                }, null, null);
+                            bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(body.getPosition().negate())).negate(), bodyTemp.getPosition());
+                            System.out.println(bodyTemp.getUserData());
+//                            }
                             bodyTemp = bodyTemp.getNext();
 
                         }

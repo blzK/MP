@@ -13,14 +13,10 @@ import org.jbox2d.dynamics.World;
  *
  * @author azathoth
  */
-public class Bomb extends Rocket{
-
+public class BombExp extends Rocket{
     private Timer timer;
     private float trigger=10000;
-    
-    public Bomb(World world, float x, float y, Vec2 vec) {
+    public BombExp(World world, float x, float y, Vec2 vec) {
         super(world, x, y, vec);
     }
-    
-    
 }

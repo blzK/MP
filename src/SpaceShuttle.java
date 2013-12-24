@@ -54,4 +54,8 @@ public abstract class SpaceShuttle extends FlyingObject {
     public void fireBomb(Graphics2D graphics) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    void fireBomb2(Graphics2D graphics) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
