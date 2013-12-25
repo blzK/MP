@@ -15,10 +15,12 @@ public interface Shuttle {
 
     public void fire(Graphics2D graphics);
 
-    public void fire(Graphics2D graphics, RocketType rocketType);
+    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y);
 
     public void fireBomb(Graphics2D graphics);
 
     Vec2 getPosition();
+    
+    public void behave();
 
 }

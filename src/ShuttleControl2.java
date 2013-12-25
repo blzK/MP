@@ -45,14 +45,14 @@ public class ShuttleControl2 {
                     spaceShuttle.applyAngularImpulse(0.15f);
                     break;
                 case SPACE:
-                    spaceShuttle.fire(graphics);
+                    spaceShuttle.fire(graphics, RocketType.ROCKET,-100,-100);
 
                     break;
                 case B:
-                    spaceShuttle.fireBomb(graphics);
+                    spaceShuttle.fire(graphics, RocketType.ExpBomb,-100,-100);
                     break;
                 case N:
-                    spaceShuttle.fireBomb2(graphics);
+                    spaceShuttle.fire(graphics, RocketType.ImpBomb,-100,-100);
                     break;
             }
         }

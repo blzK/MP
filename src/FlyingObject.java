@@ -16,7 +16,7 @@ import org.jbox2d.dynamics.Body;
 public abstract class FlyingObject implements Sprite {
 
     private Body body;
-    private boolean dead = false;
+    private boolean isDead = false;
     float x;
     float y;
 
@@ -26,17 +26,18 @@ public abstract class FlyingObject implements Sprite {
     }
 
     public boolean isDead(){
-        return dead;
+        return isDead;
     }
     public boolean die() {
-        if (dead==true) {
+        if (isDead==true) {
             System.out.println("Can't kill me I'm Already Dead");
+            isDead=true;
             return false;
         }
 
         System.out.println("You killed me");
         body.getWorld().destroyBody(body);
-        this.dead = true;
+        this.isDead = true;
         return true;
     }
 
