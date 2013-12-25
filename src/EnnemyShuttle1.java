@@ -52,7 +52,7 @@ public class EnnemyShuttle1 extends SpaceShuttle {
     @Override
     public void display(Graphics2D graphics) {
         super.display(graphics);
-        System.out.println("I'm dead " + isDead());
+//        System.out.println("I'm dead " + isDead());
         if (getBody().getContactList() != null) {
             die();
         }

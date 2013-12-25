@@ -47,9 +47,15 @@ public class Rocket extends FlyingObject {
 
     @Override
     public void display(Graphics2D graphics) {
+         if (getBody().getContactList() != null) {
+            die();
+        }
+        if (isDead()==false) {
+           
         Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x)+55, MasterPilot.toYCoordinates(getBody().getPosition().y)+30, 5, 2);
         graphics.setPaint(Color.lightGray);
         graphics.fill(shape);
+        }
     }
 
  
