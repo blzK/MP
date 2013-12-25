@@ -24,8 +24,8 @@ public class Planet extends FlyingObject {
 
     static int WIDTH = 800;
     static int HEIGHT = 600;
-
-    public Planet(World world, int x, int y) {
+ 
+   public Planet(World world, int x, int y) {
         this.x = x;
         this.y = y;
         BodyDef bodydefPlanet = new BodyDef();
