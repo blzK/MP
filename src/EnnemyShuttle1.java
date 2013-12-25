@@ -42,27 +42,30 @@ public class EnnemyShuttle1 extends SpaceShuttle{
                 fd2.friction = 1f;
                 bodydef2.position.set(x - 200, y);
                 bodydef2.type = BodyType.DYNAMIC;
-                body = world.createBody(bodydef2);
-                body.setUserData("ennemy1");
-                body.createFixture(fd2);
-                body.setAngularDamping(3);
+                setBody(world.createBody(bodydef2));
+                getBody().setUserData("ennemy1");
+                getBody().createFixture(fd2);
+                getBody().setAngularDamping(3);
 //                body2.setLinearDamping(0.3f);
-                body.setLinearVelocity(new Vec2(0, -3f));
+                getBody().setLinearVelocity(new Vec2(0, -3f));
 
     }
      @Override
                     public void display(Graphics2D graphics) {
-                        if (body.getContactList() != null) {
+                        if (getBody().getContactList() != null) {
                             die();
                         }
                         if (!isDead()) {
                             graphics.setPaint(Color.RED);
                             graphics.setColor(Color.RED);
 
-                            graphics.fill(new Rectangle2D.Float(body.getPosition().x + 335, body.getPosition().y + 260, 100, 20));
-                        } else {
-                            body.getWorld().destroyBody(body);
-                        }
+                            graphics.fill(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
+                        } 
                     }
+
+    @Override
+    public void fire(Graphics2D graphics, RocketType rocketType) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

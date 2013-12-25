@@ -7,5 +7,5 @@ import java.awt.Graphics2D;
  */
 public interface Sprite {
     public void display(Graphics2D graphics);
-    public boolean isDead();
+
 }

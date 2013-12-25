@@ -9,32 +9,46 @@ import org.jbox2d.dynamics.Body;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author bpertev
  */
-public abstract class  FlyingObject implements Sprite{
-    protected Body body;
-    protected Shape shape;
-    protected boolean dead=false;
-     float x;
+public abstract class FlyingObject implements Sprite {
+
+    private Body body;
+    private boolean dead = false;
+    float x;
     float y;
 
-public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics){
-    
-    body.applyLinearImpulse(impulse, point);
-}
+    public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics) {
 
-public boolean die(){
-    if(isDead()){
-        System.out.println("I'm Already Dead");
-        return false;
+        body.applyLinearImpulse(impulse, point);
     }
-    System.out.println("I'm Already Dead");
-    this.dead=true;
-    return true;
-}
 
-    
+    public boolean isDead(){
+        return dead;
+    }
+    public boolean die() {
+        if (dead==true) {
+            System.out.println("Can't kill me I'm Already Dead");
+            return false;
+        }
+
+        System.out.println("You killed me");
+        body.getWorld().destroyBody(body);
+        this.dead = true;
+        return true;
+    }
+
+    protected void setBody(Body body) {
+        if (body == null) {
+            throw new NullPointerException();
+        }
+        this.body = body;
+    }
+
+    protected Body getBody() {
+        return this.body;
+    }
+
 }

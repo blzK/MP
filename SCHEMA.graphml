@@ -56,9 +56,11 @@ FlyingObject<y:LabelModel>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel># body : Body
-</y:AttributeLabel>
-            <y:MethodLabel>+ ApplyLForce
-</y:MethodLabel>
+# float x
+# float y
+# boolean isDead</y:AttributeLabel>
+            <y:MethodLabel>+ ApplyLForce()
++ boolean die()</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -167,7 +169,7 @@ FlyingObject<y:LabelModel>
             </y:ModelParameter>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel># bombtype : BombTYPE</y:AttributeLabel>
+            <y:AttributeLabel># RocketType : RocketTYPE</y:AttributeLabel>
             <y:MethodLabel/>
           </y:UML>
         </y:UMLClassNode>
@@ -299,7 +301,7 @@ Observable<y:LabelModel>
             </y:ModelParameter>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel>+ Timer timer</y:AttributeLabel>
+            <y:AttributeLabel/>
             <y:MethodLabel/>
           </y:UML>
         </y:UMLClassNode>
@@ -344,7 +346,7 @@ Observable<y:LabelModel>
             </y:ModelParameter>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel>+ Timer timer</y:AttributeLabel>
+            <y:AttributeLabel/>
             <y:MethodLabel/>
           </y:UML>
         </y:UMLClassNode>

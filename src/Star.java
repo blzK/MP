@@ -36,8 +36,4 @@ public class Star implements Sprite {
         graphics.fill(new Ellipse2D.Float(x, y, SIZESTAR, SIZESTAR));
     }
 
-    @Override
-    public boolean isDead() {
-        return false;
-    }
 }

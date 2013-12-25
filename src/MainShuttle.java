@@ -1,4 +1,5 @@
 
+import java.awt.Graphics2D;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -36,11 +37,16 @@ public class MainShuttle extends SpaceShuttle {
 
         bodydef.type = BodyType.DYNAMIC;
 
-        this.body = world.createBody(bodydef);
-        body.setUserData("spaceShuttle");
-        body.createFixture(fd);
-        body.setAngularDamping(1);
-        body.setLinearDamping((float) 0.1);
+        setBody(world.createBody(bodydef));
+        getBody().setUserData("spaceShuttle");
+        getBody().createFixture(fd);
+        getBody().setAngularDamping(1);
+        getBody().setLinearDamping((float) 0.1);
+    }
+
+    @Override
+    public void fire(Graphics2D graphics, RocketType rocketType) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

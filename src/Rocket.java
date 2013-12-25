@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
@@ -27,7 +28,7 @@ public class Rocket extends FlyingObject {
         bodydefPlanet.position.set(x-372-55, y-270-30);
         bodydefPlanet.type = BodyType.DYNAMIC;
 
-        body = world.createBody(bodydefPlanet);
+        setBody(world.createBody(bodydefPlanet));
         FixtureDef fdRocket = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 0.7f;
@@ -36,24 +37,21 @@ public class Rocket extends FlyingObject {
         fdRocket.density = 1f;
         fdRocket.restitution = 0.5f;
         fdRocket.friction = 1.0f;
-        body.setBullet(true);
-        body.createFixture(fdRocket);
-        body.setUserData("Rocket");
-        body.setLinearVelocity(vec);
+        getBody().setBullet(true);
+        getBody().createFixture(fdRocket);
+        getBody().setUserData("Rocket");
+        getBody().setLinearVelocity(vec);
 
     }
     
 
     @Override
     public void display(Graphics2D graphics) {
-        shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(body.getPosition().x)+55, MasterPilot.toYCoordinates(body.getPosition().y)+30, 5, 2);
+        Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x)+55, MasterPilot.toYCoordinates(getBody().getPosition().y)+30, 5, 2);
         graphics.setPaint(Color.lightGray);
         graphics.fill(shape);
     }
 
-    @Override
-    public boolean isDead() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 
 }
