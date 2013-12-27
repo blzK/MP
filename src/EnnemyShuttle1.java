@@ -4,6 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -28,9 +29,10 @@ public class EnnemyShuttle1 extends SpaceShuttle {
         bodydef2.angle = 0;
         bodydef2.bullet = true;
         FixtureDef fd2 = new FixtureDef();
-//                org.jbox2d.collision.shapes.PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
-//                s.setAsBox(50, 10);
-//                s.m_radius=100f;
+//                PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
+//                s.setAsBox(50, 100, new Vec2(x,y), 0f);
+//                
+//                s.m_radius=1f;
 //                s.m_type=
 //                
         CircleShape s = new CircleShape();
@@ -39,7 +41,8 @@ public class EnnemyShuttle1 extends SpaceShuttle {
         fd2.density = 1f;
         fd2.restitution = 1f;
         fd2.friction = 1f;
-        bodydef2.position.set(x - 200, y);
+//        bodydef2.position.set(x - 200, y);
+        bodydef2.position.set(x, y);
         bodydef2.type = BodyType.DYNAMIC;
         setBody(world.createBody(bodydef2));
         getBody().setUserData("ennemy1");
@@ -66,20 +69,13 @@ public class EnnemyShuttle1 extends SpaceShuttle {
         transform.rotate(getBody().getAngle(),
                 getBody().getPosition().x , getBody().getPosition().y 
         );
-        Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
+        Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 100, 20));
         graphics.fill(transformed);
         }
     }
 
-    @Override
-    public void fire(Graphics2D graphics) {
-        super.fire(graphics);
-    }
-
-    @Override
-    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+  
 
     @Override
     public void behave() {

@@ -47,6 +47,7 @@ public class ExpBomb extends Rocket {
         Body bodyTemp = getBody().getWorld().getBodyList().getNext();
         for (int i = 0; i < getBody().getWorld().getBodyCount() - 1; i++) {
             bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())), bodyTemp.getPosition());
+            bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())), bodyTemp.getPosition());
             System.out.println(bodyTemp.getUserData());
             bodyTemp = bodyTemp.getNext();
         }

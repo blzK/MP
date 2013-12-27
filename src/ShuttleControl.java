@@ -16,8 +16,8 @@ public class ShuttleControl {
 
     public static void move(SpaceShuttle spaceShuttle, KeyboardEvent event, Graphics2D graphics) {
         if (event != null) {
-            System.out.println(event.toString());
-            System.out.println(" x = " + spaceShuttle.getPosition().x + " y = " + spaceShuttle.getPosition().y);
+//            System.out.println(event.toString());
+//            System.out.println(" x = " + spaceShuttle.getPosition().x + " y = " + spaceShuttle.getPosition().y);
             double angle = Math.abs(Math.toDegrees(spaceShuttle.getAngle())) % 360;
                         //0 vers le bas
             //180 vers le haut
@@ -62,8 +62,15 @@ public class ShuttleControl {
                     spaceShuttle.applyForce(new Vec2(50, 0), spaceShuttle.getPosition());
                     spaceShuttle.applyLinearImpulse(new Vec2(50, 0), spaceShuttle.getPosition(),graphics);
                     break;
-                case SPACE:
-                    spaceShuttle.fire(graphics);
+                  case SPACE:
+                    spaceShuttle.fire(graphics, RocketType.ROCKET,-100,-100);
+
+                    break;
+                case B:
+                    spaceShuttle.fire(graphics, RocketType.ExpBomb,-100,-100);
+                    break;
+                case N:
+                    spaceShuttle.fire(graphics, RocketType.ImpBomb,-100,-100);
                     break;
             }
         }

@@ -13,11 +13,7 @@ import org.jbox2d.common.Vec2;
  */
 public interface Shuttle {
 
-    public void fire(Graphics2D graphics);
-
     public void fire(Graphics2D graphics, RocketType rocketType, float x, float y);
-
-    public void fireBomb(Graphics2D graphics);
 
     public Vec2 getPosition();
     

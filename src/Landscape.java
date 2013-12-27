@@ -33,7 +33,6 @@ public class Landscape implements Sprite {
         positions = new HashMap<>();
         Random random = new Random(0);
         for (int i = 0; i < 100; i++) {
-
             positions.put((int) (random.nextInt((MasterPilot.WIDTH * 5)) + x - 2.5 * MasterPilot.WIDTH), (int) (random.nextInt((MasterPilot.HEIGHT * 5)) + y - 2.5 * MasterPilot.HEIGHT));
         }
 

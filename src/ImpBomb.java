@@ -29,22 +29,30 @@ public class ImpBomb extends Rocket {
     public ImpBomb(World world, float x, float y, Vec2 vec) {
         super(world, x, y, vec);
         timer = new Timer();
+        timer.reset();
     }
 
     @Override
     public void display(Graphics2D graphics) {
-        if (isDead() == false) {
+        
+        if (isDead() == false) {System.out.println(timer.getMilliseconds());
             super.display(graphics); //To change body of generated methods, choose Tools | Templates.
             if (timer.getMilliseconds() > trigger) {
                 implode(getBody().getWorld());
-                Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
+           
+
+                die(graphics);
+            }
+        }
+    }
+
+
+    public boolean die(Graphics2D graphics) {
+             Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
                 graphics.setColor(Color.ORANGE);
 
                 graphics.fill(shape);
-
-                die();
-            }
-        }
+        return super.die(); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void implode(World world) {
@@ -67,6 +75,7 @@ public class ImpBomb extends Rocket {
 //            };
 //            getBody().getWorld().raycast(rc, bodyTemp.getPosition(),bodyTemp.getPosition());
             bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
+            bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
             System.out.println(bodyTemp.getUserData());
             bodyTemp = bodyTemp.getNext();
 

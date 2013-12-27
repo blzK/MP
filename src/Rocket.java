@@ -24,14 +24,14 @@ public class Rocket extends FlyingObject {
     public Rocket(World world, float x, float y, Vec2 vec) {
         this.x = x;
         this.y = y;
-        BodyDef bodydefPlanet = new BodyDef();
-        bodydefPlanet.position.set(x-372-55, y-270-30);
-        bodydefPlanet.type = BodyType.DYNAMIC;
+        BodyDef bodydefRocket = new BodyDef();
+        bodydefRocket.position.set(x-372-55, y-270-30);
+        bodydefRocket.type = BodyType.DYNAMIC;
 
-        setBody(world.createBody(bodydefPlanet));
+        setBody(world.createBody(bodydefRocket));
         FixtureDef fdRocket = new FixtureDef();
         CircleShape cs = new CircleShape();
-        cs.m_radius = 0.7f;
+        cs.m_radius = 0.65f;
 
         fdRocket.shape = cs;
         fdRocket.density = 1f;

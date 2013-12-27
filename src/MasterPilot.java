@@ -29,11 +29,11 @@ public class MasterPilot {
         int positionIterations = 2;
 //        MAIN SHUTLE
 
-//        Planet planet1 = new Planet(world, 100, 0);
+        Planet planet1 = new Planet(world, 500, 0);
 //        Planet planet2 = new Planet(world, 1000, 0);
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
-        SpaceShuttle e1 = shuttleFactory.createShuttle((int) 0, (int) -500, ShuttleType.ENNEMY1, world);
+        SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 0, ShuttleType.ENNEMY1, world);
         //STARS
         Landscape landscape = new Landscape(spaceShuttle, world, 20);
 //        WINDOW
@@ -64,7 +64,7 @@ public class MasterPilot {
 //ENNEMY SHUTTLE
                     e1.display(graphics);
 //                    e1.fire(graphics);
-                    e1.applyAngularImpulse(10);
+                    
 
 //MAIN SPACESHUTTLE
                     spaceShuttle.display(graphics);
@@ -76,13 +76,13 @@ public class MasterPilot {
 ////////////                    graphics.fill(transformed);
 //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
 //PLANETS
-//                    planet1.display(graphics);
+                    planet1.display(graphics);
 //                    planet2.display(graphics);
 //DISPOSE AND STEP TIME
                     graphics.dispose();
 
 //KEYBOARD CONTROL
-                    ShuttleControl2.move(spaceShuttle, context.pollKeyboard(), graphics);
+                    ShuttleControl3.move(spaceShuttle, context.pollKeyboard(), graphics);
 
 //DISPOSE BODIES
                     Body bodyTemp = world.getBodyList().getNext();
