@@ -1,6 +1,8 @@
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
@@ -60,7 +62,13 @@ public class EnnemyShuttle1 extends SpaceShuttle {
             
             graphics.setPaint(Color.RED);
             graphics.setColor(Color.RED);
-            graphics.fill(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
+//            graphics.fill(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
+                   AffineTransform transform = new AffineTransform();
+        transform.rotate(getBody().getAngle(),
+                getBody().getPosition().x , getBody().getPosition().y 
+        );
+        Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
+        graphics.fill(transformed);
         }
     }
 

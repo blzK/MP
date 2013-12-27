@@ -30,12 +30,12 @@ public abstract class FlyingObject implements Sprite {
     }
     public boolean die() {
         if (isDead==true) {
-            System.out.println("Can't kill me I'm Already Dead");
+//            System.out.println("Can't kill me I'm Already Dead");
             isDead=true;
             return false;
         }
 
-        System.out.println("You killed me");
+//        System.out.println("You killed me");
         body.getWorld().destroyBody(body);
         this.isDead = true;
         return true;

@@ -22,10 +22,6 @@ public class MasterPilot {
     }
 
     public static void main(String[] args) {
-
-        int SIZE = 30;
-        int SIZESTAR = 4;
-
 //WORLD
         World world = new World(new Vec2(0, 0));
         float timeStep = 1.0f / 60.f;
@@ -39,7 +35,7 @@ public class MasterPilot {
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 0, (int) -500, ShuttleType.ENNEMY1, world);
         //STARS
-        Landscape landscape = new Landscape(spaceShuttle,world);
+        Landscape landscape = new Landscape(spaceShuttle,world,20);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -68,6 +64,7 @@ public class MasterPilot {
 //ENNEMY SHUTTLE
                     e1.display(graphics);
 //                    e1.fire(graphics);
+                    e1.applyAngularImpulse(10);
 
 //MAIN SPACESHUTTLE
                     

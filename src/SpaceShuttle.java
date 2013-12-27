@@ -64,10 +64,10 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
 //
 //        }
 //                      ANGLE DEBUG
-            System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
-//                        System.out.println("angle radian "+ angle);
-            System.out.println("Rocket X " + Math.cos(getAngle()));
-            System.out.println("Rocket Y " + Math.sin(getAngle()));
+//            System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
+////                        System.out.println("angle radian "+ angle);
+//            System.out.println("Rocket X " + Math.cos(getAngle()));
+//            System.out.println("Rocket Y " + Math.sin(getAngle()));
         }
     }
 
@@ -144,10 +144,10 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
 
         }
 //                      ANGLE DEBUG
-        System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
-//                        System.out.println("angle radian "+ angle);
-        System.out.println("Rocket X " + Math.cos(getAngle()));
-        System.out.println("Rocket Y " + Math.sin(getAngle()));
+//        System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
+////                        System.out.println("angle radian "+ angle);
+//        System.out.println("Rocket X " + Math.cos(getAngle()));
+//        System.out.println("Rocket Y " + Math.sin(getAngle()));
 
     }
 
@@ -198,10 +198,10 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
 
         }
 //                      ANGLE DEBUG
-        System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
-//                        System.out.println("angle radian "+ angle);
-        System.out.println("Rocket X " + Math.cos(getAngle()));
-        System.out.println("Rocket Y " + Math.sin(getAngle()));
+//        System.out.println("angle " + Math.abs(Math.toDegrees(getAngle())) % 360);
+////                        System.out.println("angle radian "+ angle);
+//        System.out.println("Rocket X " + Math.cos(getAngle()));
+//        System.out.println("Rocket Y " + Math.sin(getAngle()));
 
     }
 

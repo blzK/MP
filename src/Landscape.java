@@ -15,12 +15,13 @@ public class Landscape implements Sprite {
 
     ArrayList<Sprite> list = new ArrayList<>();
     HashMap<Integer, Integer> positions = new HashMap<>();
-    float xMin;
-    float yMin;
-    float xMax;
-    float yMax;
+    private float xMin;
+    private float yMin;
+    private float xMax;
+    private float yMax;
+    private int planetStarRatio;
 
-    public Landscape(SpaceShuttle spaceShuttle, World world) {
+    public Landscape(SpaceShuttle spaceShuttle, World world, int planetStarRatio) {
          System.out.println("WE GENERATE STARS");
         float x = spaceShuttle.getPosition().x;
         float y = spaceShuttle.getPosition().y;
@@ -28,6 +29,7 @@ public class Landscape implements Sprite {
         this.yMin = (float) (y - MasterPilot.HEIGHT * 1.5);
         this.xMax = (float) (x + MasterPilot.WIDTH * 1.5);
         this.yMax = (float) (y + MasterPilot.HEIGHT * 1.5);
+        this.planetStarRatio=planetStarRatio;
         positions = new HashMap<>();
         Random random = new Random(0);
         for (int i = 0; i < 100; i++) {
@@ -38,7 +40,7 @@ public class Landscape implements Sprite {
         positions.keySet().iterator();
         Iterator itx = positions.keySet().iterator();
         Iterator ity = positions.values().iterator();
-        int planetStarRatio = 20;
+        
         int j = 0;
         while (itx.hasNext()) {
             int xPosition = (int) itx.next();
