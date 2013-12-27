@@ -3,9 +3,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jbox2d.callbacks.RayCastCallback;
+import org.jbox2d.collision.RayCastInput;
+import org.jbox2d.collision.RayCastOutput;
 import org.jbox2d.common.Timer;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -34,24 +34,23 @@ public class ImpBomb extends Rocket {
 
     @Override
     public void display(Graphics2D graphics) {
-        
-        if (isDead() == false) {System.out.println(timer.getMilliseconds());
+
+        if (isDead() == false) {
+//            System.out.println(timer.getMilliseconds());
             super.display(graphics); //To change body of generated methods, choose Tools | Templates.
             if (timer.getMilliseconds() > trigger) {
                 implode(getBody().getWorld());
-           
 
                 die(graphics);
             }
         }
     }
 
-
     public boolean die(Graphics2D graphics) {
-             Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
-                graphics.setColor(Color.ORANGE);
+        Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
+        graphics.setColor(Color.ORANGE);
 
-                graphics.fill(shape);
+        graphics.fill(shape);
         return super.die(); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -60,20 +59,23 @@ public class ImpBomb extends Rocket {
         System.out.println(getBody().getWorld().getBodyCount());
         Body bodyTemp = getBody().getWorld().getBodyList().getNext();
         for (int i = 0; i < getBody().getWorld().getBodyCount() - 1; i++) {
-//            RayCastCallback rc = new RayCastCallback() {
-//                Fixture fixture;
-//                Vec2 point;
-//                Vec2 normal;
-//                float fraction;
-//
-//                @Override
-//                public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
-//                    System.out.println("I colide with"+fixture.getBody().getUserData());
-//                    System.out.println("with fraction " +fraction);
-//                    return fraction;
-//                }
-//            };
-//            getBody().getWorld().raycast(rc, bodyTemp.getPosition(),bodyTemp.getPosition());
+            RayCastCallback rc = new RayCastCallback() {
+                Fixture fixture;
+                Vec2 point;
+                Vec2 normal;
+                float fraction;
+
+                @Override
+                public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
+                    System.out.println("I colide with"+fixture.getBody().getUserData());
+                    System.out.println("with fraction " +fraction);
+                    return fraction;
+                }
+            };
+            getBody().getWorld().raycast(rc, bodyTemp.getPosition(),bodyTemp.getPosition());
+            RayCastInput rci = new RayCastInput();
+            RayCastOutput rco = new RayCastOutput();
+            System.out.println(getBody().getFixtureList().raycast(rco, rci, 100));
             bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
             bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
             System.out.println(bodyTemp.getUserData());

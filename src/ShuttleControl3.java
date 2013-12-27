@@ -31,10 +31,10 @@ public class ShuttleControl3 {
                     spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), spaceShuttle.getPosition(), graphics);
                     break;
                 case LEFT:
-                    spaceShuttle.applyTorque(-100f);
+                    spaceShuttle.applyTorque(-10f);
                     break;
                 case RIGHT:
-                     spaceShuttle.applyTorque(100f);
+                     spaceShuttle.applyTorque(10f);
                     break;
                 case SPACE:
                     spaceShuttle.fire(graphics, RocketType.ROCKET,0,0);//-100,-100);

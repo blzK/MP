@@ -37,22 +37,22 @@ public class ShuttleControl2 {
                 case LEFT:
 //                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle - Math.PI / 2) * 50, (float) Math.sin(angle - Math.PI / 2) * 50), spaceShuttle.getPosition());
                     spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle - Math.PI / 2) * 50, (float) Math.sin(angle - Math.PI / 2) * 50), spaceShuttle.getPosition(), graphics);
-                    spaceShuttle.applyAngularImpulse(-0.05f);
+                    spaceShuttle.applyAngularImpulse(-1.5f);
                     break;
                 case RIGHT:
-                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI / 2) * 50, (float) Math.sin(angle + Math.PI / 2) * 50), spaceShuttle.getPosition());
+//                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI / 2) * 50, (float) Math.sin(angle + Math.PI / 2) * 50), spaceShuttle.getPosition());
                     spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle + Math.PI / 2) * 50, (float) Math.sin(angle + Math.PI / 2) * 50), spaceShuttle.getPosition(), graphics);
-                    spaceShuttle.applyAngularImpulse(0.15f);
+                    spaceShuttle.applyAngularImpulse(1.5f);
                     break;
                 case SPACE:
-                    spaceShuttle.fire(graphics, RocketType.ROCKET,-100,-100);
+                    spaceShuttle.fire(graphics, RocketType.ROCKET,0,0);
 
                     break;
                 case B:
-                    spaceShuttle.fire(graphics, RocketType.ExpBomb,-100,-100);
+                    spaceShuttle.fire(graphics, RocketType.ExpBomb,0,0);
                     break;
                 case N:
-                    spaceShuttle.fire(graphics, RocketType.ImpBomb,-100,-100);
+                    spaceShuttle.fire(graphics, RocketType.ImpBomb,0,0);
                     break;
             }
         }

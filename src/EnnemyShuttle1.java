@@ -29,14 +29,13 @@ public class EnnemyShuttle1 extends SpaceShuttle {
         bodydef2.angle = 0;
         bodydef2.bullet = true;
         FixtureDef fd2 = new FixtureDef();
-//                PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
-//                s.setAsBox(50, 100, new Vec2(x,y), 0f);
+                PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
+                s.setAsBox(100, 20);
+// s.setAsBox(100, 20, new Vec2(x,y), 0f);
 //                
-//                s.m_radius=1f;
-//                s.m_type=
 //                
-        CircleShape s = new CircleShape();
-        s.m_radius = 65f;
+//        CircleShape s = new CircleShape();
+//        s.m_radius = 65f;
         fd2.shape = s;
         fd2.density = 0.0001f;
         fd2.restitution = 1f;
@@ -70,6 +69,7 @@ public class EnnemyShuttle1 extends SpaceShuttle {
                 getBody().getPosition().x , getBody().getPosition().y 
         );
         Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 100, 20));
+//         Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(getBody().getPosition().x, getBody().getPosition().y, 100, 20));
         graphics.fill(transformed);
         }
     }

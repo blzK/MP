@@ -34,9 +34,9 @@ public class Rocket extends FlyingObject {
         cs.m_radius = 0.65f;
 
         fdRocket.shape = cs;
-        fdRocket.density = 1f;
-        fdRocket.restitution = 0.5f;
-        fdRocket.friction = 1.0f;
+        fdRocket.density = 0.0001f;
+        fdRocket.restitution = 1f;
+        fdRocket.friction = .0f;
         getBody().setBullet(true);
         getBody().createFixture(fdRocket);
         getBody().setUserData("Rocket");
