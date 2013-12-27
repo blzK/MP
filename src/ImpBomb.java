@@ -24,7 +24,7 @@ import org.jbox2d.dynamics.World;
 public class ImpBomb extends Rocket {
 
     private Timer timer;
-    private float trigger = 2000;
+    private float trigger = 750;
 
     public ImpBomb(World world, float x, float y, Vec2 vec) {
         super(world, x, y, vec);

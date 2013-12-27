@@ -35,7 +35,7 @@ public class MasterPilot {
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 0, (int) -500, ShuttleType.ENNEMY1, world);
         //STARS
-        Landscape landscape = new Landscape(spaceShuttle,world,20);
+        Landscape landscape = new Landscape(spaceShuttle, world, 20);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -57,7 +57,7 @@ public class MasterPilot {
                     graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
 //                    STARS
                     if (!landscape.isInside(spaceShuttle)) {
-                        landscape.generateLandscape(spaceShuttle,world);
+                        landscape.generateLandscape(spaceShuttle, world);
                     }
                     landscape.display(graphics);
 
@@ -67,7 +67,6 @@ public class MasterPilot {
                     e1.applyAngularImpulse(10);
 
 //MAIN SPACESHUTTLE
-                    
                     spaceShuttle.display(graphics);
 
 //DEBUG                    
@@ -80,23 +79,22 @@ public class MasterPilot {
 //                    planet1.display(graphics);
 //                    planet2.display(graphics);
 //DISPOSE AND STEP TIME
-
                     graphics.dispose();
 
 //KEYBOARD CONTROL
                     ShuttleControl2.move(spaceShuttle, context.pollKeyboard(), graphics);
 
 //DISPOSE BODIES
-                     Body bodyTemp = world.getBodyList().getNext();
-                     Body bodyTemp2 = world.getBodyList().getNext();
-                        for (int i = 0; i < world.getBodyCount()-1; i++) {
-                            
-                            if(bodyTemp!=null&&Math.abs(bodyTemp.getPosition().x-spaceShuttle.getPosition().x)>WIDTH*7&&Math.abs(bodyTemp.getPosition().y-spaceShuttle.getPosition().y)>HEIGHT*7){
-                                world.destroyBody(bodyTemp2);
-                            }
-                            bodyTemp = bodyTemp.getNext();
-                            bodyTemp2=bodyTemp;
+                    Body bodyTemp = world.getBodyList().getNext();
+                    Body bodyTemp2 = world.getBodyList().getNext();
+                    for (int i = 0; i < world.getBodyCount() - 1; i++) {
+
+                        if (bodyTemp != null && Math.abs(bodyTemp.getPosition().x - spaceShuttle.getPosition().x) > WIDTH * 7 && Math.abs(bodyTemp.getPosition().y - spaceShuttle.getPosition().y) > HEIGHT * 7) {
+                            world.destroyBody(bodyTemp2);
                         }
+                        bodyTemp = bodyTemp.getNext();
+                        bodyTemp2 = bodyTemp;
+                    }
                     world.step(timeStep, velocityIterations, positionIterations);
                 });
             }

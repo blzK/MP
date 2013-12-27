@@ -20,7 +20,7 @@ import org.jbox2d.dynamics.World;
 public class ExpBomb extends Rocket {
 
     private Timer timer;
-    private float trigger = 1000;
+    private float trigger = 750;
 
     public ExpBomb(World world, float x, float y, Vec2 vec) {
         super(world, x, y, vec);
@@ -49,7 +49,6 @@ public class ExpBomb extends Rocket {
             bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())), bodyTemp.getPosition());
             System.out.println(bodyTemp.getUserData());
             bodyTemp = bodyTemp.getNext();
-
         }
     }
 

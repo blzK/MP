@@ -30,7 +30,7 @@ public class Planet extends FlyingObject {
         this.y = y;
         BodyDef bodydefPlanet = new BodyDef();
         bodydefPlanet.position.set(x, y);
-        bodydefPlanet.type = BodyType.DYNAMIC;
+        bodydefPlanet.type = BodyType.STATIC;
         setBody(world.createBody(bodydefPlanet));
         FixtureDef fdPlanet = new FixtureDef();
         CircleShape cs = new CircleShape();

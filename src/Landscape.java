@@ -13,8 +13,8 @@ import org.jbox2d.dynamics.World;
  */
 public class Landscape implements Sprite {
 
-    ArrayList<Sprite> list = new ArrayList<>();
-    HashMap<Integer, Integer> positions = new HashMap<>();
+    private ArrayList<Sprite> list = new ArrayList<>();
+    private HashMap<Integer, Integer> positions = new HashMap<>();
     private float xMin;
     private float yMin;
     private float xMax;

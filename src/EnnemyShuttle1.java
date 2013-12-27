@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -86,7 +85,5 @@ public class EnnemyShuttle1 extends SpaceShuttle {
     public void behave() {
         // DO SOMETHING
     }
-
- 
 
 }

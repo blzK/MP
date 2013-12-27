@@ -35,9 +35,9 @@ public class ShuttleControl2 {
                     spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), spaceShuttle.getPosition(), graphics);
                     break;
                 case LEFT:
-                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle - Math.PI / 2) * 50, (float) Math.sin(angle - Math.PI / 2) * 50), spaceShuttle.getPosition());
+//                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle - Math.PI / 2) * 50, (float) Math.sin(angle - Math.PI / 2) * 50), spaceShuttle.getPosition());
                     spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle - Math.PI / 2) * 50, (float) Math.sin(angle - Math.PI / 2) * 50), spaceShuttle.getPosition(), graphics);
-                    spaceShuttle.applyAngularImpulse(-0.15f);
+                    spaceShuttle.applyAngularImpulse(-0.05f);
                     break;
                 case RIGHT:
                     spaceShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI / 2) * 50, (float) Math.sin(angle + Math.PI / 2) * 50), spaceShuttle.getPosition());

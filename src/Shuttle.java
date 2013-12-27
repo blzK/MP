@@ -19,7 +19,7 @@ public interface Shuttle {
 
     public void fireBomb(Graphics2D graphics);
 
-    Vec2 getPosition();
+    public Vec2 getPosition();
     
     public void behave();
 
