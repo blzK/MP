@@ -36,9 +36,9 @@ public class EnnemyShuttle1 extends SpaceShuttle {
 //                s.m_type=
 //                
         CircleShape s = new CircleShape();
-        s.m_radius = 70f;
+        s.m_radius = 65f;
         fd2.shape = s;
-        fd2.density = 1f;
+        fd2.density = 0.0001f;
         fd2.restitution = 1f;
         fd2.friction = 1f;
 //        bodydef2.position.set(x - 200, y);

@@ -34,6 +34,7 @@ public class Planet extends FlyingObject {
         setBody(world.createBody(bodydefPlanet));
         FixtureDef fdPlanet = new FixtureDef();
         CircleShape cs = new CircleShape();
+        
         cs.m_radius = 65f;
         fdPlanet.shape = cs;
         fdPlanet.density = 1f;

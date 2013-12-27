@@ -29,7 +29,7 @@ public class MasterPilot {
         int positionIterations = 2;
 //        MAIN SHUTLE
 
-        Planet planet1 = new Planet(world, 500, 0);
+        Planet planet1 = new Planet(world, 500, 500);
 //        Planet planet2 = new Planet(world, 1000, 0);
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);

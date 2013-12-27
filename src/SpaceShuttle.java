@@ -23,7 +23,6 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
 
     }
 
-
     @Override
     public Vec2 getPosition() {
         return getBody().getPosition();
