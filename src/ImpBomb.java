@@ -57,8 +57,10 @@ public class ImpBomb extends Rocket {
     private void implode(World world) {
         //                              EXPLOSION TEST
         System.out.println(getBody().getWorld().getBodyCount());
-        Body bodyTemp = getBody().getWorld().getBodyList().getNext();
+        Body bodyTemp2 = getBody().getWorld().getBodyList().getNext();
+
         for (int i = 0; i < getBody().getWorld().getBodyCount() - 1; i++) {
+            final Body bodyTemp = bodyTemp2;
             RayCastCallback rc = new RayCastCallback() {
                 Fixture fixture;
                 Vec2 point;
@@ -67,20 +69,22 @@ public class ImpBomb extends Rocket {
 
                 @Override
                 public float reportFixture(Fixture fixture, Vec2 point, Vec2 normal, float fraction) {
-                    System.out.println("I colide with"+fixture.getBody().getUserData());
-                    System.out.println("with fraction " +fraction);
+                    this.fixture = fixture;
+                    this.point = point;
+                    this.normal = normal;
+                    this.fraction = fraction;
+                    if (new Vec2(getBody().getPosition()).add(bodyTemp.getPosition().negate()).length() < 200) {
+                        System.out.println("I colide with " + fixture.getBody().getUserData());
+                        System.out.println("with fraction " + fraction);
+                        bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
+                        bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
+                    }
                     return fraction;
                 }
             };
-            getBody().getWorld().raycast(rc, bodyTemp.getPosition(),bodyTemp.getPosition());
-            RayCastInput rci = new RayCastInput();
-            RayCastOutput rco = new RayCastOutput();
-            System.out.println(getBody().getFixtureList().raycast(rco, rci, 100));
-            bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
-            bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
-            System.out.println(bodyTemp.getUserData());
-            bodyTemp = bodyTemp.getNext();
 
+            world.raycast(rc, getBody().getPosition(), bodyTemp.getPosition());
+            bodyTemp2 = bodyTemp2.getNext();
         }
     }
 }

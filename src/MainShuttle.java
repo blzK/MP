@@ -30,7 +30,7 @@ public class MainShuttle extends SpaceShuttle {
 
         FixtureDef fd = new FixtureDef();
         CircleShape cs = new CircleShape();
-        cs.m_radius = 5f;
+        cs.m_radius = 4;
 
         fd.shape = cs;
         fd.density = 0.001f;

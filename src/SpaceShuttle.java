@@ -13,7 +13,7 @@ import org.jbox2d.dynamics.Body;
  *
  * @author bpertev
  */
-public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
+public abstract class SpaceShuttle extends FlyingObject  {
 
     private ArrayList<Rocket> rockets = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
 
     }
 
-    @Override
+  
     public Vec2 getPosition() {
         return getBody().getPosition();
     }
@@ -47,7 +47,6 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
         super.applyLinearImpulse(impulse, point, graphics); //To change body of generated methods, choose Tools | Templates.
 
     }
-    
 
     public void applyTorque(float torque) {
         getBody().applyTorque(torque);
@@ -90,14 +89,19 @@ public abstract class SpaceShuttle extends FlyingObject implements Shuttle {
         }
     }
 
-    @Override
+    
     public void fire(Graphics2D graphics, RocketType rocketType, float x, float y) {
         double angle = getBody().getAngle();
-        float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30*1.1f)+x;
-        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30*1.1f)+y;
+        float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.2f) + x;
+        if (Math.cos(getBody().getAngle()) == 0) {
+            posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.2f)+10 + x;
+        }
+        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.2f) + y;
+//        if (Math.sin(getBody().getAngle())==0) {
+//           posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.2f+10) + y;
+//        }
         Vec2 vector = new Vec2((float) (Math.cos(angle) * 100_000_000_000f), (float) Math.sin(angle) * (100_000_000_000f));
 
-        
         switch (rocketType) {
             case ExpBomb:
                 rockets.add(
