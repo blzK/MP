@@ -19,17 +19,19 @@ public class Landscape implements Sprite {
     private float yMin;
     private float xMax;
     private float yMax;
-    private int planetStarRatio;
+    private int planetRatio;
+    private int bonusRatio;
 
-    public Landscape(SpaceShuttle spaceShuttle, World world, int planetStarRatio) {
-         System.out.println("WE GENERATE STARS");
-        float x = spaceShuttle.getPosition().x;
-        float y = spaceShuttle.getPosition().y;
+    public Landscape(MainShuttle mainShuttle, World world, int planetRatio, int bonusRatio) {
+        System.out.println("WE GENERATE STARS");
+        float x = mainShuttle.getPosition().x;
+        float y = mainShuttle.getPosition().y;
         this.xMin = (float) (x - MasterPilot.WIDTH * 1.5);
         this.yMin = (float) (y - MasterPilot.HEIGHT * 1.5);
         this.xMax = (float) (x + MasterPilot.WIDTH * 1.5);
         this.yMax = (float) (y + MasterPilot.HEIGHT * 1.5);
-        this.planetStarRatio=planetStarRatio;
+        this.planetRatio = planetRatio;
+        this.bonusRatio=bonusRatio;
         positions = new HashMap<>();
         Random random = new Random(0);
         for (int i = 0; i < 100; i++) {
@@ -39,18 +41,25 @@ public class Landscape implements Sprite {
         positions.keySet().iterator();
         Iterator itx = positions.keySet().iterator();
         Iterator ity = positions.values().iterator();
-        
+
         int j = 0;
         while (itx.hasNext()) {
             int xPosition = (int) itx.next();
             int yPosition = (int) ity.next();
 
-            if (j % planetStarRatio == 0) {
+            if (j < planetRatio) {
                 Planet planet = new Planet(world, xPosition + 10, yPosition + 10);
                 list.add(planet);
+            } else if (j < planetRatio + bonusRatio) {
+                Random r = new Random();
+                int n = r.nextInt(1);
+                Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
+//        Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
+                list.add(bonus1);
             } else {
                 Star star = new Star(xPosition, yPosition);
                 list.add(star);
+
             }
             j++;
         }
@@ -72,21 +81,21 @@ public class Landscape implements Sprite {
         return false;
     }
 
-    @Override
-    public void display(Graphics2D graphics) {
+    public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         for (Sprite sprite : list) {
-            sprite.display(graphics);
+//            if (sprite instanceof Bonus) {
+//                Bonus bonus = (Bonus) sprite;
+//                bonus.display(graphics, mainShuttle);
+//            } else {
+                sprite.display(graphics, mainShuttle);
+//            }
         }
     }
 
-
-
-
-
-    public void generateLandscape(SpaceShuttle spaceShuttle, World world) {
+    public void generateLandscape(MainShuttle mainShuttle, World world, int planetRatio, int bonusRatio) {
         System.out.println("WE GENERATE STARS");
-        float x = spaceShuttle.getPosition().x;
-        float y = spaceShuttle.getPosition().y;
+        float x = mainShuttle.getPosition().x;
+        float y = mainShuttle.getPosition().y;
         this.xMin = (float) (x - MasterPilot.WIDTH * 1.5);
         this.yMin = (float) (y - MasterPilot.HEIGHT * 1.5);
         this.xMax = (float) (x + MasterPilot.WIDTH * 1.5);
@@ -122,15 +131,27 @@ public class Landscape implements Sprite {
             int xPosition = (int) itx.next();
             int yPosition = (int) ity.next();
 
-            if (j % planetStarRatio == 0) {
+             if (j < planetRatio) {
                 Planet planet = new Planet(world, xPosition + 10, yPosition + 10);
                 list.add(planet);
+            } else if (j < planetRatio + bonusRatio) {
+                Random r = new Random();
+                int n = r.nextInt(1);
+                Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
+//        Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
+                list.add(bonus1);
             } else {
                 Star star = new Star(xPosition, yPosition);
                 list.add(star);
+
             }
             j++;
         }
+    }
+
+    @Override
+    public void display(Graphics2D graphics) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

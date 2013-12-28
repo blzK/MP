@@ -44,10 +44,11 @@ public class Bonus extends FlyingObject {
         getBody().setUserData("Bonus");
     }
 
-    @Override
-    public void display(Graphics2D graphics) {
+    
+    public void display(Graphics2D graphics,MainShuttle mainShuttle ) {
         if (getBody().getContactList() != null) {
             System.out.println(getBody().getContactList());
+            powerUp(mainShuttle);
             die();
         }
         if (isDead() == false) {
@@ -76,6 +77,15 @@ public class Bonus extends FlyingObject {
     @Override
     public boolean die() {
         return super.die(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void powerUp(MainShuttle mainShuttle) {
+        mainShuttle.setBonus(this.type);
+    }
+
+    @Override
+    public void display(Graphics2D graphics) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

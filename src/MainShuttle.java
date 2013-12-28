@@ -22,6 +22,9 @@ import org.jbox2d.dynamics.World;
  */
 public class MainShuttle extends SpaceShuttle {
 
+    private boolean isLoaded = false;
+    private RocketType rocketType = RocketType.ROCKET;
+
     public MainShuttle(float x, float y, World world) {
         super(x, y);
         BodyDef bodydef = new BodyDef();
@@ -89,4 +92,21 @@ public class MainShuttle extends SpaceShuttle {
 
     }
 
+    @Override
+    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y) {
+        if (rocketType == RocketType.ROCKET) {
+            super.fire(graphics, rocketType, x, y);
+
+        } else {
+            if (isLoaded == true && this.rocketType == rocketType) {
+                super.fire(graphics, rocketType, x, y);
+                isLoaded=false;
+            }
+        }
+    }
+
+    public void setBonus(RocketType type) {
+        isLoaded = true;
+        this.rocketType = type;
+    }
 }

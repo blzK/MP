@@ -15,7 +15,7 @@ public class ShuttleFactory {
     public SpaceShuttle createShuttle(float x, float y, ShuttleType type, World world) {
 
         switch (type) {
-            case SPACESHUTTLE:
+            case MAINSHUTTLE:
 
                 return new  MainShuttle(x, y, world);
 

@@ -30,16 +30,16 @@ public class MasterPilot {
 //        MAIN SHUTLE
 
         Planet planet1 = new Planet(world, 500, 500);
-        
+
 //        Planet planet2 = new Planet(world, 1000, 0);//BONUS
         Bonus bonus1 = new Bonus(world, 0, 200, RocketType.ExpBomb);
         Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
-        
+
         ShuttleFactory shuttleFactory = new ShuttleFactory();
-        SpaceShuttle spaceShuttle = shuttleFactory.createShuttle(0f, 0f, ShuttleType.SPACESHUTTLE, world);
+        MainShuttle mainShuttle = new MainShuttle(0f, 0f, world);
         SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 0, ShuttleType.ENNEMY1, world);
         //STARS
-        Landscape landscape = new Landscape(spaceShuttle, world, 20);
+        Landscape landscape = new Landscape(mainShuttle, world, 20, 30);
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -54,24 +54,23 @@ public class MasterPilot {
                     graphics.setColor(Color.black);
                     graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
                     int j = 0;
-                    float x = spaceShuttle.getPosition().x;
-                    float y = spaceShuttle.getPosition().y;
+                    float x = mainShuttle.getPosition().x;
+                    float y = mainShuttle.getPosition().y;
 //                    CENTERVIEW
                     graphics.translate(-x, -y);
                     graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
 //                    STARS
-                    if (!landscape.isInside(spaceShuttle)) {
-                        landscape.generateLandscape(spaceShuttle, world);
+                    if (!landscape.isInside(mainShuttle)) {
+                        landscape.generateLandscape(mainShuttle, world,20, 30);
                     }
-                    landscape.display(graphics);
+                    landscape.display(graphics,mainShuttle);
 
 //ENNEMY SHUTTLE
                     e1.display(graphics);
 //                    e1.fire(graphics);
-                    
 
 //MAIN SPACESHUTTLE
-                    spaceShuttle.display(graphics);
+                    mainShuttle.display(graphics);
 
 //DEBUG                    
 //                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
@@ -81,21 +80,21 @@ public class MasterPilot {
 //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
 //PLANETS
                     planet1.display(graphics);
-                    bonus1.display(graphics);
-                    bonus2.display(graphics);
+                    bonus1.display(graphics, mainShuttle);
+                    bonus2.display(graphics, mainShuttle);
 //                    planet2.display(graphics);
 //DISPOSE AND STEP TIME
                     graphics.dispose();
 
 //KEYBOARD CONTROL
-                    ShuttleControl3.move(spaceShuttle, context.pollKeyboard(), graphics);
+                    ShuttleControl3.move(mainShuttle, context.pollKeyboard(), graphics);
 
 //DISPOSE BODIES
                     Body bodyTemp = world.getBodyList().getNext();
                     Body bodyTemp2 = world.getBodyList().getNext();
                     for (int i = 0; i < world.getBodyCount() - 1; i++) {
 
-                        if (bodyTemp != null && Math.abs(bodyTemp.getPosition().x - spaceShuttle.getPosition().x) > WIDTH * 7 && Math.abs(bodyTemp.getPosition().y - spaceShuttle.getPosition().y) > HEIGHT * 7) {
+                        if (bodyTemp != null && Math.abs(bodyTemp.getPosition().x - mainShuttle.getPosition().x) > WIDTH * 7 && Math.abs(bodyTemp.getPosition().y - mainShuttle.getPosition().y) > HEIGHT * 7) {
                             world.destroyBody(bodyTemp2);
                         }
                         bodyTemp = bodyTemp.getNext();
