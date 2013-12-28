@@ -68,6 +68,7 @@ public class MasterPilot {
 //ENNEMY SHUTTLE
                     e1.display(graphics);
 //                    e1.fire(graphics);
+                    e1.behave(mainShuttle);
 
 //MAIN SPACESHUTTLE
                     mainShuttle.display(graphics);

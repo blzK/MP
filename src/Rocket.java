@@ -32,11 +32,11 @@ public class Rocket extends FlyingObject {
         FixtureDef fdRocket = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 0.65f;
-        fdRocket.filter.categoryBits = col.getCategory();
+        fdRocket.filter.categoryBits = col.getBits();
         if (col == CollisionCategory.PLAYER) {
-            fdRocket.filter.maskBits = CollisionCategory.WORLD.getCategory();
+            fdRocket.filter.maskBits = CollisionCategory.WORLD.getBits();
         } else {
-            fdRocket.filter.maskBits = CollisionCategory.PLAYER.getCategory();
+            fdRocket.filter.maskBits = CollisionCategory.PLAYER.getBits();
         }
         fdRocket.shape = cs;
         fdRocket.density = 0.0001f;

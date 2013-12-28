@@ -35,8 +35,8 @@ public class MainShuttle extends SpaceShuttle {
         CircleShape cs = new CircleShape();
         cs.m_radius = 4;
 
-        fd.filter.categoryBits = CollisionCategory.PLAYER.getCategory();
-        fd.filter.maskBits = CollisionCategory.WORLD.getCategory();
+        fd.filter.categoryBits = CollisionCategory.PLAYER.getBits();
+        fd.filter.maskBits = CollisionCategory.WORLD.getBits();
         fd.shape = cs;
         fd.density = 0.1f;
         fd.restitution = 1f;
@@ -88,7 +88,7 @@ public class MainShuttle extends SpaceShuttle {
     }
 
     @Override
-    public void behave() {
+    public void behave(MainShuttle mainShuttle) {
 
     }
 

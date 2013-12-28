@@ -34,8 +34,8 @@ public class Bonus extends FlyingObject {
         FixtureDef fdBonus = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 30f;
-        fdBonus.filter.categoryBits=  CollisionCategory.WORLD.getCategory();
-        fdBonus.filter.maskBits=  CollisionCategory.PLAYER.getCategory();
+        fdBonus.filter.categoryBits=  CollisionCategory.WORLD.getBits();
+        fdBonus.filter.maskBits=  CollisionCategory.PLAYER.getBits();
         fdBonus.shape = cs;
         fdBonus.density = 1f;
         fdBonus.restitution = 1f;

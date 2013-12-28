@@ -1,6 +1,5 @@
 
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
@@ -21,7 +20,6 @@ public abstract class FlyingObject implements Sprite {
     float y;
 
     public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics) {
-
         body.applyLinearImpulse(impulse, point);
     }
 
@@ -30,11 +28,9 @@ public abstract class FlyingObject implements Sprite {
     }
     public boolean die() {
         if (isDead==true) {
-//            System.out.println("Can't kill me I'm Already Dead");
             isDead=true;
             return false;
         }
-
         System.out.println("You killed me");
         body.getWorld().destroyBody(body);
         this.isDead = true;

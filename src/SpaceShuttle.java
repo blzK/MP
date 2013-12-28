@@ -23,7 +23,7 @@ public abstract class SpaceShuttle extends FlyingObject {
         this.y = y;
     }
 
-    abstract public void behave();
+    abstract public void behave(MainShuttle mainShuttle);
 
     public Vec2 getPosition() {
         return getBody().getPosition();

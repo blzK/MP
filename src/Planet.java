@@ -24,8 +24,8 @@ public class Planet extends FlyingObject {
 
     static int WIDTH = 800;
     static int HEIGHT = 600;
- 
-   public Planet(World world, int x, int y) {
+
+    public Planet(World world, int x, int y) {
         this.x = x;
         this.y = y;
         BodyDef bodydefPlanet = new BodyDef();
@@ -34,9 +34,8 @@ public class Planet extends FlyingObject {
         setBody(world.createBody(bodydefPlanet));
         FixtureDef fdPlanet = new FixtureDef();
         CircleShape cs = new CircleShape();
-        fdPlanet.filter.categoryBits=CollisionCategory.WORLD.getCategory();
-        fdPlanet.filter.maskBits=CollisionCategory.PLAYER.getCategory()|CollisionCategory.WORLD.getCategory();
-//        fdPlanet.filter.groupIndex=1;
+        fdPlanet.filter.categoryBits = CollisionCategory.WORLD.getBits();
+        fdPlanet.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         cs.m_radius = 65f;
         fdPlanet.shape = cs;
         fdPlanet.density = 1f;
@@ -83,5 +82,4 @@ public class Planet extends FlyingObject {
 
     }
 
-   
 }
