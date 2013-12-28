@@ -19,7 +19,7 @@ import org.jbox2d.dynamics.World;
  */
 public class Bonus extends FlyingObject {
 
-    private RocketType type;
+    private final RocketType type;
 
     public Bonus(World world, float x, float y, RocketType type) {
         this.x = x;
@@ -67,7 +67,7 @@ public class Bonus extends FlyingObject {
             if (type == RocketType.ExpBomb) {
                 graphics.setColor(Color.RED);
             } else if (type == RocketType.ImpBomb) {
-                graphics.setColor(Color.BLUE);
+                graphics.setColor(Color.ORANGE);
             }
             graphics.fill(polygon);
 

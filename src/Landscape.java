@@ -13,13 +13,13 @@ import org.jbox2d.dynamics.World;
  */
 public class Landscape implements Sprite {
 
-    private ArrayList<Sprite> list = new ArrayList<>();
+    private final ArrayList<Sprite> list = new ArrayList<>();
     private HashMap<Integer, Integer> positions = new HashMap<>();
     private float xMin;
     private float yMin;
     private float xMax;
     private float yMax;
-    private int planetRatio;
+    private final int planetRatio;
     private int bonusRatio;
 
     public Landscape(MainShuttle mainShuttle, World world, int planetRatio, int bonusRatio) {

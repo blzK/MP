@@ -21,40 +21,33 @@ import org.jbox2d.dynamics.World;
  */
 public class ExpBomb extends Rocket {
 
-    private Timer timer;
-    private float trigger = 750;
+    private final Timer timer;
+    private final float trigger = 750;
 
     public ExpBomb(World world, float x, float y, Vec2 vec, CollisionCategory col) {
-        super(world, x, y, vec,col);
+        super(world, x, y, vec, col);
         timer = new Timer();
     }
 
     @Override
     public void display(Graphics2D graphics) {
         if (isDead() == false) {
-            super.display(graphics); //To change body of generated methods, choose Tools | Templates.
-            if (timer.getMilliseconds() > trigger) {
-                explode(getBody().getWorld());
-                Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
-                graphics.setColor(Color.ORANGE);
-                graphics.fill(shape);
-                die();
+            super.display(graphics); 
+            if (timer.getMilliseconds() > trigger || getBody().getContactList() != null) {
+                die(graphics);
             }
         }
     }
 
+    public boolean die(Graphics2D graphics) {
+        explode(getBody().getWorld());
+        Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
+        graphics.setColor(Color.RED);
+        graphics.fill(shape);
+        return super.die(); 
+    }
+
     private void explode(World world) {
-//        //                              EXPLOSION TEST
-//        System.out.println(getBody().getWorld().getBodyCount());
-//        Body bodyTemp = getBody().getWorld().getBodyList().getNext();
-//        for (int i = 0; i < getBody().getWorld().getBodyCount() - 1; i++) {
-//            bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())), bodyTemp.getPosition());
-//            bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())), bodyTemp.getPosition());
-//            System.out.println(bodyTemp.getUserData());
-//            bodyTemp = bodyTemp.getNext();
-//        }
-//    }
-        //                              EXPLOSION TEST
         System.out.println(getBody().getWorld().getBodyCount());
         Body bodyTemp2 = getBody().getWorld().getBodyList().getNext();
 

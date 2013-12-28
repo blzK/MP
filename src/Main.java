@@ -1,12 +1,8 @@
-
-import com.sun.webkit.dom.KeyboardEventImpl;
 import java.awt.Color;
 import java.util.Random;
-
 import fr.umlv.zen3.Application;
 import fr.umlv.zen3.KeyboardEvent;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -63,7 +59,6 @@ public class Main {
                         if (event != null) {
                             switch (event.getKey()) {
                                 case UP:
-                                    
                                     break;
                                 case DOWN:
                                     break;
