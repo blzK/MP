@@ -21,18 +21,23 @@ import org.jbox2d.dynamics.World;
  */
 public class Rocket extends FlyingObject {
 
-    public Rocket(World world, float x, float y, Vec2 vec) {
+    public Rocket(World world, float x, float y, Vec2 vec, CollisionCategory col) {
         this.x = x;
         this.y = y;
         BodyDef bodydefRocket = new BodyDef();
-        bodydefRocket.position.set(x-372-55, y-270-30);
+        bodydefRocket.position.set(x - 372 - 55, y - 270 - 30);
         bodydefRocket.type = BodyType.DYNAMIC;
 
         setBody(world.createBody(bodydefRocket));
         FixtureDef fdRocket = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 0.65f;
-
+        fdRocket.filter.categoryBits = col.getCategory();
+        if (col == CollisionCategory.PLAYER) {
+            fdRocket.filter.maskBits = CollisionCategory.WORLD.getCategory();
+        } else {
+            fdRocket.filter.maskBits = CollisionCategory.PLAYER.getCategory();
+        }
         fdRocket.shape = cs;
         fdRocket.density = 0.0001f;
         fdRocket.restitution = 1f;
@@ -43,21 +48,18 @@ public class Rocket extends FlyingObject {
         getBody().setLinearVelocity(vec);
 
     }
-    
 
     @Override
     public void display(Graphics2D graphics) {
-         if (getBody().getContactList() != null) {
+        if (getBody().getContactList() != null) {
             die();
         }
-        if (isDead()==false) {
-           
-        Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x)+55, MasterPilot.toYCoordinates(getBody().getPosition().y)+30, 5, 2);
-        graphics.setPaint(Color.lightGray);
-        graphics.fill(shape);
+        if (isDead() == false) {
+
+            Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x) + 55, MasterPilot.toYCoordinates(getBody().getPosition().y) + 30, 5, 2);
+            graphics.setPaint(Color.lightGray);
+            graphics.fill(shape);
         }
     }
-
- 
 
 }

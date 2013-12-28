@@ -32,8 +32,10 @@ public class MainShuttle extends SpaceShuttle {
         CircleShape cs = new CircleShape();
         cs.m_radius = 4;
 
+        fd.filter.categoryBits = CollisionCategory.PLAYER.getCategory();
+        fd.filter.maskBits = CollisionCategory.WORLD.getCategory();
         fd.shape = cs;
-        fd.density = 0.001f;
+        fd.density = 0.1f;
         fd.restitution = 1f;
 
         fd.friction = 1f;
@@ -49,12 +51,10 @@ public class MainShuttle extends SpaceShuttle {
         getBody().setLinearDamping((float) 0.1);
     }
 
-  
-
     @Override
     public void display(Graphics2D graphics) {
         super.display(graphics); //To change body of generated methods, choose Tools | Templates.
-                //SHIELD - CHECK COLLISIONS
+        //SHIELD - CHECK COLLISIONS
         if (getBody().m_contactList != null) {
             graphics.setColor(new Color(1f, 0f, 0f, .5f));
             graphics.fill(new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 60, 60));
@@ -84,11 +84,9 @@ public class MainShuttle extends SpaceShuttle {
         graphics.fill(transformed);
     }
 
- 
-
     @Override
     public void behave() {
-        
+
     }
 
 }

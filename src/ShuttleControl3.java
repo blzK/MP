@@ -25,16 +25,16 @@ public class ShuttleControl3 {
             //270 vers la droite
             switch (event.getKey()) {
                 case UP:
-                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle) * 1000, (float) Math.sin(angle) * 1000), spaceShuttle.getPosition());
+                    spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle) * 500, (float) Math.sin(angle) * 500), spaceShuttle.getPosition(),graphics);
                     break;
                 case DOWN:
-                    spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), spaceShuttle.getPosition(), graphics);
+                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), spaceShuttle.getPosition());
                     break;
                 case LEFT:
-                    spaceShuttle.applyTorque(-10f);
+                    spaceShuttle.applyTorque(-400f);
                     break;
                 case RIGHT:
-                     spaceShuttle.applyTorque(10f);
+                     spaceShuttle.applyTorque(400f);
                     break;
                 case SPACE:
                     spaceShuttle.fire(graphics, RocketType.ROCKET,0,0);//-100,-100);

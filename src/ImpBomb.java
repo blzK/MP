@@ -26,8 +26,8 @@ public class ImpBomb extends Rocket {
     private Timer timer;
     private float trigger = 750;
 
-    public ImpBomb(World world, float x, float y, Vec2 vec) {
-        super(world, x, y, vec);
+    public ImpBomb(World world, float x, float y, Vec2 vec, CollisionCategory col) {
+        super(world, x, y, vec,col);
         timer = new Timer();
         timer.reset();
     }

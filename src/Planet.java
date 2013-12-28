@@ -34,7 +34,9 @@ public class Planet extends FlyingObject {
         setBody(world.createBody(bodydefPlanet));
         FixtureDef fdPlanet = new FixtureDef();
         CircleShape cs = new CircleShape();
-        
+        fdPlanet.filter.categoryBits=CollisionCategory.WORLD.getCategory();
+        fdPlanet.filter.maskBits=CollisionCategory.PLAYER.getCategory()|CollisionCategory.WORLD.getCategory();
+//        fdPlanet.filter.groupIndex=1;
         cs.m_radius = 65f;
         fdPlanet.shape = cs;
         fdPlanet.density = 1f;
