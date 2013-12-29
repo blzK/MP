@@ -9,17 +9,21 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author azathoth
- */
+*  Rocket and its display
+*/
 public class Rocket extends FlyingObject {
 
+    /**
+    *  Rocket constructor, create a rocket and its specifications
+    *  like density, restition, radius and create its body and its shape.
+    * 
+    * @param world the world where the rocket will be.
+    * @param x x coordinate of the planet.
+    * @param y y coordinate of the planet.
+    * @param direction direction of the rocket.
+    * @param col category of the rocket in collision
+    */
     public Rocket(World world, float x, float y, Vec2 direction, CollisionCategory col) {
         this.x = x;
         this.y = y;
@@ -47,6 +51,11 @@ public class Rocket extends FlyingObject {
         getBody().setLinearVelocity(direction);
     }
 
+    /**
+    *  Display the rocket to the Graphics2D
+    * 
+    * @param graphics Graphics2D where the rocket will be draw.
+    */   
     @Override
     public void display(Graphics2D graphics) {
         if (getBody().getContactList() != null) {
