@@ -38,7 +38,7 @@ public class EnnemysubShuttle1 extends SpaceShuttle {
         fd.filter.categoryBits = CollisionCategory.ENNEMY.getBits();
         fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         fd.shape = s;
-        fd.density = 0.0001f;
+        fd.density = 0.00001f;
         fd.restitution = 1f;
         fd.friction = 1f;
         bodydef2.position.set(x, y);
@@ -91,6 +91,14 @@ public class EnnemysubShuttle1 extends SpaceShuttle {
 
 //                    this.applyForce(vecDiff.skew(), getPosition());
             }
+            
+              double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
+                double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
+                if (angle > angleVec) {
+                    this.applyTorque(0.002f);
+                } else {
+                    this.applyTorque(-0.002f);
+                }
             if (getTimer().getMilliseconds() > 500) {
                 fire(graphics, RocketType.ROCKET, posX, posY, vecDiff, CollisionCategory.ENNEMY);
                 getTimer().reset();

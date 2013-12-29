@@ -47,7 +47,7 @@ public class EnnemysubShuttle2 extends SpaceShuttle {
         setBody(world.createBody(bodydef2));
         getBody().setUserData("ennemySubShuttle2");
         getBody().createFixture(fd);
-        getBody().setAngularDamping(3);
+        getBody().setAngularDamping(3000);
     }
 
     @Override
@@ -74,22 +74,30 @@ public class EnnemysubShuttle2 extends SpaceShuttle {
         return super.die(); //To change body of generated methods, choose Tools | Templates.
     }
 
-
-public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
+    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
         if (isDead() == false) {
             Vec2 vecDiff = mainShuttle.getPosition().sub(getPosition());
             float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
             float posY = MasterPilot.toXCoordinates(getBody().getPosition().y) - 100;
+
             if (vecDiff.length() > 350) {
                 this.applyForce(vecDiff.mul(0.02f), this.getPosition());
             } else if (vecDiff.length() < 250) {
                 this.applyForce(vecDiff.negate().mul(0.03f), this.getPosition());
 
             }
-             if (getTimer().getMilliseconds() > 500) {
+
+            double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
+            double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
+            if (angle > angleVec) {
+                this.applyAngularImpulse(0.000001f);
+            } else {
+                this.applyAngularImpulse(-0.000001f);
+            }
+            if (getTimer().getMilliseconds() > 500) {
                 fire(graphics, RocketType.ROCKET, posX, posY, vecDiff, CollisionCategory.ENNEMY);
                 getTimer().reset();
             }
-        }                                                                                                                                                                                                                                                                                                                             
+        }
     }
 }

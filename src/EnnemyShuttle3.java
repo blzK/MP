@@ -47,10 +47,8 @@ public class EnnemyShuttle3 extends SpaceShuttle {
         if (ennemyGroup[0].isDead() == true) {
             die();
         }
-        if (isDead() == false) {
-            for (int i = 0; i < ennemyGroup.length; i++) {
-                ennemyGroup[i].display(graphics);
-            }
+        for (int i = 0; i < ennemyGroup.length; i++) {
+            ennemyGroup[i].display(graphics);
         }
     }
 
@@ -103,7 +101,7 @@ public class EnnemyShuttle3 extends SpaceShuttle {
             for (int i = 0; i < ennemyGroup.length; i++) {
                 ennemyGroup[i].behave(mainShuttle, graphics);
                 if (i >= 1) {
-                    Vec2 vecDiffToMothership = ennemyGroup[i].getPosition().sub(ennemyGroup[0].getPosition());
+                    Vec2 vecDiffToMothership = ennemyGroup[0].getPosition().sub(ennemyGroup[i].getPosition());
                     float r = (float) Math.random() * 0.001f;
                     if (vecDiffToMothership.length() > 400) {
                         ennemyGroup[i].applyForce(vecDiffToMothership.mul(r).negate(), ennemyGroup[i].getPosition());
@@ -112,6 +110,7 @@ public class EnnemyShuttle3 extends SpaceShuttle {
                         ennemyGroup[i].applyForce(vecDiffToMothership.mul(r), ennemyGroup[i].getPosition());
                         ennemyGroup[i].applyForce(vecDiffToMothership.mul(r).skew().negate(), ennemyGroup[i].getPosition());
                     }
+                    ennemyGroup[i].applyForce(vecDiffToMothership.add(vecDiff).mul(r), ennemyGroup[i].getPosition());
 
                 }
             }
