@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author bpertev
- */
+* Enum ShuttleType which represent different type of ennemy's shuttle
+* 
+*/ 
 public enum ShuttleType {
     MAINSHUTTLE, ENNEMY1,ENNEMY2,ENNEMY3,ENNEMY4,ENNEMY5,SUBENNEMY1;
     
