@@ -1,27 +1,33 @@
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author azathoth
+ *  A star and its display
+ * 
+ * 
  */
 public class Star implements Sprite {
 
     private final int x;
     private final int y;
 
+    /**
+    *  Star constructor
+    * 
+    * @param x x coordinate of the star
+    * @param y y coordinate of the star
+    */
     public Star(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+    *  Display star on graphics, using yellow color, Ellipse2D with SIZESTAR constant.
+    * 
+    * @param graphics Graphics2D where the star will be draw
+    */
     @Override
     public void display(Graphics2D graphics) {
         int SIZESTAR = 2;
