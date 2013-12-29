@@ -9,7 +9,7 @@
  * @author azathoth
  */
 public enum CollisionCategory {
-    PLAYER(0x0001), WORLD(0x0002 );
+    PLAYER(0x0001), WORLD(0x0002 ),ENNEMY(0x0004), BONUS(0x0008);
     
         private CollisionCategory(int b) {
         this.b=b;
@@ -17,5 +17,5 @@ public enum CollisionCategory {
         public int getBits() {
         return this.b;
     }
-    private int b;
+    final private int b;
 }

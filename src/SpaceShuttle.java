@@ -23,7 +23,7 @@ public abstract class SpaceShuttle extends FlyingObject {
         this.y = y;
     }
 
-    abstract public void behave(MainShuttle mainShuttle);
+    abstract public void behave(MainShuttle mainShuttle, Graphics2D graphics);
 
     public Vec2 getPosition() {
         return getBody().getPosition();
@@ -62,33 +62,32 @@ public abstract class SpaceShuttle extends FlyingObject {
         }
     }
 
-    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y) {
-        double angle = getBody().getAngle();
-        float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.f) + x;
-//        if (Math.cos(getBody().getAngle()) == 0) {
-//            posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.2f) + 10 + x;
-//        }
-        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.f) + y;
-//        if (Math.sin(getBody().getAngle())==0) {
-//           posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.2f+10) + y;
-//        }
-        Vec2 vector = new Vec2((float) (Math.cos(angle) * 100_000_000_000f), (float) Math.sin(angle) * (100_000_000_000f));
+    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y, Vec2 direction,CollisionCategory col) {
+////////        double angle = getBody().getAngle();
+////////        float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.f) + x;
+//////////        if (Math.cos(getBody().getAngle()) == 0) {
+//////////            posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.2f) + 10 + x;
+//////////        }
+////////        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.f) + y;
+//////////        if (Math.sin(getBody().getAngle())==0) {
+//////////           posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.2f+10) + y;
+//////////        }
+////////        Vec2 vector = new Vec2((float) (Math.cos(angle) * 100_000_000_000f), (float) Math.sin(angle) * (100_000_000_000f));
 
         switch (rocketType) {
             case ExpBomb:
                 rockets.add(
-                        new ExpBomb(
-                                getBody().getWorld(), posX, posY, vector, CollisionCategory.PLAYER));
+                        new ExpBomb(getBody().getWorld(), x, y, direction, col));
                 break;
             case ImpBomb:
                 rockets.add(
                         new ImpBomb(
-                                getBody().getWorld(), posX, posY, vector, CollisionCategory.PLAYER));
+                                getBody().getWorld(), x, y, direction, col));
                 break;
             default:
                 rockets.add(
                         new Rocket(
-                                getBody().getWorld(), posX, posY, vector, CollisionCategory.PLAYER));
+                                getBody().getWorld(), x, y, direction, col));
                 break;
 
         }

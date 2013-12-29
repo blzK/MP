@@ -63,14 +63,14 @@ public class ShuttleControl {
                     spaceShuttle.applyLinearImpulse(new Vec2(50, 0), spaceShuttle.getPosition(),graphics);
                     break;
                   case SPACE:
-                    spaceShuttle.fire(graphics, RocketType.ROCKET,-100,-100);
+                    spaceShuttle.fire(graphics, RocketType.ROCKET,-100,-100,null, CollisionCategory.PLAYER);
 
                     break;
                 case B:
-                    spaceShuttle.fire(graphics, RocketType.ExpBomb,-100,-100);
+                    spaceShuttle.fire(graphics, RocketType.ExpBomb,-100,-100,null, CollisionCategory.PLAYER);
                     break;
                 case N:
-                    spaceShuttle.fire(graphics, RocketType.ImpBomb,-100,-100);
+                    spaceShuttle.fire(graphics, RocketType.ImpBomb,-100,-100,null, CollisionCategory.PLAYER);
                     break;
             }
         }

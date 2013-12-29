@@ -14,30 +14,30 @@ import org.jbox2d.common.Vec2;
  */
 public class ShuttleControl3 {
 
-    public static void move(SpaceShuttle spaceShuttle, KeyboardEvent event, Graphics2D graphics) {
+    public static void move(MainShuttle mainShuttle, KeyboardEvent event, Graphics2D graphics) {
         if (event != null) {
-            double angle = spaceShuttle.getAngle(); 
+            double angle = mainShuttle.getAngle(); 
             switch (event.getKey()) {
                 case UP:
-                    spaceShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle) * 500, (float) Math.sin(angle) * 500), spaceShuttle.getPosition(),graphics);
+                    mainShuttle.applyLinearImpulse(new Vec2((float) Math.cos(angle) * 500, (float) Math.sin(angle) * 500), mainShuttle.getPosition(),graphics);
                     break;
                 case DOWN:
-                    spaceShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), spaceShuttle.getPosition());
+                    mainShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), mainShuttle.getPosition());
                     break;
                 case LEFT:
-                    spaceShuttle.applyTorque(-400f);
+                    mainShuttle.applyTorque(-400f);
                     break;
                 case RIGHT:
-                     spaceShuttle.applyTorque(400f);
+                     mainShuttle.applyTorque(400f);
                     break;
                 case SPACE:
-                    spaceShuttle.fire(graphics, RocketType.ROCKET,0,0);
+                    mainShuttle.fire(graphics, RocketType.ROCKET,0,0,null, CollisionCategory.PLAYER);
                     break;
                 case B:
-                    spaceShuttle.fire(graphics, RocketType.ExpBomb,0,0);
+                    mainShuttle.fire(graphics, RocketType.ExpBomb,0,0,null, CollisionCategory.PLAYER);
                     break;
                 case N:
-                    spaceShuttle.fire(graphics, RocketType.ImpBomb,0,0);
+                    mainShuttle.fire(graphics, RocketType.ImpBomb,0,0,null, CollisionCategory.PLAYER);
                     break;
             }
         }

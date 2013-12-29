@@ -50,7 +50,6 @@ public class EnnemyShuttle2 extends SpaceShuttle {
         getBody().createFixture(fd);
         getBody().setAngularDamping(3);
 //                body2.setLinearDamping(0.3f);
-        getBody().setLinearVelocity(new Vec2(0, -3f));
 
     }
 
@@ -76,7 +75,7 @@ public class EnnemyShuttle2 extends SpaceShuttle {
         }
     }
    @Override
-    public void behave(MainShuttle mainShuttle) {
+      public void behave(MainShuttle mainShuttle,Graphics2D graphics) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

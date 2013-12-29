@@ -34,8 +34,7 @@ public class Main {
         fdPlanet.density = 1f;
         fdPlanet.restitution = 1f;
         fdPlanet.friction = 1.0f;
-        body.createFixture(fdPlanet);
-      
+        body.createFixture(fdPlanet);      
 
         Application.run("Colors", WIDTH, HEIGHT, context -> {
             Random random = new Random(0);

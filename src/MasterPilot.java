@@ -61,14 +61,17 @@ public class MasterPilot {
                     graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
 //                    STARS
                     if (!landscape.isInside(mainShuttle)) {
-                        landscape.generateLandscape(mainShuttle, world,20, 30);
+                        landscape.generateLandscape(mainShuttle, world, 20, 30);
                     }
-                    landscape.display(graphics,mainShuttle);
+                    landscape.display(graphics, mainShuttle);
 
 //ENNEMY SHUTTLE
+//                    System.out.println(CollisionCategory.BONUS.getBits()&&CollisionCategory.);
                     e1.display(graphics);
-//                    e1.fire(graphics);
-                    e1.behave(mainShuttle);
+                    
+//                    e1.fire(graphics, RocketType.ROCKET,40,40);
+                    e1.behave(mainShuttle, graphics);
+//                    e1.applyAngularImpulse(100);
 
 //MAIN SPACESHUTTLE
                     mainShuttle.display(graphics);

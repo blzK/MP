@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
@@ -36,7 +37,7 @@ public class MainShuttle extends SpaceShuttle {
         cs.m_radius = 4;
 
         fd.filter.categoryBits = CollisionCategory.PLAYER.getBits();
-        fd.filter.maskBits = CollisionCategory.WORLD.getBits();
+        fd.filter.maskBits = CollisionCategory.WORLD.getBits()|CollisionCategory.BONUS.getBits()|CollisionCategory.ENNEMY.getBits();
         fd.shape = cs;
         fd.density = 0.1f;
         fd.restitution = 1f;
@@ -88,18 +89,31 @@ public class MainShuttle extends SpaceShuttle {
     }
 
     @Override
-    public void behave(MainShuttle mainShuttle) {
+    public void behave(MainShuttle mainShuttle,Graphics2D graphics) {
 
     }
 
     @Override
-    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y) {
+    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y,Vec2 direction, CollisionCategory col) {
+                double angle = getBody().getAngle();
+        float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.f) + x;
+//        if (Math.cos(getBody().getAngle()) == 0) {
+//            posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.2f) + 10 + x;
+//        }
+        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.f) + y;
+//        if (Math.sin(getBody().getAngle())==0) {
+//           posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.2f+10) + y;
+//        }
+        Vec2 vector = new Vec2((float) (Math.cos(angle) * 100_000_000_000f), (float) Math.sin(angle) * (100_000_000_000f));
+
+        
+        
         if (rocketType == RocketType.ROCKET) {
-            super.fire(graphics, rocketType, x, y);
+            super.fire(graphics, rocketType, posX, posY,vector, CollisionCategory.PLAYER);
 
         } else {
             if (isLoaded == true && this.rocketType == rocketType) {
-                super.fire(graphics, rocketType, x, y);
+                super.fire(graphics, rocketType, posX, posY,vector, CollisionCategory.PLAYER);
                 isLoaded=false;
             }
         }

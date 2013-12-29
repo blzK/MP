@@ -77,7 +77,7 @@ public class EnnemysubShuttle1 extends SpaceShuttle {
     }
 
    @Override
-    public void behave(MainShuttle mainShuttle) {
+    public void behave(MainShuttle mainShuttle,Graphics2D graphics) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
