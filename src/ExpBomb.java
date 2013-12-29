@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -11,7 +10,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 
  /**
- *  ExpBomb, is a class who extends Rocket because it's a special rocket.
+ *  ExpBomb, is a class which extends Rocket because it's a special rocket.
  *  A explosion bombe
  * 
  */
