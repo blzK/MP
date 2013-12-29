@@ -39,7 +39,7 @@ public class MainShuttle extends SpaceShuttle {
         fd.filter.categoryBits = CollisionCategory.PLAYER.getBits();
         fd.filter.maskBits = CollisionCategory.WORLD.getBits()|CollisionCategory.BONUS.getBits()|CollisionCategory.ENNEMY.getBits();
         fd.shape = cs;
-        fd.density = 0.01f;
+        fd.density = 0.001f;
         fd.restitution = 1f;
 
         fd.friction = 1f;

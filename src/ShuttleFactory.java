@@ -17,11 +17,23 @@ public class ShuttleFactory {
         switch (type) {
             case MAINSHUTTLE:
 
-                return new  MainShuttle(x, y, world);
+                return new MainShuttle(x, y, world);
 
             case ENNEMY1:
 
                 return new EnnemyShuttle1(x, y, world);
+            case ENNEMY2:
+
+                return new EnnemyShuttle2(x, y, world);
+            case ENNEMY3:
+
+                return new EnnemyShuttle3(x, y, world);
+            case ENNEMY4:
+
+                return new EnnemyShuttle4(x, y, world);
+            case ENNEMY5:
+
+                return new EnnemyShuttle5(x, y, world);
 
         }
         throw new IllegalArgumentException("ShuttleType Unknown");

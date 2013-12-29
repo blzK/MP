@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
+import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Timer;
 import org.jbox2d.common.Vec2;
@@ -23,8 +24,6 @@ import org.jbox2d.dynamics.World;
  */
 public class EnnemyShuttle1 extends SpaceShuttle {
 
-    private Timer timer = new Timer();
-
     public EnnemyShuttle1(float x, float y, World world) {
         super(x, y);
 
@@ -32,8 +31,8 @@ public class EnnemyShuttle1 extends SpaceShuttle {
         bodydef2.angle = 0;
         bodydef2.bullet = true;
         FixtureDef fd = new FixtureDef();
-        PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
-        s.setAsBox(100, 20);
+        CircleShape s = new CircleShape();
+        s.m_radius=10;
 // s.setAsBox(100, 20, new Vec2(x,y), 0f);
 //                
 //                
@@ -53,7 +52,7 @@ public class EnnemyShuttle1 extends SpaceShuttle {
         getBody().createFixture(fd);
         getBody().setAngularDamping(3);
 //                body2.setLinearDamping(0.3f);
-        timer.reset();
+        resetTimer();
     }
 
     @Override
@@ -83,9 +82,6 @@ public class EnnemyShuttle1 extends SpaceShuttle {
 
             polygon.closePath();
             graphics.setPaint(Color.RED);
-//            graphics.fill(polygon);
-
-//            graphics.fill(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
             AffineTransform transform = new AffineTransform();
             transform.rotate(getBody().getAngle(),
                     MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y)
@@ -101,13 +97,14 @@ public class EnnemyShuttle1 extends SpaceShuttle {
     public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
 //         fire(graphics, RocketType.ROCKET, 50,50, CollisionCategory.ENNEMY);
         Vec2 vecDiff = mainShuttle.getPosition().sub(this.getPosition());
-        
+
         if (isDead() == false) {
-            if (timer.getMilliseconds() > 200) {
-                float posX= MasterPilot.toYCoordinates(getBody().getPosition().x)+100;
-                float posY= MasterPilot.toXCoordinates(getBody().getPosition().y)-100;
-                fire(graphics, RocketType.ROCKET, posX,posY, vecDiff, CollisionCategory.ENNEMY);
-                timer.reset();
+            if (getTimer().getMilliseconds() > 200) {
+                float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
+                float posY = MasterPilot.toXCoordinates(getBody().getPosition().y) - 100;
+                fire(graphics, RocketType.ROCKET, posX, posY, vecDiff, CollisionCategory.ENNEMY);
+
+                getTimer().reset();
             } else {
 //        double angle = (this.getAngle() +Math.PI)%(Math.PI*2);
                 double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
@@ -115,9 +112,9 @@ public class EnnemyShuttle1 extends SpaceShuttle {
                 double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
 //                System.out.println("angle " + Math.toDegrees(angle) + " angle  " + Math.toDegrees(angleVec));
                 if (angle > angleVec) {
-                    this.applyAngularImpulse(80);
+                    this.applyAngularImpulse(0.02f);
                 } else {
-                    this.applyAngularImpulse(-80);
+                    this.applyAngularImpulse(-0.02f);
                 }
                 if (vecDiff.length() > 200) {
                     this.applyForce(vecDiff, this.getPosition());

@@ -5,6 +5,7 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Timer;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -31,18 +32,14 @@ public class EnnemyShuttle2 extends SpaceShuttle {
         FixtureDef fd = new FixtureDef();
         PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
         s.setAsBox(100, 20);
-// s.setAsBox(100, 20, new Vec2(x,y), 0f);
-//                
-//                
-//        CircleShape s = new CircleShape();
-//        s.m_radius = 65f;
+
         fd.filter.categoryBits = CollisionCategory.WORLD.getBits();
         fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         fd.shape = s;
         fd.density = 0.0001f;
         fd.restitution = 1f;
         fd.friction = 1f;
-//        bodydef2.position.set(x - 200, y);
+
         bodydef2.position.set(x, y);
         bodydef2.type = BodyType.DYNAMIC;
         setBody(world.createBody(bodydef2));
@@ -62,22 +59,66 @@ public class EnnemyShuttle2 extends SpaceShuttle {
         }
         if (isDead() == false) {
 
-            graphics.setPaint(Color.RED);
             graphics.setColor(Color.RED);
 //            graphics.fill(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
             AffineTransform transform = new AffineTransform();
             transform.rotate(getBody().getAngle(),
-                    getBody().getPosition().x, getBody().getPosition().y
+                    MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y)
             );
             Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 100, 20));
 //         Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(getBody().getPosition().x, getBody().getPosition().y, 100, 20));
             graphics.fill(transformed);
         }
     }
-   @Override
-      public void behave(MainShuttle mainShuttle,Graphics2D graphics) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    @Override
+    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
+        Vec2 vecDiff = mainShuttle.getPosition().sub(this.getPosition());
+
+        if (isDead() == false) {
+            if (getTimer().getMilliseconds() > 200) {
+                
+//                float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.f) + x;
+//        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.f) + y;
+        
+        
+                float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
+                float posY = MasterPilot.toYCoordinates(getBody().getPosition().y) - 100;
+                float pos1 = (float) (MasterPilot.toXCoordinates(getBody().getPosition().x) +Math.cos(getBody().getAngle())) ;
+                float pos2 = (float) (MasterPilot.toYCoordinates(getBody().getPosition().y) +Math.sin(getBody().getAngle()));
+                float pos3 = (float) (MasterPilot.toXCoordinates(getBody().getPosition().x) +Math.cos(getBody().getAngle())*30) ;
+                float pos4 = (float) (MasterPilot.toYCoordinates(getBody().getPosition().y) +Math.sin(getBody().getAngle())*30);
+                float pos5 = (float) (MasterPilot.toXCoordinates(getBody().getPosition().x) +Math.cos(getBody().getAngle())*60) ;
+                float pos6 = (float) (MasterPilot.toYCoordinates(getBody().getPosition().y) +Math.sin(getBody().getAngle())*60);
+                float pos7 = (float) (MasterPilot.toXCoordinates(getBody().getPosition().x) +Math.cos(getBody().getAngle())*90) ;
+                float pos8 = (float) (MasterPilot.toYCoordinates(getBody().getPosition().y) +Math.sin(getBody().getAngle())*90);
+
+//                fire(graphics, RocketType.ROCKET, posX, posY, vecDiff, CollisionCategory.ENNEMY);
+                fire(graphics, RocketType.ROCKET, pos1, pos2, vecDiff, CollisionCategory.ENNEMY);
+                fire(graphics, RocketType.ROCKET, pos3, pos4, vecDiff, CollisionCategory.ENNEMY);
+                fire(graphics, RocketType.ROCKET, pos5, pos6, vecDiff, CollisionCategory.ENNEMY);
+                fire(graphics, RocketType.ROCKET, pos7, pos8, vecDiff, CollisionCategory.ENNEMY);
+                getTimer().reset();
+            } else {
+//        double angle = (this.getAngle() +Math.PI)%(Math.PI*2);
+                double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
+
+                double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
+//                System.out.println("angle " + Math.toDegrees(angle) + " angle  " + Math.toDegrees(angleVec));
+                if (angle > angleVec) {
+                    this.applyAngularImpulse(-10f);
+                } else {
+                    this.applyAngularImpulse(10f);
+                }
+                if (vecDiff.length() > 400) {
+                    this.applyForce(vecDiff.mul(0.2f), this.getPosition());
+                } else if(vecDiff.length() < 300){
+                    this.applyForce(vecDiff.negate().mul(0.3f), this.getPosition());
+
+                }
+//                this.applyForce(vecDiff.skew().negate(), this.getPosition());
+            }
+        }
+
     }
-
-
 }

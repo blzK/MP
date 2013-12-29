@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import org.jbox2d.common.Timer;
 import org.jbox2d.common.Vec2;
 
 /*
@@ -17,12 +18,17 @@ import org.jbox2d.common.Vec2;
 public abstract class SpaceShuttle extends FlyingObject {
 
     private ArrayList<Rocket> rockets = new ArrayList<>();
-
+    private Timer timer= new Timer();
     public SpaceShuttle(float x, float y) {
         this.x = x;
         this.y = y;
     }
-
+public Timer getTimer(){
+    return this.timer;
+}
+public void resetTimer(){
+    this.timer.reset();
+}
     abstract public void behave(MainShuttle mainShuttle, Graphics2D graphics);
 
     public Vec2 getPosition() {

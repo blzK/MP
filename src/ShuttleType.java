@@ -9,6 +9,6 @@
  * @author bpertev
  */
 public enum ShuttleType {
-    MAINSHUTTLE, ENNEMY1;
+    MAINSHUTTLE, ENNEMY1,ENNEMY2,ENNEMY3,ENNEMY4,ENNEMY5,SUBENNEMY1;
     
 }
