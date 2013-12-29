@@ -18,7 +18,7 @@ public class ImpBomb extends Rocket {
 
     private Timer timer;
     private float trigger = 750;
-
+private final int range=500;
     /**
     *  ImpBomb constructor, create a ImpBomb and its timer to implose.
     * 
@@ -86,9 +86,9 @@ public class ImpBomb extends Rocket {
                     this.point = point;
                     this.normal = normal;
                     this.fraction = fraction;
-                    if (new Vec2(getBody().getPosition()).add(bodyTemp.getPosition().negate()).length() < 200) {
-                        bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
-                        bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate(), bodyTemp.getPosition());
+                    if (new Vec2(getBody().getPosition()).add(bodyTemp.getPosition().negate()).length() < range) {
+                        bodyTemp.applyLinearImpulse(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate().mul(10), bodyTemp.getPosition());
+                        bodyTemp.applyForce(new Vec2(bodyTemp.getPosition().add(getBody().getPosition().negate())).negate().mul(10), bodyTemp.getPosition());
                     }
                     return fraction;
                 }

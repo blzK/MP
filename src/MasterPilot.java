@@ -37,9 +37,9 @@ public class MasterPilot {
 
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         MainShuttle mainShuttle = new MainShuttle(0f, 0f, world);
-//        SpaceShuttle e1 = shuttleFactory.createShuttle((int) 500, (int) 0, ShuttleType.ENNEMY1, world);
-//        SpaceShuttle e2 = shuttleFactory.createShuttle((int) 500, (int) 200, ShuttleType.ENNEMY2, world);
-        SpaceShuttle e3 = shuttleFactory.createShuttle((int) -100, (int) 200, ShuttleType.ENNEMY3, world);
+        SpaceShuttle e1 = shuttleFactory.createShuttle((int)-500, (int) 0, ShuttleType.ENNEMY1, world);
+        SpaceShuttle e2 = shuttleFactory.createShuttle((int) 500, (int) -500, ShuttleType.ENNEMY2, world);
+        SpaceShuttle e3 = shuttleFactory.createShuttle((int) 0, (int) 500, ShuttleType.ENNEMY3, world);
         //STARS
         Landscape landscape = new Landscape(mainShuttle, world, 20, 30);
 //        WINDOW
@@ -69,15 +69,13 @@ public class MasterPilot {
 
 //ENNEMY SHUTTLE
 //                    System.out.println(CollisionCategory.BONUS.getBits()&&CollisionCategory.);
-//                    e1.display(graphics);
-//                     e2.display(graphics);
+                    e1.display(graphics);
+                     e2.display(graphics);
                      e3.display(graphics);
                     
-//                    e1.fire(graphics, RocketType.ROCKET,40,40);
-//                    e1.behave(mainShuttle, graphics);
-//                    e2.behave(mainShuttle, graphics);
+                    e1.behave(mainShuttle, graphics);
+                    e2.behave(mainShuttle, graphics);
                      e3.behave(mainShuttle, graphics);
-//                    e1.applyAngularImpulse(100);
 
 //MAIN SPACESHUTTLE
                     mainShuttle.display(graphics);
