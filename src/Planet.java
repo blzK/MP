@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
@@ -11,20 +10,22 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author bpertev
- */
+*  Planet and its display
+*/
 public class Planet extends FlyingObject {
 
     static int WIDTH = 800;
     static int HEIGHT = 600;
 
+    /**
+    *  Planet constructor, create a planet and its specifications
+    *  like density, restitution, radius and create its body and its shape
+    * 
+    * @param world the world where the planet will be.
+    * @param x x coordinate of the planet.
+    * @param y y coordinate of the planet.
+    */
     public Planet(World world, int x, int y) {
         this.x = x;
         this.y = y;
@@ -45,6 +46,11 @@ public class Planet extends FlyingObject {
         getBody().setUserData("Planet");
     }
 
+    /**
+    *  Display the planet to the Graphics2D
+    * 
+    * @param graphics Graphics2D where the rocket will be draw.
+    */  
     @Override
     public void display(Graphics2D graphics) {
         Point2D center = new Point2D.Float(x, y);
