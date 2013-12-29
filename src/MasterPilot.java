@@ -2,9 +2,13 @@
 import java.awt.Color;
 import fr.umlv.zen3.Application;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.util.HashMap;
+import javax.xml.parsers.ParserConfigurationException;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
+import org.xml.sax.SAXException;
 
 public class MasterPilot {
 
@@ -42,6 +46,21 @@ public class MasterPilot {
         SpaceShuttle e3 = shuttleFactory.createShuttle((int) 0, (int) 200, ShuttleType.ENNEMY3, world);
         //STARS
         Landscape landscape = new Landscape(mainShuttle, world, 20, 30);
+             
+        HashMap <String,Integer> dataLevel = new HashMap<>();
+        try{
+            dataLevel = LevelFactory.loadLevel("level1");
+        }catch(ParserConfigurationException | SAXException | IOException e){
+            System.err.println("Error load XML");
+        }
+        
+        System.out.println("Density planet = "+dataLevel.get("PlanetDensity"));
+        System.out.println("Bonus planet = "+dataLevel.get("BonusDensity"));
+        System.out.println("Number of tie wave1 = "+dataLevel.get("Wave1_Tie"));
+        System.out.println("Number of Cruiser wave1 = "+dataLevel.get("Wave1_Cruiser"));
+        System.out.println("Number of Squadron wave1 = "+dataLevel.get("Wave1_Squadron"));
+        System.out.println("Number of FakePlanet wave1 = "+dataLevel.get("Wave1_FakePlanet"));
+        System.out.println("Number of Soon wave1 = "+dataLevel.get("Wave1_Soon"));
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 

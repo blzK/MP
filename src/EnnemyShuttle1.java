@@ -97,6 +97,8 @@ public class EnnemyShuttle1 extends SpaceShuttle {
             graphics.fill(transformed);
         }
     }
+    
+    
     /**
     *  Behave is a method wich contains the comportment of the EnnemyShuttle1
     * 
