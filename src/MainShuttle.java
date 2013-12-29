@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -26,6 +25,15 @@ public class MainShuttle extends SpaceShuttle {
     private boolean isLoaded = false;
     private RocketType rocketType = RocketType.ROCKET;
 
+    /**
+    *  MainShuttle constructor, create the main shuttle and its specifications
+    *  like density, restition, radius and create its body and its shape
+    * 
+    * 
+    * @param x x coordinate of the main MainShuttle.
+    * @param y y coordinate of the MainShuttle.
+    * @param world the world where the MainShuttle will be.
+    */
     public MainShuttle(float x, float y, World world) {
         super(x, y);
         BodyDef bodydef = new BodyDef();
@@ -55,6 +63,11 @@ public class MainShuttle extends SpaceShuttle {
         getBody().setLinearDamping((float) 0.1);
     }
 
+    /**
+    *  Display the main shuttle to the Graphics2D.
+    * 
+    * @param graphics Graphics2D where the main shuttle will be draw.
+    */
     @Override
     public void display(Graphics2D graphics) {
         super.display(graphics); //To change body of generated methods, choose Tools | Templates.
@@ -88,11 +101,27 @@ public class MainShuttle extends SpaceShuttle {
         graphics.fill(transformed);
     }
 
+    /**
+    *  Behave is a method which contains the comportment of the mainShuttle.
+    * 
+    * @param mainShuttlePos position of the mainShuttle
+    * @param graphics Graphics2D where the mainShuttle is.
+    */ 
     @Override
     public void behave(MainShuttle mainShuttle,Graphics2D graphics) {
 
     }
 
+    /**
+    *  Fire is method which manage fire of mainShuttle
+    * 
+    * @param graphics Graphics2D where the mainShuttle is.
+    * @param rocketType Type of rocket.
+    * @param x x coordinate of the rocket.
+    * @param y y coordinate of the rocket.
+    * @param direnction Direction of the rocket.
+    * @param col Collision category of the rocket.
+    */ 
     @Override
     public void fire(Graphics2D graphics, RocketType rocketType, float x, float y,Vec2 direction, CollisionCategory col) {
                 double angle = getBody().getAngle();
@@ -119,6 +148,11 @@ public class MainShuttle extends SpaceShuttle {
         }
     }
 
+    /**
+    *  setBonus is method which modify the bonus of mainShuttle like ExpBomb or ImpBomb
+    *
+    * @param type Category of the rocket.
+    */ 
     public void setBonus(RocketType type) {
         isLoaded = true;
         this.rocketType = type;
