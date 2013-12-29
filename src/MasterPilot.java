@@ -32,8 +32,8 @@ public class MasterPilot {
         Planet planet1 = new Planet(world, 500, 500);
 
 //        Planet planet2 = new Planet(world, 1000, 0);//BONUS
-        Bonus bonus1 = new Bonus(world, 0, 200, RocketType.ExpBomb);
-        Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
+//        Bonus bonus1 = new Bonus(world, 0, 200, RocketType.ExpBomb);
+//        Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
 
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         MainShuttle mainShuttle = new MainShuttle(0f, 0f, world);
@@ -84,8 +84,8 @@ public class MasterPilot {
 //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
 //PLANETS
                     planet1.display(graphics);
-                    bonus1.display(graphics, mainShuttle);
-                    bonus2.display(graphics, mainShuttle);
+//                    bonus1.display(graphics, mainShuttle);
+//                    bonus2.display(graphics, mainShuttle);
 //                    planet2.display(graphics);
 //DISPOSE AND STEP TIME
                     graphics.dispose();

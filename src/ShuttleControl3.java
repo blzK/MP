@@ -25,10 +25,10 @@ public class ShuttleControl3 {
                     mainShuttle.applyForce(new Vec2((float) Math.cos(angle + Math.PI) * 1000, (float) Math.sin(angle + Math.PI) * 1000), mainShuttle.getPosition());
                     break;
                 case LEFT:
-                    mainShuttle.applyTorque(-400f);
+                    mainShuttle.applyTorque(-4000f);
                     break;
                 case RIGHT:
-                     mainShuttle.applyTorque(400f);
+                     mainShuttle.applyTorque(4000f);
                     break;
                 case SPACE:
                     mainShuttle.fire(graphics, RocketType.ROCKET,0,0,null, CollisionCategory.PLAYER);

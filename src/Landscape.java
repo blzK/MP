@@ -20,7 +20,7 @@ public class Landscape implements Sprite {
     private float xMax;
     private float yMax;
     private final int planetRatio;
-    private int bonusRatio;
+    private final int bonusRatio;
 
     public Landscape(MainShuttle mainShuttle, World world, int planetRatio, int bonusRatio) {
         System.out.println("WE GENERATE STARS");
@@ -31,7 +31,7 @@ public class Landscape implements Sprite {
         this.xMax = (float) (x + MasterPilot.WIDTH * 1.5);
         this.yMax = (float) (y + MasterPilot.HEIGHT * 1.5);
         this.planetRatio = planetRatio;
-        this.bonusRatio=bonusRatio;
+        this.bonusRatio = bonusRatio;
         positions = new HashMap<>();
         Random random = new Random(0);
         for (int i = 0; i < 100; i++) {
@@ -51,11 +51,16 @@ public class Landscape implements Sprite {
                 Planet planet = new Planet(world, xPosition + 10, yPosition + 10);
                 list.add(planet);
             } else if (j < planetRatio + bonusRatio) {
-                Random r = new Random();
-                int n = r.nextInt(1);
-                Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
-//        Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
-                list.add(bonus1);
+                double n =  Math.round(Math.random());
+                if (n == 1) {
+                    Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
+                    list.add(bonus1);
+                }
+                if (n == 0) {
+                    Bonus bonus2 = new Bonus(world, xPosition, yPosition, RocketType.ImpBomb);
+                    list.add(bonus2);
+                }
+
             } else {
                 Star star = new Star(xPosition, yPosition);
                 list.add(star);
@@ -83,17 +88,11 @@ public class Landscape implements Sprite {
 
     public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         for (Sprite sprite : list) {
-//            if (sprite instanceof Bonus) {
-//                Bonus bonus = (Bonus) sprite;
-//                bonus.display(graphics, mainShuttle);
-//            } else {
-                sprite.display(graphics, mainShuttle);
-//            }
+            sprite.display(graphics, mainShuttle);
         }
     }
 
     public void generateLandscape(MainShuttle mainShuttle, World world, int planetRatio, int bonusRatio) {
-        System.out.println("WE GENERATE STARS");
         float x = mainShuttle.getPosition().x;
         float y = mainShuttle.getPosition().y;
         this.xMin = (float) (x - MasterPilot.WIDTH * 1.5);
@@ -125,21 +124,26 @@ public class Landscape implements Sprite {
         positions.keySet().iterator();
         Iterator itx = positions.keySet().iterator();
         Iterator ity = positions.values().iterator();
-        int planetStarRatio = 20;
         int j = 0;
         while (itx.hasNext()) {
             int xPosition = (int) itx.next();
             int yPosition = (int) ity.next();
 
-             if (j < planetRatio) {
+            if (j < planetRatio) {
                 Planet planet = new Planet(world, xPosition + 10, yPosition + 10);
                 list.add(planet);
             } else if (j < planetRatio + bonusRatio) {
-                Random r = new Random();
-                int n = r.nextInt(1);
-                Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
-//        Bonus bonus2 = new Bonus(world, 0, 300, RocketType.ImpBomb);
-                list.add(bonus1);
+                double n =  Math.round(Math.random());
+                System.out.println("n = " + n);
+                if (n == 0) {
+                    Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
+                    list.add(bonus1);
+                }
+                if (n == 1) {
+                    Bonus bonus2 = new Bonus(world,xPosition, yPosition, RocketType.ImpBomb);
+                    list.add(bonus2);
+                }
+
             } else {
                 Star star = new Star(xPosition, yPosition);
                 list.add(star);

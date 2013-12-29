@@ -24,7 +24,6 @@ public class Rocket extends FlyingObject {
         this.x = x;
         this.y = y;
         BodyDef bodydefRocket = new BodyDef();
-//        bodydefRocket.position.set(x - 372 - 55, y - 270 - 30);
         bodydefRocket.position.set(x - 372 - 55, y - 270 - 30);
         bodydefRocket.type = BodyType.DYNAMIC;
         setBody(world.createBody(bodydefRocket));
@@ -44,6 +43,7 @@ public class Rocket extends FlyingObject {
         getBody().setBullet(true);
         getBody().createFixture(fdRocket);
         getBody().setUserData("Rocket");
+         getBody().setBullet(true);
         getBody().setLinearVelocity(direction);
     }
 

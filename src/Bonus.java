@@ -34,8 +34,8 @@ public class Bonus extends FlyingObject {
         FixtureDef fdBonus = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 30f;
-        fdBonus.filter.categoryBits=  CollisionCategory.BONUS.getBits();
-        fdBonus.filter.maskBits=  CollisionCategory.PLAYER.getBits();
+        fdBonus.filter.categoryBits = CollisionCategory.BONUS.getBits();
+        fdBonus.filter.maskBits = CollisionCategory.PLAYER.getBits();
         fdBonus.shape = cs;
         fdBonus.density = 1f;
         fdBonus.restitution = 1f;
@@ -44,8 +44,7 @@ public class Bonus extends FlyingObject {
         getBody().setUserData("Bonus");
     }
 
-    
-    public void display(Graphics2D graphics,MainShuttle mainShuttle ) {
+    public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         if (getBody().getContactList() != null) {
             System.out.println(getBody().getContactList());
             powerUp(mainShuttle);

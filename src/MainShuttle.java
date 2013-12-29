@@ -34,12 +34,12 @@ public class MainShuttle extends SpaceShuttle {
 
         FixtureDef fd = new FixtureDef();
         CircleShape cs = new CircleShape();
-        cs.m_radius = 4;
+        cs.m_radius = 10;
 
         fd.filter.categoryBits = CollisionCategory.PLAYER.getBits();
         fd.filter.maskBits = CollisionCategory.WORLD.getBits()|CollisionCategory.BONUS.getBits()|CollisionCategory.ENNEMY.getBits();
         fd.shape = cs;
-        fd.density = 0.1f;
+        fd.density = 0.01f;
         fd.restitution = 1f;
 
         fd.friction = 1f;
