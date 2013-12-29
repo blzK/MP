@@ -31,7 +31,6 @@ public abstract class FlyingObject implements Sprite {
             isDead=true;
             return false;
         }
-        System.out.println("You killed me");
         body.getWorld().destroyBody(body);
         this.isDead = true;
         return true;

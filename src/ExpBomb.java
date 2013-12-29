@@ -10,25 +10,32 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author azathoth
+ /**
+ *  ExpBomb, is a class who extends Rocket because it's a special rocket.
+ *  A explosion bombe
+ * 
  */
 public class ExpBomb extends Rocket {
 
     private final Timer timer;
     private final float trigger = 750;
-
+    /**
+    *  ExpBomb constructor, create a ExpBomb and its timer to explose.
+    * 
+    * @param world the world where the ImpBomb will be.
+    * @param x x coordinate of the ImpBomb.
+    * @param y y coordinate of the ImpBomb.
+    * @param vec direction.
+    */
     public ExpBomb(World world, float x, float y, Vec2 vec, CollisionCategory col) {
         super(world, x, y, vec, col);
         timer = new Timer();
     }
-
+    /**
+    *  Display the ExpBomb on Graphics2D
+    * 
+    * @param graphics Graphics2D where the ExpBomb will be draw.
+    */
     @Override
     public void display(Graphics2D graphics) {
         if (isDead() == false) {
@@ -38,7 +45,11 @@ public class ExpBomb extends Rocket {
             }
         }
     }
-
+    /**
+    *  Explode, to order the explosion of the ExpBomb.
+    * 
+    * @param world the world where the ExpBomb will explose.
+    */
     public boolean die(Graphics2D graphics) {
         explode(getBody().getWorld());
         Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);

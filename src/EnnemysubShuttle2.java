@@ -21,9 +21,9 @@ import org.jbox2d.dynamics.World;
  *
  * @author azathoth
  */
-public class EnnemysubShuttle1 extends SpaceShuttle {
+public class EnnemysubShuttle2 extends SpaceShuttle {
 
-    public EnnemysubShuttle1(float x, float y, World world) {
+    public EnnemysubShuttle2(float x, float y, World world) {
         super(x, y);
 
         BodyDef bodydef2 = new BodyDef();
@@ -43,7 +43,7 @@ public class EnnemysubShuttle1 extends SpaceShuttle {
         bodydef2.position.set(x, y);
         bodydef2.type = BodyType.DYNAMIC;
         setBody(world.createBody(bodydef2));
-        getBody().setUserData("ennemySubShuttle1");
+        getBody().setUserData("ennemySubShuttle2");
         getBody().createFixture(fd);
         getBody().setAngularDamping(3);
     }
@@ -57,26 +57,22 @@ public class EnnemysubShuttle1 extends SpaceShuttle {
         if (isDead() == false) {
             float posX = getBody().getPosition().x;
             float posY = getBody().getPosition().y;
-            float x1Points[] = {posX - 5, posX + 10, posX - 5};
-            float y1Points[] = {posY + 5, posY, posY - 5};
-            GeneralPath polygon = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x1Points.length);
-            polygon.moveTo(x1Points[0], y1Points[0]);
-
-            for (int index = 1; index < x1Points.length; index++) {
-                polygon.lineTo(x1Points[index], y1Points[index]);
-            }
-
-            polygon.closePath();
-
+            Shape s = new Rectangle2D.Float(posX, posY, 20, 20);
             graphics.setColor(Color.RED);
-//            graphics.fill(polygon);
+//            graphics.fill(s);
             AffineTransform transform = new AffineTransform();
             transform.rotate(getBody().getAngle(),
-                    MasterPilot.toXCoordinates(getBody().getPosition().x),MasterPilot.toYCoordinates( getBody().getPosition().y)
-            );
-            Shape transformed = transform.createTransformedShape((Shape) polygon);
+                    MasterPilot.toXCoordinates(posX),MasterPilot.toYCoordinates( posY)
+                    );
+            Shape transformed = transform.createTransformedShape(s);
             graphics.fill(transformed);
         }
+    }
+
+    @Override
+    public boolean die() {
+        System.out.println("aargh");
+        return super.die(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

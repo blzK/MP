@@ -32,9 +32,10 @@ public class EnnemyShuttle2 extends SpaceShuttle {
         FixtureDef fd = new FixtureDef();
         PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
         s.setAsBox(100, 20);
-
-        fd.filter.categoryBits = CollisionCategory.WORLD.getBits();
+        fd.filter.categoryBits = CollisionCategory.ENNEMY.getBits();
         fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
+//        fd.filter.categoryBits = CollisionCategory.WORLD.getBits();
+//        fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         fd.shape = s;
         fd.density = 0.0001f;
         fd.restitution = 1f;
@@ -60,7 +61,6 @@ public class EnnemyShuttle2 extends SpaceShuttle {
         if (isDead() == false) {
 
             graphics.setColor(Color.RED);
-//            graphics.fill(new Rectangle2D.Float(getBody().getPosition().x + 335, getBody().getPosition().y + 260, 100, 20));
             AffineTransform transform = new AffineTransform();
             transform.rotate(getBody().getAngle(),
                     MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y)

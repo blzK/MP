@@ -13,17 +13,19 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author azathoth
+ *  EnnemyShuttle1 is an class extends SpaceShuttle because its a king of SpaceShuttle.
+ *  Wich represent one type of ennemy.
  */
 public class EnnemyShuttle1 extends SpaceShuttle {
-
+    /**
+    *  EnnemyShuttle1 constructor, create a ennemy and its specifications
+    *  like density, restition, radius and create its body and its shape
+    * 
+    * @param x x coordinate of the EnnemyShuttle1.
+    * @param y y coordinate of the EnnemyShuttle1.
+    * @param world the world where the EnnemyShuttle1 will be.
+    */
     public EnnemyShuttle1(float x, float y, World world) {
         super(x, y);
 
@@ -54,7 +56,11 @@ public class EnnemyShuttle1 extends SpaceShuttle {
 //                body2.setLinearDamping(0.3f);
         resetTimer();
     }
-
+    /**
+    *  Display the EnnemyShuttle1 to the Graphics2D
+    * 
+    * @param graphics Graphics2D where the EnnemyShuttle1 will be draw.
+    */  
     @Override
     public void display(Graphics2D graphics) {
         super.display(graphics);
@@ -88,11 +94,15 @@ public class EnnemyShuttle1 extends SpaceShuttle {
             );
 
             Shape transformed = transform.createTransformedShape((Shape) polygon);
-//         Shape transformed = transform.createTransformedShape(new Rectangle2D.Float(getBody().getPosition().x, getBody().getPosition().y, 100, 20));
             graphics.fill(transformed);
         }
     }
-
+    /**
+    *  Behave is a method wich contains the comportment of the EnnemyShuttle1
+    * 
+    * @param mainShuttlePos postion of the player shuttle
+    * @param graphics Graphics2D where the EnnemyShuttle1 is.
+    */ 
     @Override
     public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
 //         fire(graphics, RocketType.ROCKET, 50,50, CollisionCategory.ENNEMY);
