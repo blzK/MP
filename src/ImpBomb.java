@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -10,26 +9,36 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.World;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author azathoth
+ /**
+ *  ImpBomb, is a class who extends Rocket because it's a special rocket.
+ *  A implosion bombe
+ * 
  */
 public class ImpBomb extends Rocket {
 
     private Timer timer;
     private float trigger = 750;
 
+    /**
+    *  ImpBomb constructor, create a ImpBomb and its timer to implose.
+    * 
+    * @param world the world where the ImpBomb will be.
+    * @param x x coordinate of the ImpBomb.
+    * @param y y coordinate of the ImpBomb.
+    * @param vec direction.
+    * @param col Collision category of the ImpBomb
+    */
     public ImpBomb(World world, float x, float y, Vec2 vec, CollisionCategory col) {
         super(world, x, y, vec,col);
         timer = new Timer();
         timer.reset();
     }
 
+    /**
+    *  Display the ImpBomb to the Graphics2D
+    * 
+    * @param graphics Graphics2D where the ImpBomb will be draw.
+    */  
     @Override
     public void display(Graphics2D graphics) {
 
@@ -41,6 +50,12 @@ public class ImpBomb extends Rocket {
         }
     }
 
+    /**
+    *  Die method to know if the ImpBomb has implose.
+    * 
+    * @param graphics Graphics2D where the ImpBomb will draw.
+    * @return boolean 
+    */  
     public boolean die(Graphics2D graphics) {
         implode(getBody().getWorld());
         Shape shape = new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x), MasterPilot.toYCoordinates(getBody().getPosition().y), 70f, 70f);
@@ -49,6 +64,11 @@ public class ImpBomb extends Rocket {
         return super.die();
     }
 
+    /**
+    *  Implode method implose the bomb and draw its explosion.
+    * 
+    * @param world The world where the ImpBomb will implose
+    */
     private void implode(World world) {
         System.out.println(getBody().getWorld().getBodyCount());
         Body bodyTemp2 = getBody().getWorld().getBodyList().getNext();
