@@ -103,15 +103,14 @@ public class EnnemyShuttle3 extends SpaceShuttle {
             for (int i = 0; i < ennemyGroup.length; i++) {
                 ennemyGroup[i].behave(mainShuttle, graphics);
                 if (i >= 1) {
-                    Vec2 vecDiff2 = ennemyGroup[i].getPosition().sub(ennemyGroup[0].getPosition());
-                    float r = (float) Math.random()*0.001f;
-                    if (vecDiff2.length() > 400) {
-
-                        ennemyGroup[i].applyForce(vecDiff2.mul(r), ennemyGroup[i].getPosition());
-                        ennemyGroup[i].applyForce(vecDiff2.mul(r).skew(), ennemyGroup[i].getPosition());
-                    } else if (vecDiff2.length() < 300) {
-                        ennemyGroup[i].applyForce(vecDiff2.negate().mul(r), ennemyGroup[i].getPosition());
-                        ennemyGroup[i].applyForce(vecDiff2.mul(r).skew().negate(), ennemyGroup[i].getPosition());
+                    Vec2 vecDiffToMothership = ennemyGroup[i].getPosition().sub(ennemyGroup[0].getPosition());
+                    float r = (float) Math.random() * 0.001f;
+                    if (vecDiffToMothership.length() > 400) {
+                        ennemyGroup[i].applyForce(vecDiffToMothership.mul(r).negate(), ennemyGroup[i].getPosition());
+                        ennemyGroup[i].applyForce(vecDiffToMothership.mul(r).skew(), ennemyGroup[i].getPosition());
+                    } else if (vecDiffToMothership.length() < 300) {
+                        ennemyGroup[i].applyForce(vecDiffToMothership.mul(r), ennemyGroup[i].getPosition());
+                        ennemyGroup[i].applyForce(vecDiffToMothership.mul(r).skew().negate(), ennemyGroup[i].getPosition());
                     }
 
                 }
