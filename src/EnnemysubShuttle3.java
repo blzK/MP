@@ -5,6 +5,7 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
+import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
@@ -21,33 +22,31 @@ import org.jbox2d.dynamics.World;
  *
  * @author azathoth
  */
-public class EnnemysubShuttle2 extends SpaceShuttle {
+public class EnnemysubShuttle3 extends SpaceShuttle {
 
-    public Shape shape;
-
-    public EnnemysubShuttle2(float x, float y, World world) {
+    public EnnemysubShuttle3(float x, float y, World world) {
         super(x, y);
 
         BodyDef bodydef2 = new BodyDef();
         bodydef2.angle = 0;
         bodydef2.bullet = true;
         FixtureDef fd = new FixtureDef();
-        PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
-        s.setAsBox(10, 10);
+        CircleShape s = new CircleShape();
+        s.m_radius = 5;
 //        CircleShape s = new CircleShape();
 //        s.m_radius = 65f;
         fd.filter.categoryBits = CollisionCategory.ENNEMY.getBits();
         fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         fd.shape = s;
-        fd.density = 0.008f;
+        fd.density = 0.00001f;
         fd.restitution = 1f;
         fd.friction = 1f;
         bodydef2.position.set(x, y);
         bodydef2.type = BodyType.DYNAMIC;
         setBody(world.createBody(bodydef2));
-        getBody().setUserData("ennemySubShuttle2");
+        getBody().setUserData("ennemySubShuttle1");
         getBody().createFixture(fd);
-        getBody().setAngularDamping(3000);
+        getBody().setAngularDamping(3);
     }
 
     @Override
@@ -59,50 +58,52 @@ public class EnnemysubShuttle2 extends SpaceShuttle {
         if (isDead() == false) {
             float posX = MasterPilot.toXCoordinates(getBody().getPosition().x);
             float posY = MasterPilot.toYCoordinates(getBody().getPosition().y);
-            Shape s = new Rectangle2D.Float(posX, posY, 20, 20);
+            float x1Points[] = {posX , posX + 10, posX +3,posX, posX-3, posX-10};
+            float y1Points[] = {posY, posY-5, posY +3,posY+15, posY+3,posY-5};
+            GeneralPath polygon = new GeneralPath(GeneralPath.WIND_EVEN_ODD, x1Points.length);
+            polygon.moveTo(x1Points[0], y1Points[0]);
+            for (int index = 1; index < x1Points.length; index++) {
+                polygon.lineTo(x1Points[index], y1Points[index]);
+            }
+            polygon.closePath();
             graphics.setColor(Color.RED);
             AffineTransform transform = new AffineTransform();
-            transform.rotate(getBody().getAngle(), posX, posY);
-            Shape transformed = transform.createTransformedShape(s);
-            shape = transformed;
+            transform.rotate(getBody().getAngle(),
+                    posX, posY
+            );
+            Shape transformed = transform.createTransformedShape((Shape) polygon);
             graphics.fill(transformed);
         }
     }
 
     @Override
-    public boolean die() {
-        return super.die(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void fire(Graphics2D graphics, RocketType rocketType, float x, float y, Vec2 direction, CollisionCategory col) {
-        // DO NOTHING
-    }
-
     public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
         if (isDead() == false) {
             Vec2 vecDiff = mainShuttle.getPosition().sub(getPosition());
             float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
             float posY = MasterPilot.toXCoordinates(getBody().getPosition().y) - 100;
 
-            if (vecDiff.length() > 350) {
-                this.applyForce(vecDiff.mul(0.02f), this.getPosition());
-            } else if (vecDiff.length() < 250) {
-                this.applyForce(vecDiff.negate().mul(0.03f), this.getPosition());
+            if (vecDiff.length() > 700) {
+                this.applyForce(vecDiff.mul(0.2f), this.getPosition());
+//                    this.applyForce(vecDiff.skew().negate(), getPosition());
+            } else if (vecDiff.length() < 100) {
+                this.applyForce(vecDiff.negate().mul(0.3f), this.getPosition());
 
+//                    this.applyForce(vecDiff.skew(), getPosition());
             }
-
-            double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
-            double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
-            if (angle > angleVec) {
-                this.applyAngularImpulse(0.000001f);
-            } else {
-                this.applyAngularImpulse(-0.000001f);
-            }
+            
+              double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
+                double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
+                if (angle > angleVec) {
+                    this.applyTorque(0.002f);
+                } else {
+                    this.applyTorque(-0.002f);
+                }
             if (getTimer().getMilliseconds() > 500) {
                 fire(graphics, RocketType.ROCKET, posX, posY, vecDiff, CollisionCategory.ENNEMY);
                 getTimer().reset();
             }
         }
     }
+
 }

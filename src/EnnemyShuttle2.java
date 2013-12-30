@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Timer;
@@ -23,6 +24,7 @@ import org.jbox2d.dynamics.World;
  */
 public class EnnemyShuttle2 extends SpaceShuttle {
 
+    private int shieldNumber=3;
     public EnnemyShuttle2(float x, float y, World world) {
         super(x, y);
 
@@ -55,7 +57,13 @@ public class EnnemyShuttle2 extends SpaceShuttle {
     public void display(Graphics2D graphics) {
         super.display(graphics);
         if (getBody().getContactList() != null) {
-            die();
+            if(shieldNumber<=0){
+                die();
+            }else{
+                graphics.setColor(new Color(1f, 0f, 0f, .5f));
+            graphics.fill(new Ellipse2D.Float(MasterPilot.toXCoordinates(getBody().getPosition().x)+100, MasterPilot.toYCoordinates(getBody().getPosition().y)-100, 120, 120));
+                shieldNumber--;
+            }
         }
         if (isDead() == false) {
 

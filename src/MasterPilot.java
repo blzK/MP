@@ -2,9 +2,13 @@
 import java.awt.Color;
 import fr.umlv.zen3.Application;
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.xml.parsers.ParserConfigurationException;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
+import org.xml.sax.SAXException;
 
 public class MasterPilot {
 
@@ -21,7 +25,7 @@ public class MasterPilot {
 //        return y+HEIGHT/2;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
 //WORLD
         World world = new World(new Vec2(0, 0));
         float timeStep = 1.0f / 60.f;
@@ -37,11 +41,16 @@ public class MasterPilot {
 
         ShuttleFactory shuttleFactory = new ShuttleFactory();
         MainShuttle mainShuttle = new MainShuttle(0f, 0f, world);
-        SpaceShuttle e1 = shuttleFactory.createShuttle((int)-500, (int) 0, ShuttleType.ENNEMY1, world);
-        SpaceShuttle e2 = shuttleFactory.createShuttle((int) 500, (int) -500, ShuttleType.ENNEMY2, world);
-        SpaceShuttle e3 = shuttleFactory.createShuttle((int) 0, (int) 500, ShuttleType.ENNEMY3, world);
+//        SpaceShuttle e1 = shuttleFactory.createShuttle((int)-500, (int) 0, ShuttleType.ENNEMY1, world);
+//        SpaceShuttle e2 = shuttleFactory.createShuttle((int) 500, (int) -500, ShuttleType.ENNEMY2, world);
+//        SpaceShuttle e3 = shuttleFactory.createShuttle((int) 0, (int) 500, ShuttleType.ENNEMY3, world);
+                SpaceShuttle e4 = shuttleFactory.createShuttle((int) 0, (int) 500, ShuttleType.ENNEMY4, world);
         //STARS
         Landscape landscape = new Landscape(mainShuttle, world, 20, 30);
+        //GENERATION
+//        EnnemyGeneration ennemyGeneration = new EnnemyGeneration(world, LevelFactory.loadLevel("level1"));
+//        ArrayList <SpaceShuttle> listEnnemy= ennemyGeneration.Generate("1");
+     
 //        WINDOW
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
@@ -68,14 +77,20 @@ public class MasterPilot {
                     landscape.display(graphics, mainShuttle);
 
 //ENNEMY SHUTTLE
+//                    for(SpaceShuttle ennemy:listEnnemy){
+//                        ennemy.display(graphics);
+//                        ennemy.behave(mainShuttle, graphics);
+//                    }
 //                    System.out.println(CollisionCategory.BONUS.getBits()&&CollisionCategory.);
-                    e1.display(graphics);
-                     e2.display(graphics);
-                     e3.display(graphics);
-                    
-                    e1.behave(mainShuttle, graphics);
-                    e2.behave(mainShuttle, graphics);
-                     e3.behave(mainShuttle, graphics);
+//                    e1.display(graphics);
+//                     e2.display(graphics);
+//                     e3.display(graphics);
+                                         e4.display(graphics);
+//                    
+//                    e1.behave(mainShuttle, graphics);
+//                    e2.behave(mainShuttle, graphics);
+//                     e3.behave(mainShuttle, graphics);
+                                         e4.behave(mainShuttle, graphics);
 
 //MAIN SPACESHUTTLE
                     mainShuttle.display(graphics);
@@ -95,6 +110,8 @@ public class MasterPilot {
                     graphics.dispose();
 
 //KEYBOARD CONTROL
+                    
+                      
                     ShuttleControl3.move(mainShuttle, context.pollKeyboard(), graphics);
 
 //DISPOSE BODIES
