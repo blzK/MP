@@ -87,7 +87,7 @@ public class MasterPilot {
                         if (!landscape.isInside(mainShuttle)) {
                             landscape.generateLandscape(mainShuttle, world, 20, 30);
                         }
-                        landscape.display(graphics, mainShuttle);
+                        landscape.display(graphics, mainShuttle.getPosition());
 
     //ENNEMY SHUTTLE
     //                    for(SpaceShuttle ennemy:listEnnemy){

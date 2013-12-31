@@ -1,5 +1,6 @@
 
 import java.awt.Graphics2D;
+import org.jbox2d.common.Vec2;
 
 /**
  * Sprite is a interface of all the objects wich can be drawn
@@ -14,7 +15,7 @@ public interface Displayable {
      */
     public void display(Graphics2D graphics);
 
-    default public void display(Graphics2D graphics, MainShuttle mainShuttle) {
+    default public void display(Graphics2D graphics, Vec2 mainShuttlePos) {
         display(graphics);
     }
 ;

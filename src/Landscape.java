@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 
 /**
@@ -13,7 +14,7 @@ import org.jbox2d.dynamics.World;
  */
 public class Landscape implements Displayable {
 
-    private final ArrayList<Displayable> list = new ArrayList<>();
+    private final ArrayList<Displayable> displayableList = new ArrayList<>();
     private HashMap<Integer, Integer> positions = new HashMap<>();
     private float xMin;
     private float yMin;
@@ -48,21 +49,21 @@ public class Landscape implements Displayable {
 
             if (j < planetRatio) {
                 Planet planet = new Planet(world, xPosition + 10, yPosition + 10);
-                list.add(planet);
+                displayableList.add(planet);
             } else if (j < planetRatio + bonusRatio) {
                 double n =  Math.round(Math.random());
                 if (n == 1) {
                     Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
-                    list.add(bonus1);
+                    displayableList.add(bonus1);
                 }
                 if (n == 0) {
                     Bonus bonus2 = new Bonus(world, xPosition, yPosition, RocketType.ImpBomb);
-                    list.add(bonus2);
+                    displayableList.add(bonus2);
                 }
 
             } else {
                 Star star = new Star(xPosition, yPosition);
-                list.add(star);
+                displayableList.add(star);
 
             }
             j++;
@@ -84,9 +85,9 @@ public class Landscape implements Displayable {
         return false;
     }
 
-    public void display(Graphics2D graphics, MainShuttle mainShuttle) {
-        for (Displayable sprite : list) {
-            sprite.display(graphics, mainShuttle);
+    public void display(Graphics2D graphics, Vec2 mainShuttlePos) {
+        for (Displayable sprite : displayableList) {
+            sprite.display(graphics, mainShuttlePos);
         }
     }
 
@@ -129,21 +130,21 @@ public class Landscape implements Displayable {
 
             if (j < planetRatio) {
                 Planet planet = new Planet(world, xPosition + 10, yPosition + 10);
-                list.add(planet);
+                displayableList.add(planet);
             } else if (j < planetRatio + bonusRatio) {
                 double n =  Math.round(Math.random());
                 if (n == 0) {
                     Bonus bonus1 = new Bonus(world, xPosition, yPosition, RocketType.ExpBomb);
-                    list.add(bonus1);
+                    displayableList.add(bonus1);
                 }
                 if (n == 1) {
                     Bonus bonus2 = new Bonus(world,xPosition, yPosition, RocketType.ImpBomb);
-                    list.add(bonus2);
+                    displayableList.add(bonus2);
                 }
 
             } else {
                 Star star = new Star(xPosition, yPosition);
-                list.add(star);
+                displayableList.add(star);
 
             }
             j++;
@@ -154,5 +155,6 @@ public class Landscape implements Displayable {
     public void display(Graphics2D graphics) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }
