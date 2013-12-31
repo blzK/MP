@@ -22,15 +22,14 @@ public class Bonus extends FlyingObject {
     private final RocketType type;
 
     public Bonus(World world, float x, float y, RocketType type) {
-        this.x = x;
-        this.y = y;
-        this.x = x;
-        this.y = y;
+              super(x,y);
+
         this.type = type;
         BodyDef bodyDefBonus = new BodyDef();
         bodyDefBonus.position.set(x, y);
         bodyDefBonus.type = BodyType.STATIC;
         setBody(world.createBody(bodyDefBonus));
+
         FixtureDef fdBonus = new FixtureDef();
         CircleShape cs = new CircleShape();
         cs.m_radius = 30f;

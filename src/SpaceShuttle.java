@@ -23,8 +23,7 @@ public abstract class SpaceShuttle extends FlyingObject {
     * @param y y coordinate of the SpaceShuttle.
     */
     public SpaceShuttle(float x, float y) {
-        this.x = x;
-        this.y = y;
+       super(x, y);
     }
     
     /**

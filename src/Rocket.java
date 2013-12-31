@@ -25,8 +25,7 @@ public class Rocket extends FlyingObject {
     * @param col category of the rocket in collision
     */
     public Rocket(World world, float x, float y, Vec2 direction, CollisionCategory col) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         BodyDef bodydefRocket = new BodyDef();
         bodydefRocket.position.set(x - 372 - 55, y - 270 - 30);
         bodydefRocket.type = BodyType.DYNAMIC;

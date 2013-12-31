@@ -96,7 +96,7 @@ public class EnnemyShuttle4 extends SpaceShuttle {
                 Shape transformed = transform.createTransformedShape((Shape) polygon);
                 graphics.fill(transformed);
             } else {
-                Point2D center = new Point2D.Float(x, y);
+                Point2D center = new Point2D.Float(getX(), getY());
                 RadialGradientPaint paint = new RadialGradientPaint(center, 1000,
                         new float[]{
                             0.4f,

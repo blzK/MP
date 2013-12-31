@@ -10,8 +10,21 @@ public abstract class FlyingObject implements Displayable {
 
     private Body body;
     private boolean isDead = false;
-    float x;
-    float y;
+    private float x;
+    private float y;
+
+    public FlyingObject( float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
 
     /**
     *  Apply a linear impulse to the FlyingObject

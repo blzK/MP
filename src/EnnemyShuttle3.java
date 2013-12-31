@@ -88,7 +88,7 @@ public class EnnemyShuttle3 extends SpaceShuttle {
         if (isDead() == false) {
             Vec2 vecDiff = mainShuttlePos.sub(ennemyGroup[0].getPosition());
 
-            fire(graphics, RocketType.ROCKET, x, y, mainShuttlePos, CollisionCategory.WORLD);
+            fire(graphics, RocketType.ROCKET,getX(), getY(), mainShuttlePos, CollisionCategory.WORLD);
             for (int i = 0; i < ennemyGroup.length; i++) {
                 ennemyGroup[i].behave(mainShuttlePos, graphics);
                 if (i >= 1) {
