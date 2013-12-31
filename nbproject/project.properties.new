@@ -6,7 +6,7 @@ annotation.processing.source.output=${build.generated.sources.dir}/ap-source-out
 application.title=MasterPilot
 application.vendor=Felipe
 auxiliary.org-netbeans-spi-editor-hints-projects.perProjectHintSettingsFile=nbproject/cfg_hints.xml
-build.classes.dir=${build.dir}/classes
+build.classes.dir=classes
 build.classes.excludes=**/*.java,**/*.form
 # This directory is removed when the project is cleaned:
 build.dir=build
@@ -27,7 +27,7 @@ dist.archive.excludes=
 # This directory is removed when the project is cleaned:
 dist.dir=dist
 dist.jar=${dist.dir}/MasterPilot.jar
-dist.javadoc.dir=${dist.dir}/javadoc
+dist.javadoc.dir=docs
 endorsed.classpath=
 excludes=
 includes=**
@@ -69,7 +69,7 @@ jnlp.signed=false
 jnlp.signing=
 jnlp.signing.alias=
 jnlp.signing.keystore=
-main.class=MasterPilot.MasterPilot
+main.class=MasterPilot
 # Optional override of default Codebase manifest attribute, use to prevent RIAs from being repurposed
 manifest.custom.codebase=
 # Optional override of default Permissions manifest attribute (supported values: sandbox, all-permissions)
