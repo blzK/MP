@@ -24,9 +24,9 @@ import org.jbox2d.dynamics.World;
 public class EnnemyShuttle2 extends SpaceShuttle {
 
     private int shieldNumber=3;
+    
     public EnnemyShuttle2(float x, float y, World world) {
         super(x, y);
-
         BodyDef bodydef2 = new BodyDef();
         bodydef2.angle = 0;
         bodydef2.bullet = true;
@@ -61,7 +61,6 @@ public class EnnemyShuttle2 extends SpaceShuttle {
             }
         }
         if (isDead() == false) {
-
             graphics.setColor(Color.RED);
             AffineTransform transform = new AffineTransform();
             transform.rotate(getBody().getAngle(),
@@ -106,7 +105,6 @@ public class EnnemyShuttle2 extends SpaceShuttle {
                     this.applyForce(vecDiff.mul(0.2f), this.getPosition());
                 } else if(vecDiff.length() < 300){
                     this.applyForce(vecDiff.negate().mul(0.3f), this.getPosition());
-
                 }
             }
         }
