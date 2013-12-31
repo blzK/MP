@@ -42,7 +42,7 @@ public class Bonus extends FlyingObject {
         getBody().createFixture(fdBonus);
         getBody().setUserData("Bonus");
     }
-
+@Override
     public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         if (getBody().getContactList() != null) {
             System.out.println(getBody().getContactList());

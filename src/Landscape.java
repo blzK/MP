@@ -85,9 +85,9 @@ public class Landscape implements Displayable {
         return false;
     }
 
-    public void display(Graphics2D graphics, Vec2 mainShuttlePos) {
+    public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         for (Displayable sprite : displayableList) {
-            sprite.display(graphics, mainShuttlePos);
+            sprite.display(graphics, mainShuttle);
         }
     }
 
@@ -155,6 +155,8 @@ public class Landscape implements Displayable {
     public void display(Graphics2D graphics) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
 
 
 }

@@ -15,7 +15,7 @@ public interface Displayable {
      */
     public void display(Graphics2D graphics);
 
-    default public void display(Graphics2D graphics, Vec2 mainShuttlePos) {
+    default public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         display(graphics);
     }
 ;
