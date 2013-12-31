@@ -1,14 +1,7 @@
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /*
@@ -27,8 +20,8 @@ public class EnnemyShuttle5 extends SpaceShuttle {
 
     public EnnemyShuttle5(float x, float y, World world) {
         super(x, y);
-        float posX = x;//MasterPilot.toXCoordinates(x);
-        float posY = y;//MasterPilot.toYCoordinates(y);
+        float posX = x;
+        float posY = y;
 
         for (int i = 0; i < ennemyGroup.length; i++) {
             ennemyGroup[0] = new EnnemysubShuttle3(posX - 30, posY - 90, world);
@@ -74,7 +67,7 @@ public class EnnemyShuttle5 extends SpaceShuttle {
     @Override
     public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics) {
         for (int i = 0; i < ennemyGroup.length; i++) {
-            ennemyGroup[i].applyLinearImpulse(impulse, point, graphics); //To change body of generated methods, choose Tools | Templates.
+            ennemyGroup[i].applyLinearImpulse(impulse, point, graphics); 
         }
 
     }
@@ -102,16 +95,16 @@ public class EnnemyShuttle5 extends SpaceShuttle {
     }
 
     @Override
-    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
+    public void behave(Vec2 mainShuttlePos, Graphics2D graphics) {
         if (isDead() == false) {
-            Vec2 vecDiff = mainShuttle.getPosition().sub(ennemyGroup[0].getPosition());
+            Vec2 vecDiff = mainShuttlePos.sub(ennemyGroup[0].getPosition());
 
-            fire(graphics, RocketType.ROCKET, x, y, mainShuttle.getPosition(), CollisionCategory.WORLD);
+            fire(graphics, RocketType.ROCKET, x, y, mainShuttlePos, CollisionCategory.WORLD);
 
             for (int i = 0; i < ennemyGroup.length; i++) {
-                ennemyGroup[i].behave(mainShuttle, graphics);
+                ennemyGroup[i].behave(mainShuttlePos, graphics);
                 if (i >= 1) {
-                    Vec2 vecDiffToMainshuttle = mainShuttle.getPosition().sub(ennemyGroup[i].getPosition());
+                    Vec2 vecDiffToMainshuttle = mainShuttlePos.sub(ennemyGroup[i].getPosition());
                     float r = (float) Math.random() * 0.001f;
                     if (vecDiffToMainshuttle.length() > 700) {
                         ennemyGroup[i].applyForce(vecDiffToMainshuttle.mul(r).negate(), ennemyGroup[i].getPosition());

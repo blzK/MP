@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D;
  * 
  * 
  */
-public class Star implements Sprite {
+public class Star implements Displayable {
 
     private final int x;
     private final int y;

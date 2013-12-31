@@ -6,7 +6,7 @@ import org.jbox2d.dynamics.Body;
  *  FlyingObject is an abstract class which represent all object in interaction with the player shuttle like planet, bonus, shuttles, rockets
  *  Implements Sprite because a FlyingObject must be draw
  */
-public abstract class FlyingObject implements Sprite {
+public abstract class FlyingObject implements Displayable {
 
     private Body body;
     private boolean isDead = false;
@@ -16,12 +16,12 @@ public abstract class FlyingObject implements Sprite {
     /**
     *  Apply a linear impulse to the FlyingObject
     * 
-    * @param vec2 the world force vector, usually in Newtons (N).
+    * @param impulse the world force vector, usually in Newtons (N).
     * @param position the world position of the point of application.
     * @param graphics Graphics2D of the FlyingObject
     */
-    public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics) {
-        body.applyLinearImpulse(impulse, point);
+    public void applyLinearImpulse(Vec2 impulse, Vec2 position, Graphics2D graphics) {
+        body.applyLinearImpulse(impulse, position);
     }
 
     /**

@@ -4,9 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -33,8 +31,6 @@ public class EnnemysubShuttle3 extends SpaceShuttle {
         FixtureDef fd = new FixtureDef();
         CircleShape s = new CircleShape();
         s.m_radius = 5;
-//        CircleShape s = new CircleShape();
-//        s.m_radius = 65f;
         fd.filter.categoryBits = CollisionCategory.ENNEMY.getBits();
         fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         fd.shape = s;
@@ -77,23 +73,20 @@ public class EnnemysubShuttle3 extends SpaceShuttle {
     }
 
     @Override
-    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
+    public void behave(Vec2 mainShuttlePos, Graphics2D graphics) {
         if (isDead() == false) {
-            Vec2 vecDiff = mainShuttle.getPosition().sub(getPosition());
+            Vec2 vecDiff = mainShuttlePos.sub(getPosition());
             float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
             float posY = MasterPilot.toXCoordinates(getBody().getPosition().y) - 100;
 
             if (vecDiff.length() > 700) {
                 this.applyForce(vecDiff.mul(0.2f), this.getPosition());
-//                    this.applyForce(vecDiff.skew().negate(), getPosition());
             } else if (vecDiff.length() < 100) {
                 this.applyForce(vecDiff.negate().mul(0.3f), this.getPosition());
-
-//                    this.applyForce(vecDiff.skew(), getPosition());
             }
             
               double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
-                double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
+                double angleVec = Math.atan2(vecDiff.x, vecDiff.y);
                 if (angle > angleVec) {
                     this.applyTorque(0.002f);
                 } else {

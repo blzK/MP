@@ -108,7 +108,7 @@ public class MainShuttle extends SpaceShuttle {
     * @param graphics Graphics2D where the mainShuttle is.
     */ 
     @Override
-    public void behave(MainShuttle mainShuttle,Graphics2D graphics) {
+    public void behave(Vec2 mainShuttlePos,Graphics2D graphics) {
 
     }
 
@@ -119,7 +119,7 @@ public class MainShuttle extends SpaceShuttle {
     * @param rocketType Type of rocket.
     * @param x x coordinate of the rocket.
     * @param y y coordinate of the rocket.
-    * @param direnction Direction of the rocket.
+    * @param direction Direction of the rocket.
     * @param col Collision category of the rocket.
     */ 
     @Override

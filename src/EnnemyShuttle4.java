@@ -7,7 +7,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Timer;
 import org.jbox2d.common.Vec2;
@@ -121,8 +120,8 @@ return timerShapeShitfting.getMilliseconds() % 20000 < 10000;
     }
 
     @Override
-    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
-        Vec2 vecDiff = mainShuttle.getPosition().sub(this.getPosition());
+    public void behave(Vec2 mainShuttlePos, Graphics2D graphics) {
+        Vec2 vecDiff = mainShuttlePos.sub(this.getPosition());
 
         if (isDead() == false) {
             if (isActive()) {

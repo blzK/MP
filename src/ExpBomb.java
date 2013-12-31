@@ -26,6 +26,7 @@ public class ExpBomb extends Rocket {
     * @param x x coordinate of the ImpBomb.
     * @param y y coordinate of the ImpBomb.
     * @param vec direction.
+     * @param col Collision Category
     */
     public ExpBomb(World world, float x, float y, Vec2 vec, CollisionCategory col) {
         super(world, x, y, vec, col);

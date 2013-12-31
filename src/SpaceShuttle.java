@@ -13,8 +13,8 @@ import org.jbox2d.common.Vec2;
  
 public abstract class SpaceShuttle extends FlyingObject {
 
-    private ArrayList<Rocket> rockets = new ArrayList<>();
-    private Timer timer= new Timer();
+    private final ArrayList<Rocket> rockets = new ArrayList<>();
+    private final Timer timer= new Timer();
     
     /**
     *  Space shuttle constructor.
@@ -43,7 +43,7 @@ public abstract class SpaceShuttle extends FlyingObject {
     public void resetTimer(){
         this.timer.reset();
     }
-    abstract public void behave(MainShuttle mainShuttle, Graphics2D graphics);
+    abstract public void behave(Vec2 mainShuttlePos, Graphics2D graphics);
     
     /**
     *  Get the position of the space shuttle
@@ -128,18 +128,10 @@ public abstract class SpaceShuttle extends FlyingObject {
     * @param rocketType Graphics2D where the rocket of space shuttle will be draw.
     * @param x X coordinate for direction of fire.
     * @param y Y coordinate for direction of fire.
+     * @param direction is the direction in in which the spaceshuttle fires.
+     * @param col Collision Category 
     */  
     public void fire(Graphics2D graphics, RocketType rocketType, float x, float y, Vec2 direction,CollisionCategory col) {
-////////        double angle = getBody().getAngle();
-////////        float posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.f) + x;
-//////////        if (Math.cos(getBody().getAngle()) == 0) {
-//////////            posX = (float) (getBody().getPosition().x + MasterPilot.WIDTH / 2 + Math.cos(getBody().getAngle()) * 30 * 1.2f) + 10 + x;
-//////////        }
-////////        float posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.f) + y;
-//////////        if (Math.sin(getBody().getAngle())==0) {
-//////////           posY = (float) (getBody().getPosition().y + MasterPilot.HEIGHT / 2 + Math.sin(getBody().getAngle()) * 30 * 1.2f+10) + y;
-//////////        }
-////////        Vec2 vector = new Vec2((float) (Math.cos(angle) * 100_000_000_000f), (float) Math.sin(angle) * (100_000_000_000f));
 
         switch (rocketType) {
             case ExpBomb:

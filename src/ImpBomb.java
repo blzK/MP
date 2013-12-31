@@ -16,8 +16,8 @@ import org.jbox2d.dynamics.World;
  */
 public class ImpBomb extends Rocket {
 
-    private Timer timer;
-    private float trigger = 750;
+    private final Timer timer;
+    private final float trigger = 750;
 private final int range=500;
     /**
     *  ImpBomb constructor, create a ImpBomb and its timer to implose.

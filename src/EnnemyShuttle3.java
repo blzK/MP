@@ -1,14 +1,6 @@
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 /*
@@ -26,9 +18,8 @@ public class EnnemyShuttle3 extends SpaceShuttle {
 
     public EnnemyShuttle3(float x, float y, World world) {
         super(x, y);
-        float posX = x;//MasterPilot.toXCoordinates(x);
-        float posY = y;//MasterPilot.toYCoordinates(y);
-
+        float posX = x;
+        float posY = y;
         for (int i = 0; i < ennemyGroup.length; i++) {
 
             ennemyGroup[0] = new EnnemysubShuttle2(posX - 10, posY - 10, world);
@@ -65,7 +56,7 @@ public class EnnemyShuttle3 extends SpaceShuttle {
     @Override
     public void applyLinearImpulse(Vec2 impulse, Vec2 point, Graphics2D graphics) {
         for (int i = 0; i < ennemyGroup.length; i++) {
-            ennemyGroup[i].applyLinearImpulse(impulse, point, graphics); //To change body of generated methods, choose Tools | Templates.
+            ennemyGroup[i].applyLinearImpulse(impulse, point, graphics); 
         }
 
     }
@@ -88,18 +79,18 @@ public class EnnemyShuttle3 extends SpaceShuttle {
     @Override
     public void fire(Graphics2D graphics, RocketType rocketType, float x, float y, Vec2 direction, CollisionCategory col) {
         for (int i = 0; i < ennemyGroup.length; i++) {
-            ennemyGroup[i].fire(graphics, rocketType, x, y, direction, col); //To change body of generated methods, choose Tools | Templates.
+            ennemyGroup[i].fire(graphics, rocketType, x, y, direction, col); 
         }
     }
 
     @Override
-    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
+    public void behave(Vec2 mainShuttlePos, Graphics2D graphics) {
         if (isDead() == false) {
-            Vec2 vecDiff = mainShuttle.getPosition().sub(ennemyGroup[0].getPosition());
+            Vec2 vecDiff = mainShuttlePos.sub(ennemyGroup[0].getPosition());
 
-            fire(graphics, RocketType.ROCKET, x, y, mainShuttle.getPosition(), CollisionCategory.WORLD);
+            fire(graphics, RocketType.ROCKET, x, y, mainShuttlePos, CollisionCategory.WORLD);
             for (int i = 0; i < ennemyGroup.length; i++) {
-                ennemyGroup[i].behave(mainShuttle, graphics);
+                ennemyGroup[i].behave(mainShuttlePos, graphics);
                 if (i >= 1) {
                     Vec2 vecDiffToMothership = ennemyGroup[0].getPosition().sub(ennemyGroup[i].getPosition());
                     float r = (float) Math.random() * 0.001f;
@@ -116,30 +107,6 @@ public class EnnemyShuttle3 extends SpaceShuttle {
             }
 
         }
-//        if (isDead() == false) {
-//            if (getTimer().getMilliseconds() > 200) {
-//                float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
-//                float posY = MasterPilot.toXCoordinates(getBody().getPosition().y) - 100;
-//                fire(graphics, RocketType.ROCKET, posX, posY, vecDiff, CollisionCategory.ENNEMY);
-//
-//                getTimer().reset();
-//            } else {
-////        double angle = (this.getAngle() +Math.PI)%(Math.PI*2);
-//                double angle = this.getAngle() % (2 * Math.PI) + Math.PI;
-//
-//                double angleVec = Math.atan2(vecDiff.x, vecDiff.y);//+Math.PI*2;
-////                System.out.println("angle " + Math.toDegrees(angle) + " angle  " + Math.toDegrees(angleVec));
-//                if (angle > angleVec) {
-//                    this.applyAngularImpulse(0.02f);
-//                } else {
-//                    this.applyAngularImpulse(-0.02f);
-//                }
-//                if (vecDiff.length() > 200) {
-//                    this.applyForce(vecDiff, this.getPosition());
-//                }
-//                this.applyForce(vecDiff.skew().negate(), this.getPosition());
-//            }
-//        }
 
     }
 

@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -34,8 +33,6 @@ public class EnnemysubShuttle2 extends SpaceShuttle {
         FixtureDef fd = new FixtureDef();
         PolygonShape s = new org.jbox2d.collision.shapes.PolygonShape();
         s.setAsBox(10, 10);
-//        CircleShape s = new CircleShape();
-//        s.m_radius = 65f;
         fd.filter.categoryBits = CollisionCategory.ENNEMY.getBits();
         fd.filter.maskBits = CollisionCategory.PLAYER.getBits() | CollisionCategory.WORLD.getBits();
         fd.shape = s;
@@ -71,7 +68,7 @@ public class EnnemysubShuttle2 extends SpaceShuttle {
 
     @Override
     public boolean die() {
-        return super.die(); //To change body of generated methods, choose Tools | Templates.
+        return super.die(); 
     }
 
     @Override
@@ -79,9 +76,9 @@ public class EnnemysubShuttle2 extends SpaceShuttle {
         // DO NOTHING
     }
 
-    public void behave(MainShuttle mainShuttle, Graphics2D graphics) {
+    public void behave(Vec2 mainShuttlePos, Graphics2D graphics) {
         if (isDead() == false) {
-            Vec2 vecDiff = mainShuttle.getPosition().sub(getPosition());
+            Vec2 vecDiff = mainShuttlePos.sub(getPosition());
             float posX = MasterPilot.toYCoordinates(getBody().getPosition().x) + 100;
             float posY = MasterPilot.toXCoordinates(getBody().getPosition().y) - 100;
 

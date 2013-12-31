@@ -103,7 +103,7 @@ public class MasterPilot {
     //                    e1.behave(mainShuttle, graphics);
     //                    e2.behave(mainShuttle, graphics);
     //                     e3.behave(mainShuttle, graphics);
-                                             e4.behave(mainShuttle, graphics);
+                                             e4.behave(mainShuttle.getPosition(), graphics);
 
     //MAIN SPACESHUTTLE
                         mainShuttle.display(graphics);
@@ -125,7 +125,7 @@ public class MasterPilot {
     //KEYBOARD CONTROL
 
 
-                        ShuttleControl3.move(mainShuttle, context.pollKeyboard(), graphics);
+                        ShuttleControl.move(mainShuttle, context.pollKeyboard(), graphics);
 
     //DISPOSE BODIES
                         Body bodyTemp = world.getBodyList().getNext();

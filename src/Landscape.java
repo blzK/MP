@@ -11,9 +11,9 @@ import org.jbox2d.dynamics.World;
  *
  * @author azathoth
  */
-public class Landscape implements Sprite {
+public class Landscape implements Displayable {
 
-    private final ArrayList<Sprite> list = new ArrayList<>();
+    private final ArrayList<Displayable> list = new ArrayList<>();
     private HashMap<Integer, Integer> positions = new HashMap<>();
     private float xMin;
     private float yMin;
@@ -85,7 +85,7 @@ public class Landscape implements Sprite {
     }
 
     public void display(Graphics2D graphics, MainShuttle mainShuttle) {
-        for (Sprite sprite : list) {
+        for (Displayable sprite : list) {
             sprite.display(graphics, mainShuttle);
         }
     }
