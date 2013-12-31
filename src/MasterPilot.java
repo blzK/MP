@@ -4,6 +4,7 @@ import fr.umlv.zen3.Application;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.xml.parsers.ParserConfigurationException;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -52,8 +53,11 @@ public class MasterPilot {
 //        ArrayList <SpaceShuttle> listEnnemy= ennemyGeneration.Generate("1");
      
 //        WINDOW
+        
+       Menu menu = new Menu();
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
+                
             for (;;) {
                 try {
                     Thread.sleep(4);
@@ -61,71 +65,81 @@ public class MasterPilot {
                     Thread.currentThread().interrupt();
                 }
                 context.render(graphics -> {
-//                    BACKGROUND
-                    graphics.setColor(Color.black);
-                    graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
-                    int j = 0;
-                    float x = mainShuttle.getPosition().x;
-                    float y = mainShuttle.getPosition().y;
-//                    CENTERVIEW
-                    graphics.translate(-x, -y);
-                    graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
-//                    STARS
-                    if (!landscape.isInside(mainShuttle)) {
-                        landscape.generateLandscape(mainShuttle, world, 20, 30);
-                    }
-                    landscape.display(graphics, mainShuttle);
-
-//ENNEMY SHUTTLE
-//                    for(SpaceShuttle ennemy:listEnnemy){
-//                        ennemy.display(graphics);
-//                        ennemy.behave(mainShuttle, graphics);
-//                    }
-//                    System.out.println(CollisionCategory.BONUS.getBits()&&CollisionCategory.);
-//                    e1.display(graphics);
-//                     e2.display(graphics);
-//                     e3.display(graphics);
-                                         e4.display(graphics);
-//                    
-//                    e1.behave(mainShuttle, graphics);
-//                    e2.behave(mainShuttle, graphics);
-//                     e3.behave(mainShuttle, graphics);
-                                         e4.behave(mainShuttle, graphics);
-
-//MAIN SPACESHUTTLE
-                    mainShuttle.display(graphics);
-
-//DEBUG                    
-//                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
-//                    System.out.println(body.getContactList());
-//                    System.out.println("angle " + Math.abs(Math.toDegrees(spaceShuttle.getAngle())) % 360);
-////////////                    graphics.fill(transformed);
-//                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
-//PLANETS
-                    planet1.display(graphics);
-//                    bonus1.display(graphics, mainShuttle);
-//                    bonus2.display(graphics, mainShuttle);
-//                    planet2.display(graphics);
-//DISPOSE AND STEP TIME
-                    graphics.dispose();
-
-//KEYBOARD CONTROL
                     
-                      
-                    ShuttleControl3.move(mainShuttle, context.pollKeyboard(), graphics);
-
-//DISPOSE BODIES
-                    Body bodyTemp = world.getBodyList().getNext();
-                    Body bodyTemp2 = world.getBodyList().getNext();
-                    for (int i = 0; i < world.getBodyCount() - 1; i++) {
-
-                        if (bodyTemp != null && Math.abs(bodyTemp.getPosition().x - mainShuttle.getPosition().x) > WIDTH * 7 && Math.abs(bodyTemp.getPosition().y - mainShuttle.getPosition().y) > HEIGHT * 7) {
-                            world.destroyBody(bodyTemp2);
-                        }
-                        bodyTemp = bodyTemp.getNext();
-                        bodyTemp2 = bodyTemp;
+                    
+                    if(menu.getCompteur() == 0){
+                        HashMap<String,Integer> menuChoice;
+                        menuChoice = menu.launch(graphics, WIDTH, HEIGHT, context.pollKeyboard());
+                    
                     }
-                    world.step(timeStep, velocityIterations, positionIterations);
+                    else{
+                        
+    //                    BACKGROUND
+                        graphics.setColor(Color.black);
+                        graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
+                        int j = 0;
+                        float x = mainShuttle.getPosition().x;
+                        float y = mainShuttle.getPosition().y;
+    //                    CENTERVIEW
+                        graphics.translate(-x, -y);
+                        graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
+    //                    STARS
+                        if (!landscape.isInside(mainShuttle)) {
+                            landscape.generateLandscape(mainShuttle, world, 20, 30);
+                        }
+                        landscape.display(graphics, mainShuttle);
+
+    //ENNEMY SHUTTLE
+    //                    for(SpaceShuttle ennemy:listEnnemy){
+    //                        ennemy.display(graphics);
+    //                        ennemy.behave(mainShuttle, graphics);
+    //                    }
+    //                    System.out.println(CollisionCategory.BONUS.getBits()&&CollisionCategory.);
+    //                    e1.display(graphics);
+    //                     e2.display(graphics);
+    //                     e3.display(graphics);
+                                             e4.display(graphics);
+    //                    
+    //                    e1.behave(mainShuttle, graphics);
+    //                    e2.behave(mainShuttle, graphics);
+    //                     e3.behave(mainShuttle, graphics);
+                                             e4.behave(mainShuttle, graphics);
+
+    //MAIN SPACESHUTTLE
+                        mainShuttle.display(graphics);
+
+    //DEBUG                    
+    //                    System.out.println("SpaceShuttleX " + (int) spaceShuttle.getPosition().x + " SpaceShuttleY " + (int) spaceShuttle.getPosition().y);
+    //                    System.out.println(body.getContactList());
+    //                    System.out.println("angle " + Math.abs(Math.toDegrees(spaceShuttle.getAngle())) % 360);
+    ////////////                    graphics.fill(transformed);
+    //                    graphics.fill(new Ellipse2D.Float(x + WIDTH / 2 - SIZE / 2, y + HEIGHT / 2 - SIZE / 2, SIZE * 2, SIZE));
+    //PLANETS
+                        planet1.display(graphics);
+    //                    bonus1.display(graphics, mainShuttle);
+    //                    bonus2.display(graphics, mainShuttle);
+    //                    planet2.display(graphics);
+    //DISPOSE AND STEP TIME
+                        graphics.dispose();
+
+    //KEYBOARD CONTROL
+
+
+                        ShuttleControl3.move(mainShuttle, context.pollKeyboard(), graphics);
+
+    //DISPOSE BODIES
+                        Body bodyTemp = world.getBodyList().getNext();
+                        Body bodyTemp2 = world.getBodyList().getNext();
+                        for (int i = 0; i < world.getBodyCount() - 1; i++) {
+
+                            if (bodyTemp != null && Math.abs(bodyTemp.getPosition().x - mainShuttle.getPosition().x) > WIDTH * 7 && Math.abs(bodyTemp.getPosition().y - mainShuttle.getPosition().y) > HEIGHT * 7) {
+                                world.destroyBody(bodyTemp2);
+                            }
+                            bodyTemp = bodyTemp.getNext();
+                            bodyTemp2 = bodyTemp;
+                        }
+                        world.step(timeStep, velocityIterations, positionIterations);
+                    }
                 });
             }
         });

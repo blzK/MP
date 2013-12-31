@@ -24,6 +24,7 @@ public class EnnemyShuttle5 extends SpaceShuttle {
 
     SpaceShuttle[] ennemyGroup = new SpaceShuttle[16];
     Shape s;
+
     public EnnemyShuttle5(float x, float y, World world) {
         super(x, y);
         float posX = x;//MasterPilot.toXCoordinates(x);
@@ -67,7 +68,6 @@ public class EnnemyShuttle5 extends SpaceShuttle {
 
     @Override
     public boolean die() {
-
         return super.die();
     }
 
