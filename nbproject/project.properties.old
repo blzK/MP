@@ -6,7 +6,7 @@ annotation.processing.source.output=${build.generated.sources.dir}/ap-source-out
 application.title=MasterPilot
 application.vendor=Felipe
 auxiliary.org-netbeans-spi-editor-hints-projects.perProjectHintSettingsFile=nbproject/cfg_hints.xml
-build.classes.dir=classes
+build.classes.dir=${build.dir}/classes
 build.classes.excludes=**/*.java,**/*.form
 # This directory is removed when the project is cleaned:
 build.dir=build
@@ -26,8 +26,8 @@ debug.test.classpath=\
 dist.archive.excludes=
 # This directory is removed when the project is cleaned:
 dist.dir=dist
-dist.jar=${dist.dir}/master-pilot.jar
-dist.javadoc.dir=docs
+dist.jar=${dist.dir}/MasterPilot.jar
+dist.javadoc.dir=${dist.dir}/javadoc
 endorsed.classpath=
 excludes=
 includes=**

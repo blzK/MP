@@ -34,7 +34,7 @@ public class LevelFactory {
      */
     public static HashMap<String,Integer> loadLevel(String level) throws ParserConfigurationException, SAXException, IOException{
         
-        Path path = Paths.get("xml/"+level+".xml");
+        Path path = Paths.get("src/xml/"+level+".xml");
         HashMap dataLevel = loadXML(path);
         
         return dataLevel;
