@@ -22,7 +22,7 @@ public class Bonus extends FlyingObject {
     private final RocketType type;
 
     public Bonus(World world, float x, float y, RocketType type) {
-              super(x,y);
+        super(x, y);
 
         this.type = type;
         BodyDef bodyDefBonus = new BodyDef();
@@ -42,7 +42,8 @@ public class Bonus extends FlyingObject {
         getBody().createFixture(fdBonus);
         getBody().setUserData("Bonus");
     }
-@Override
+
+    @Override
     public void display(Graphics2D graphics, MainShuttle mainShuttle) {
         if (getBody().getContactList() != null) {
             System.out.println(getBody().getContactList());
