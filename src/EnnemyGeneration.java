@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.jbox2d.common.Timer;
 import org.jbox2d.dynamics.World;
 
 /*
@@ -19,11 +20,13 @@ public class EnnemyGeneration {
     private ArrayList<SpaceShuttle> listEnnemy;
     private HashMap<String, Integer> dataLevel;
     private World world;
+    private Timer timer;
 
     public EnnemyGeneration(World world, HashMap<String,Integer> dataLevel) {
         this.listEnnemy = new ArrayList<>();
         this.world = world;
         this.dataLevel = dataLevel;
+        this.timer = new Timer();
     }
     
     public ArrayList<SpaceShuttle> Generate(String vague) {
@@ -59,5 +62,8 @@ public class EnnemyGeneration {
         return this.listEnnemy;
     }
     
+    public Timer getTimer(){
+        return this.timer;
+    }
     
 }

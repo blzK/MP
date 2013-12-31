@@ -54,7 +54,8 @@ public class MasterPilot {
      
 //        WINDOW
         
-       Menu menu = new Menu();
+       Menu menu = new Menu();       
+       
         Application.run("Colors", WIDTH, HEIGHT, context -> {
 
                 
@@ -66,14 +67,13 @@ public class MasterPilot {
                 }
                 context.render(graphics -> {
                     
-                    
+                    HashMap<String,Integer> menuChoice;
+                    menuChoice = menu.getChoice();
                     if(menu.getCompteur() == 0){
-                        HashMap<String,Integer> menuChoice;
                         menuChoice = menu.launch(graphics, WIDTH, HEIGHT, context.pollKeyboard());
-                    
                     }
                     else{
-                        
+                        System.out.println("level"+menuChoice.get("level")+" mode"+menuChoice.get("mode")); // mode = 0 if easy mode or 1 for hardcore mode
     //                    BACKGROUND
                         graphics.setColor(Color.black);
                         graphics.fill(new Rectangle2D.Float(0, 0, WIDTH, HEIGHT));
